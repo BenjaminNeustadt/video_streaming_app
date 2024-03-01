@@ -5,11 +5,16 @@ require 'dotenv/load'
 # Load environment variables from .env file
 Dotenv.load
 
+# Database configuration
+configure :development do
+    set :database, { adapter: 'sqlite3', database: ':memory:' }
+end
+
 # Set session timeout to 15 minutes
 set :session_expire_after, 900
 
 # Database configuration
-set :database_file, 'conf/database.yml'
+set :database_file, 'config/database.yml'
 
 # Models
 class Film < ActiveRecord::Base
