@@ -4,6 +4,6 @@ source "https://rubygems.org"
 
 # gem "rails"
 gem 'sinatra'
-gem 'sinatra/activerecord'
+gem 'sinatra-activerecord'
 gem 'dotenv'
 
