@@ -1,0 +1,15 @@
+<!-- views/index.erb -->
+<% if @films.any? %>
+  <h2>Films Catalog</h2>
+  <ul>
+    <% @films.each do |film| %>
+      <li>
+        <h3><%= film.title %></h3>
+        <p><%= film.description %></p>
+        <p>Tags: <%= film.tags.map(&:name).join(', ') %></p>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No films available at the moment...</p>
+<% end %>
