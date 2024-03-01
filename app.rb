@@ -5,7 +5,6 @@ require 'dotenv/load'
 # Load environment variables from .env file
 Dotenv.load
 
-
 # Set session timeout to 15 minutes
 set :session_expire_after, 900
 
@@ -68,3 +67,5 @@ helpers do
     session[:authenticated] && session[:admin]
   end
 end
+
+use Rack::Session::Cookie, expire_after: settings.session_expire_after
