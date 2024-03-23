@@ -1,12 +1,18 @@
 <!-- views/index.erb -->
-<% if @films.any? %>
+<% if @assets.any? %>
   <h2>Films Catalog</h2>
+  <p> This is where the films go:</p>
   <ul>
-    <% @films.each do |film| %>
+    <% @assets.each do |asset| %>
+    <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+              <mux-player
+                  playback-id= <%= asset.playback_ids.first.id%>
+                  metadata-video-title="Placeholder (optional)"
+                  metadata-viewer-user-id="Placeholder (optional)"
+                  primary-color="#d38a8a"
+                  accent-color="#d38a8a"
+              ></mux-player>
       <li>
-        <h3><%= film.title %></h3>
-        <p><%= film.description %></p>
-        <p>Tags: <%= film.tags.map(&:name).join(', ') %></p>
       </li>
     <% end %>
   </ul>

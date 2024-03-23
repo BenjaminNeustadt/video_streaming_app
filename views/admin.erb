@@ -1,15 +1,26 @@
-<h2>Admin Dashboard</h2>
-<h3>Add New Film</h3>
-<form action="/films" method="post">
-  <label for="title">Title:</label>
-  <input type="text" id="title" name="title">
-  <label for="description">Description:</label>
-  <textarea id="description" name="description"></textarea>
-  <label for="tags">Tags (comma-separated):</label>
-  <input type="text" id="tags" name="tags">
-  <button type="submit">Submit</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <h2>Admin Dashboard</h2>
+  <h3>Add New Film</h3>
+  <form action="/films" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea>
+    <label for="tags">Tags (comma-separated):</label>
+    <input type="text" id="tags" name="tags">
+    <button type="submit">Submit</button>
+  </form>
 
+  <%# <mux-uploader
+  endpoint=@signed_upload_url
+  ></mux-uploader>  %>
+
+
+Some other stuff
+
+
+</html>
 <!--
 Or you may need to put the Mux upload feature here
 instead.
