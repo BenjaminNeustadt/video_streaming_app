@@ -110,6 +110,7 @@ class Application < Sinatra::Base
 
     post '/upload_new_asset' do
       input_new_video = params[:new_video]
+      file_for_new_video = params[:new_video][:tempfile]
       file_name_for_new_video = params[:new_video][:filename]
       puts input_new_video
 
@@ -132,7 +133,7 @@ class Application < Sinatra::Base
       upload = uploads_api.create_direct_upload(create_upload_request)
 
       signed_upload_url = upload.data.url
-      endpoint = signed_upload_url + '/' + file_name_for_new_video
+      endpoint = signed_upload_url + '/' + file_for_new_video
 
       # We will use:
 
