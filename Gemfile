@@ -22,3 +22,5 @@ group :development, :test do
 end
 
 gem "mux_ruby", "~> 3.14"
+
+gem "solid_assert", "~> 1.1"

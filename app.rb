@@ -90,6 +90,8 @@ class Application < Sinatra::Base
       create_upload_request.cors_origin = "philcluff.co.uk"
       upload = uploads_api.create_direct_upload(create_upload_request)
 
+
+
       puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n\n"
       puts "This is the value of upload: #{upload}\n\n"
       puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n\n"
@@ -104,6 +106,36 @@ class Application < Sinatra::Base
       puts "create-direct-upload OK ✅"
 
       erb :admin
+    end
+
+    post '/new_asset' do
+      new_video = params[:new_video]
+
+      # API Client Initialization
+      assets_api = MuxRuby::AssetsApi.new
+      playback_ids_api = MuxRuby::PlaybackIDApi.new
+
+      uploads_api = MuxRuby::DirectUploadsApi.new
+
+      # ========== create-direct-upload ==========
+      create_asset_request = MuxRuby::CreateAssetRequest.new
+      create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
+      create_upload_request = MuxRuby::CreateUploadRequest.new
+      create_upload_request.new_asset_settings = create_asset_request
+      create_upload_request.timeout = 3600
+      create_upload_request.cors_origin = "philcluff.co.uk"
+      upload = uploads_api.create_direct_upload(create_upload_request)
+
+      # We will use:
+      #upload.data.url
+
+      # ========== create-asset ==========
+      car = MuxRuby::CreateAssetRequest.new
+      car.input = [{:url => 'https://storage.googleapis.com/muxdemofiles/mux-video-intro.mp4'}, {:url => "https://tears-of-steel-subtitles.s3.amazonaws.com/tears-fr.vtt", :type => "text", :text_type => "subtitles", :name => "French", :language_code => "fr", :closed_captions => false}]
+      create_response = assets_api.create_asset(car)
+      assert create_response != nil
+      assert create_response.data.id != nil
+      puts "create-asset OK ✅"
     end
 
   run! if app_file == $0
