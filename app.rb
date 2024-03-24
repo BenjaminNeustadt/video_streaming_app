@@ -44,19 +44,22 @@ class Application < Sinatra::Base
     puts assets.data.count
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
 
-    # Pass the assets into the view #
+    # Pass the assets into the view 
     @assets = assets.data
     erb :index
   end
 
   get '/admin' do
-
-          erb :admin
-    end
+    # We just want to access the form 
+    erb :admin
+  end
 
     post '/upload_new_asset' do
 
+      # ===================================================
       # ========== This is where the mess begins ==========
+      # ===================================================
+
       # API Client Initialization #
       assets_api = MuxRuby::AssetsApi.new
       playback_ids_api = MuxRuby::PlaybackIDApi.new
@@ -108,5 +111,4 @@ class Application < Sinatra::Base
       puts "get-asset-input-info OK ✅"
     end
 
-  # run! if app_file == $0
 end
