@@ -146,6 +146,30 @@ class Application < Sinatra::Base
       assert create_response != nil
       assert create_response.data.id != nil
       puts "create-asset OK ✅"
+
+      # Wait for the asset to become ready...
+      if create_response.data.status != 'ready'
+        puts "    waiting for asset to become ready..."
+        while true do
+          # ========== get-asset ==========
+          asset = assets_api.get_asset(create_response.data.id)
+          assert asset != nil
+          assert asset.data.id == create_response.data.id
+          if asset.data.status != 'ready'
+            puts "Asset not ready yet, sleeping..."
+            sleep(1)
+          else
+            puts "Asset ready checking input info."
+            # ========== get-asset-input-info ==========
+            input_info = assets_api.get_asset_input_info(asset.data.id)
+            assert input_info != nil
+            assert input_info.data != nil
+            break
+          end
+        end
+      end
+      puts "get-asset OK ✅"
+      puts "get-asset-input-info OK ✅"
     end
 
   # run! if app_file == $0
