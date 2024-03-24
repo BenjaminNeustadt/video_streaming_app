@@ -5,6 +5,7 @@ require 'mux_ruby'
 
 require 'net/http'
 require 'dotenv'
+require 'solid_assert'
 Dotenv.load
 
 # Load environment variables from .env file
@@ -68,50 +69,41 @@ class Application < Sinatra::Base
   get '/' do
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets()
+    puts assets.data
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+    puts assets.data.count
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     @assets = assets.data
-  # @films = [{'title' => "something", 'description'=> "great"}]
     erb :index
   end
 
   get '/admin' do
 
-  # Prepare the request body
-    request_body = {
-      cors_origin: '*',
-      new_asset_settings: {
-        playback_policy: ['public'],
-        encoding_tier: 'baseline'
-      }
-    }.to_json
+      uploads_api = MuxRuby::DirectUploadsApi.new
 
-    # Prepare the request URI
-    uri = URI('https://api.mux.com/video/v1/uploads')
+      # ========== create-direct-upload ==========
+      create_asset_request = MuxRuby::CreateAssetRequest.new
+      create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
+      create_upload_request = MuxRuby::CreateUploadRequest.new
+      create_upload_request.new_asset_settings = create_asset_request
+      create_upload_request.timeout = 3600
+      create_upload_request.cors_origin = "philcluff.co.uk"
+      upload = uploads_api.create_direct_upload(create_upload_request)
 
-    # Create a new HTTP request
-    request = Net::HTTP::Post.new(uri)
-    request.body = request_body
-    request['Content-Type'] = 'application/json'
-    request.basic_auth(ENV['MUX_TOKEN_ID'], ENV['MUX_TOKEN_SECRET'])
+      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n\n"
+      puts "This is the value of upload: #{upload}\n\n"
+      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n\n"
 
-    # Send the HTTP request
-    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-      http.request(request)
-    end
+      puts "==============================\n\n"
+      puts "This is the signed url for uploading: #{upload.data.url}\n\n"
+      puts "==============================\n\n"
 
-    # Parse the response
-    if response.is_a?(Net::HTTPSuccess)
-      # Extract the signed upload URL from the JSON response
-      response_body = JSON.parse(response.body)
-      @signed_upload_url = response_body['data']['url']
+      assert upload != nil
+      assert upload.data != nil
+      assert upload.data.id != nil
+      puts "create-direct-upload OK ✅"
 
-      # Render the admin page with the signed upload URL
-      erb :admin, locals: { signed_upload_url: signed_upload_url }
-    else
-      # Handle error case (e.g., log error)
-      status response.code
-      "Failed to fetch signed upload URL"
-    end
-      "Here is the admin page something else"
+      erb :admin
     end
 
   run! if app_file == $0
@@ -119,6 +111,42 @@ end
 
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
+# # Prepare the request body
+#       request_body = {
+#         cors_origin: '*',
+#         new_asset_settings: {
+#           playback_policy: ['public'],
+#           encoding_tier: 'baseline'
+#         }
+#       }.to_json
+# 
+#       # Prepare the request URI
+#       uri = URI('https://api.mux.com/video/v1/uploads')
+# 
+#       # Create a new HTTP request
+#       request = Net::HTTP::Post.new(uri)
+#       request.body = request_body
+#       request['Content-Type'] = 'application/json'
+#       request.basic_auth(ENV['MUX_TOKEN_ID'], ENV['MUX_TOKEN_SECRET'])
+# 
+#       # Send the HTTP request
+#       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+#         http.request(request)
+#       end
+# 
+#       # Parse the response
+#       if response.is_a?(Net::HTTPSuccess)
+#         # Extract the signed upload URL from the JSON response
+#         response_body = JSON.parse(response.body)
+#         @signed_upload_url = response_body['data']['url']
+# 
+#         # Render the admin page with the signed upload URL
+#         erb :admin
+#       else
+#         # Handle error case (e.g., log error)
+#         status response.code
+#         "Failed to fetch signed upload URL"
+#       end
 # post '/login' do
 #   if params[:password] == ENV['SITE_PASSWORD']
 #     session[:authenticated] = true
