@@ -35,10 +35,6 @@ class Application < Sinatra::Base
   set :port, 8080
 
   
-  def playback_id(something)
-    something.playback_ids.first.id
-  end
-
   get '/' do
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets()
