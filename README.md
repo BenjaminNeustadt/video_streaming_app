@@ -56,3 +56,7 @@ https://docs.mux.com/guides/mux-uploader#slots-reference
 
 mux-ruby-sdk on github:
 https://github.com/muxinc/mux-ruby?tab=readme-ov-file
+
+
+Consulted for uploading a file:
+https://azemoh.com/2016/05/17/sinatra-managing-file-uploads/
