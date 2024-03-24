@@ -1,0 +1,18 @@
+/* Reset default styles */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set a background color */
+body {
+  background-color: white;
+}
+
+/* Set font styles */
+body {
+  font-family: "Press Start 2P", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.148px;
+}
