@@ -38,54 +38,35 @@ class Application < Sinatra::Base
   get '/' do
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets()
+
     puts assets.data
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     puts assets.data.count
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+
+    # Pass the assets into the view #
     @assets = assets.data
     erb :index
   end
 
   get '/admin' do
 
-      uploads_api = MuxRuby::DirectUploadsApi.new
-
-      # ========== create-direct-upload ==========
-      create_asset_request = MuxRuby::CreateAssetRequest.new
-      create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
-      create_upload_request = MuxRuby::CreateUploadRequest.new
-      create_upload_request.new_asset_settings = create_asset_request
-      create_upload_request.timeout = 3600
-      create_upload_request.cors_origin = "philcluff.co.uk"
-      upload = uploads_api.create_direct_upload(create_upload_request)
-
-      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n\n"
-      puts "This is the value of upload: #{upload}\n\n"
-      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+\n\n"
-
-      puts "==============================\n\n"
-      puts "This is the signed url for uploading: #{upload.data.url}\n\n"
-      puts "==============================\n\n"
-
-      assert upload != nil
-      assert upload.data != nil
-      assert upload.data.id != nil
-      puts "create-direct-upload OK ✅"
-
-      erb :admin
+          erb :admin
     end
 
     post '/upload_new_asset' do
+
+      # ========== This is where the mess begins ==========
+      # API Client Initialization #
+      assets_api = MuxRuby::AssetsApi.new
+      playback_ids_api = MuxRuby::PlaybackIDApi.new
+      uploads_api = MuxRuby::DirectUploadsApi.new
+
+      # Params processing for file #
       input_new_video = params[:new_video]
       file_for_new_video = params[:new_video][:tempfile]
       file_name_for_new_video = params[:new_video][:filename]
       puts input_new_video
-
-      # API Client Initialization
-      assets_api = MuxRuby::AssetsApi.new
-      playback_ids_api = MuxRuby::PlaybackIDApi.new
-
-      uploads_api = MuxRuby::DirectUploadsApi.new
 
       # ========== create-direct-upload ==========
       create_asset_request = MuxRuby::CreateAssetRequest.new
