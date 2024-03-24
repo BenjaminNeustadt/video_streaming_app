@@ -32,6 +32,9 @@ GEM
       rack (>= 3.0.0, < 4)
     rack-session (2.0.0)
       rack (>= 3.0.0)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
     rake (13.1.0)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -84,6 +87,7 @@ DEPENDENCIES
   mapkick-rb (~> 0.1.4)
   mux_ruby (~> 3.14)
   nokogiri (~> 1.14)
+  rackup (~> 2.1.0)
   rake (~> 13.0)
   rspec (~> 3.12)
   sinatra

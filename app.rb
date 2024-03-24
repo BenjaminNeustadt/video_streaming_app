@@ -1,6 +1,6 @@
 require 'sinatra'
 require "sinatra/reloader" if development?
-require 'sinatra/activerecord'
+# require 'sinatra/activerecord'
 require 'mux_ruby'
 
 require 'net/http'
