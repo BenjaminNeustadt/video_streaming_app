@@ -4,17 +4,14 @@
   <h3>Add New Film</h3>
 
 
-  <%# <mux-uploader
-  endpoint="<%= @signed_upload_url %>"
-  ></mux-uploader>  %>
 
-<form>
-  <mux-uploader
-  endpoint=<%= @upload %>
-  ></mux-uploader>
+<form action="/upload_new_asset" method="post" enctype="multipart/form-data">
+  <label for="new_video">Select a video:</label>
+  <input type="file" id="new_video" name="new_video" accept="video/*">
+  <button type="submit">Upload</button>
 </form>
 
-<script src="https://cdn.jsdelivr.net/npm/@mux/mux-uploader@1.0.0-beta.6"></script>
+<%# <script src="https://cdn.jsdelivr.net/npm/@mux/mux-uploader@1.0.0-beta.6"></script> %>
 </html>
 <!--
 Or you may need to put the Mux upload feature here
