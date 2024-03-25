@@ -44,13 +44,11 @@ class Application < Sinatra::Base
     puts assets.data.count
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
 
-    # Pass the assets into the view 
     @assets = assets.data
     erb :index
   end
 
   get '/admin' do
-    # We just want to access the form 
     erb :admin
   end
 
@@ -61,14 +59,10 @@ class Application < Sinatra::Base
     request = Net::HTTP::Put.new(uri)
     request.body = file_data
   
-    # Set any additional headers if needed
-    # request['HeaderName'] = 'HeaderValue'
-  
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
       http.request(request)
     end
   
-    # Check the response
     if response.is_a?(Net::HTTPSuccess)
       puts "File uploaded successfully!"
     else
@@ -79,10 +73,23 @@ class Application < Sinatra::Base
   def special_endpoint
         # API Client Initialization #
         assets_api = MuxRuby::AssetsApi.new
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+        puts assets_api
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
         playback_ids_api = MuxRuby::PlaybackIDApi.new
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+        puts playback_ids_api
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
         uploads_api = MuxRuby::DirectUploadsApi.new
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+        puts uploads_api
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+
         # ========== create-direct-upload ==========
         create_asset_request = MuxRuby::CreateAssetRequest.new
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+        puts create_asset_request
+        puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
         create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
   
         create_upload_request = MuxRuby::CreateUploadRequest.new
@@ -96,6 +103,18 @@ class Application < Sinatra::Base
         endpoint= upload.data.url
         endpoint
   end
+
+
+    # So what we need to do:
+    # create a post route for submitting title and description
+    # that is stored in database
+    # Should this be one thing, or two separate elements:
+    # if they are two separate elements and one fails, then it could still have a video but not title
+    # Lets try it a fe ways...
+
+    # Use this:
+    # https://soleetal.com/products/sole-et-al-raws-heavyweight-double-layer-tee-black?currency=GBP&variant=47684840489263&utm_medium=cpc&utm_source=google&utm_campaign=Google+Shopping&stkn=2574fade4b08&tw_source=google&tw_adid=693340036694&tw_campaign=21079978443&gad_source=1&gclid=Cj0KCQjwwYSwBhDcARIsAOyL0fh9zXeFjCSvvVjRMy3k4YbrEUbjSrb8FjvtWg4D3WGmpS5la-SYGgkaAiNwEALw_wcB
+    # to get the asset information of the last thing that you uploaded
 
 
   post '/upload_new_asset' do
@@ -129,7 +148,30 @@ class Application < Sinatra::Base
 
       upload = uploads_api.create_direct_upload(create_upload_request)
 
+
       endpoint= upload.data.url
+
+      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+      puts "The ID we get is this: #{upload.data.id}"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+      assets = assets_api.list_assets()
+      puts "This could be what we need: #{assets.data}"
+      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+      puts "This is the last upload: #{assets.data.last}"
+
+      puts "*******************************"
+
+      puts "Listing Direct Uploads:\n\n"
+      uploads = uploads_api.list_direct_uploads()
+      uploads.data.each do | upload |
+        puts "Status: #{upload.status}"
+        puts "Asset ID: #{upload.asset_id}\n\n"
+      end
+
+      puts "This is the first upload: #{assets.data.first}"
+      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+      puts "The data for uploads_api we get is this: #{uploads_api.get_direct_upload(upload.data.id)}"
+      puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
 
       upload_file(file_path, endpoint)
       # endpoint = signed_upload_url + '/' + file_name_for_new_video
@@ -139,7 +181,7 @@ class Application < Sinatra::Base
       # create_response = assets_api.create_asset(create_asset_request)
 
       puts "create-asset OK ✅"
-      @signed_upload_url = endpoint + '/' + uploaded_file[:new_video][:filename]
+      # @signed_upload_url = endpoint + '/' + uploaded_file[:new_video][:filename]
 
       redirect '/'
 
