@@ -5,13 +5,18 @@
 
 
 
-<form action="/upload_new_asset" method="post" enctype="multipart/form-data">
-  <label for="new_video">Select a video:</label>
-  <input type="file" id="new_video" name="new_video" accept="video/*">
-  <button type="submit">Upload</button>
-</form>
+<div>
+  <form action="/upload_new_asset" method="post" enctype="multipart/form-data">
+    <label for="new_video">Select a video:</label>
+    <input type="file" id="new_video" name="new_video" accept="video/*">
+    <button type="submit">Upload</button>
+  </form>
+  <mux-uploader
+    endpoint='<%= special_endpoint%>'
+  ></mux-uploader>
+</div>
 
-<%# <script src="https://cdn.jsdelivr.net/npm/@mux/mux-uploader@1.0.0-beta.6"></script> %>
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-uploader@1.0.0-beta.6"></script>
 </html>
 <!--
 Or you may need to put the Mux upload feature here

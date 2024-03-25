@@ -76,6 +76,29 @@ class Application < Sinatra::Base
     end
   end
 
+  def special_endpoint
+        # API Client Initialization #
+        assets_api = MuxRuby::AssetsApi.new
+        playback_ids_api = MuxRuby::PlaybackIDApi.new
+        uploads_api = MuxRuby::DirectUploadsApi.new
+        # ========== create-direct-upload ==========
+        create_asset_request = MuxRuby::CreateAssetRequest.new
+        create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
+  
+        create_upload_request = MuxRuby::CreateUploadRequest.new
+  
+        create_upload_request.new_asset_settings = create_asset_request
+        create_upload_request.timeout = 3600
+        create_upload_request.cors_origin = "http://localhost:9292/admin"
+  
+        upload = uploads_api.create_direct_upload(create_upload_request)
+  
+        endpoint= upload.data.url
+        endpoint
+  end
+
+# TODO:extract the playback ID and allow input for title, description, tags/genre to be inserted and updated, for the admin to change.
+
   post '/upload_new_asset' do
 
       # ===================================================
@@ -91,6 +114,7 @@ class Application < Sinatra::Base
       # input_new_video = params[:new_video]
       # file_for_new_video = params[:new_video][:tempfile].read
       uploaded_file = params[:new_video]
+      # puts "This is the filename: #{uploaded_file[:new_video][:filename]}"
       file_path = uploaded_file[:tempfile].path
       # puts input_new_video
 
@@ -116,6 +140,7 @@ class Application < Sinatra::Base
       # create_response = assets_api.create_asset(create_asset_request)
 
       puts "create-asset OK ✅"
+      @signed_upload_url = endpoint + '/' + uploaded_file[:new_video][:filename]
 
       redirect '/'
 
