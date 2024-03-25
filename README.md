@@ -1,6 +1,6 @@
 # PirateHub
 
-This is the _beta_ version
+This is the _alpha_ version
 
 # To run
 

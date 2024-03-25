@@ -6,11 +6,10 @@
 
 
 <div>
-  <%# <form action="/upload_new_asset" method="post" enctype="multipart/form-data">
-    <label for="new_video">Check the playback ID of last upload:</label>
-    <%# <input type="file" id="new_video" name="new_video" accept="video/*"> %>
-    <button type="submit">Submit</button>
-  </form> %>
+  <form action="/metadata_for_last_asset" method="post">
+    <input type="submit" value="TESTING">
+  </form>
+
   <mux-uploader
     endpoint='<%= special_endpoint%>'
   ></mux-uploader>
