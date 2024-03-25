@@ -174,3 +174,26 @@
 # end
 
 # use Rack::Session::Cookie, expire_after: settings.session_expire_after
+#
+#
+# Method for manually uploaded and ingesting to Mux a file from browser
+  def get_the_playback_id_of_last_asset(asset_id)
+    mux_url_assets = "https://api.mux.com/video/v1/assets/#{asset_id}"
+
+    uri = URI.parse(mux_url_assets)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+    request = Net::HTTP::Get.new(uri)
+    request['Content-Type'] = 'application/json'
+    request.basic_auth(ENV.fetch('MUX_TOKEN_ID', nil), ENV.fetch('MUX_TOKEN_SECRET', nil))
+
+    response = http.request(request)
+
+    if response.code == '200'
+      content_type :json
+      response.body
+    else
+      "Failed to fetch upload metadata: #{response.code} #{response.message}"
+    end
+  end
+
