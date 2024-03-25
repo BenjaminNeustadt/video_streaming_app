@@ -86,7 +86,7 @@ class Application < Sinatra::Base
         create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
   
         create_upload_request = MuxRuby::CreateUploadRequest.new
-  
+
         create_upload_request.new_asset_settings = create_asset_request
         create_upload_request.timeout = 3600
         create_upload_request.cors_origin = "http://localhost:9292/admin"
@@ -97,7 +97,6 @@ class Application < Sinatra::Base
         endpoint
   end
 
-# TODO:extract the playback ID and allow input for title, description, tags/genre to be inserted and updated, for the admin to change.
 
   post '/upload_new_asset' do
 
