@@ -54,7 +54,29 @@ class Application < Sinatra::Base
     erb :admin
   end
 
-    post '/upload_new_asset' do
+  def upload_file(file_path, url)
+    uri = URI(url)
+    file_data = File.binread(file_path)
+  
+    request = Net::HTTP::Put.new(uri)
+    request.body = file_data
+  
+    # Set any additional headers if needed
+    # request['HeaderName'] = 'HeaderValue'
+  
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      http.request(request)
+    end
+  
+    # Check the response
+    if response.is_a?(Net::HTTPSuccess)
+      puts "File uploaded successfully!"
+    else
+      puts "Failed to upload file: #{response.code} - #{response.message}"
+    end
+  end
+
+  post '/upload_new_asset' do
 
       # ===================================================
       # ========== This is where the mess begins ==========
@@ -66,10 +88,11 @@ class Application < Sinatra::Base
       uploads_api = MuxRuby::DirectUploadsApi.new
 
       # Params processing for file #
-      input_new_video = params[:new_video]
-      file_for_new_video = params[:new_video][:tempfile]
-      file_name_for_new_video = params[:new_video][:filename]
-      puts input_new_video
+      # input_new_video = params[:new_video]
+      # file_for_new_video = params[:new_video][:tempfile].read
+      uploaded_file = params[:new_video]
+      file_path = uploaded_file[:tempfile].path
+      # puts input_new_video
 
       # ========== create-direct-upload ==========
       create_asset_request = MuxRuby::CreateAssetRequest.new
@@ -83,32 +106,38 @@ class Application < Sinatra::Base
 
       upload = uploads_api.create_direct_upload(create_upload_request)
 
-      signed_upload_url = upload.data.url
-      endpoint = signed_upload_url + '/' + file_for_new_video
+      endpoint= upload.data.url
 
-      create_asset_request.input = [{:url => endpoint}]
-      create_response = assets_api.create_asset(create_asset_request)
+      upload_file(file_path, endpoint)
+      # endpoint = signed_upload_url + '/' + file_name_for_new_video
+
+
+      # create_asset_request.input = file_for_new_video
+      # create_response = assets_api.create_asset(create_asset_request)
 
       puts "create-asset OK ✅"
 
-      # Wait for the asset to become ready...
-      if create_response.data.status != 'ready'
-        puts "    waiting for asset to become ready..."
-        while true do
-          # ========== get-asset ==========
-          if asset.data.status != 'ready'
-            puts "Asset not ready yet, sleeping..."
-            sleep(1)
-          else
-            puts "Asset ready checking input info."
-            # ========== get-asset-input-info ==========
-            input_info = assets_api.get_asset_input_info(asset.data.id)
-            break
-          end
-        end
-      end
-      puts "get-asset OK ✅"
-      puts "get-asset-input-info OK ✅"
+      redirect '/'
+
     end
 
 end
+
+      # # Wait for the asset to become ready...
+      # if create_response.data.status != 'ready'
+      #   puts "    waiting for asset to become ready..."
+      #   while true do
+      #     # ========== get-asset ==========
+      #     if asset.data.status != 'ready'
+      #       puts "Asset not ready yet, sleeping..."
+      #       sleep(1)
+      #     else
+      #       puts "Asset ready checking input info."
+      #       # ========== get-asset-input-info ==========
+      #       input_info = assets_api.get_asset_input_info(asset.data.id)
+      #       break
+      #     end
+      #   end
+      # end
+      # puts "get-asset OK ✅"
+      # puts "get-asset-input-info OK ✅"
