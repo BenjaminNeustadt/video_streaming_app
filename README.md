@@ -211,3 +211,19 @@ https://azemoh.com/2016/05/17/sinatra-managing-file-uploads/
       redirect '/'
 
   #   e
+
+## Documentation
+
+- Mux [upload a video]
+- Mux for creating a [new direct upload URL]
+- Mux [slot reference]
+- [mux-ruby-sdk] on github
+
+
+Consulted for [uploading a file].
+
+[upload a video]: https://docs.mux.com/guides/mux-uploader#upload-a-video
+[new direct upload URL]: https://docs.mux.com/api-reference#video/operation/create-direct-upload
+[slot reference]: https://docs.mux.com/guides/mux-uploader#slots-reference
+[mux-ruby-sdk]: https://github.com/muxinc/mux-ruby?tab=readme-ov-file
+[uploading a file]:https://azemoh.com/2016/05/17/sinatra-managing-file-uploads/
