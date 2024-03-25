@@ -8,10 +8,22 @@ require 'sinatra/activerecord'
 
 class Application < Sinatra::Base
 
+  private
+
   def initialize
     assets_api = MuxRuby::AssetsApi.new
     self.assets = assets_api.list_assets
   end
+
+  def debugger_logger
+    print Time.now, ': '
+    puts "These are the current assets in the Mux:"
+    p assets
+    puts "These are the current number of assets:"
+    p assets.count
+  end
+
+  public
 
   attr_reader :assets
   attr_writer :assets
@@ -23,14 +35,6 @@ class Application < Sinatra::Base
   MuxRuby.configure do |config|
     config.username = ENV.fetch('MUX_TOKEN_ID', nil)
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
-  end
-
-  def debugger_logger
-    print Time.now, ': '
-    puts "These are the current assets in the Mux:"
-    p assets
-    puts "These are the current number of assets:"
-    p assets.count
   end
 
   enable :sessions
