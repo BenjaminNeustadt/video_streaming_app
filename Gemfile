@@ -15,9 +15,9 @@ group :development, :test do
   gem 'nokogiri',             '~> 1.14'
   gem 'rake',                 '~> 13.0'
   gem 'rspec',                '~> 3.12'
+  gem "sinatra-activerecord", "~> 2.0"
+  #  gem "sinatra-partial",      "~> 1.0"
   gem 'rubocop'
-  #  gem 'sinatra-activerecord', '~> 2.0'
-  #  gem 'sinatra-partial',      '~> 1.0'
   gem 'sqlite3', '~> 1.6'
   gem 'webrick', '~> 1.8'
 end

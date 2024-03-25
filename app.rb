@@ -4,7 +4,7 @@ require 'mux_ruby'
 require 'net/http'
 require 'uri'
 require 'dotenv/load'
-require 'logger'
+require 'sinatra/activerecord'
 
 class Application < Sinatra::Base
 
