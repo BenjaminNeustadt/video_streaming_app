@@ -1,4 +1,3 @@
-
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
 # # Prepare the request body
@@ -9,27 +8,27 @@
 #           encoding_tier: 'baseline'
 #         }
 #       }.to_json
-# 
+#
 #       # Prepare the request URI
 #       uri = URI('https://api.mux.com/video/v1/uploads')
-# 
+#
 #       # Create a new HTTP request
 #       request = Net::HTTP::Post.new(uri)
 #       request.body = request_body
 #       request['Content-Type'] = 'application/json'
 #       request.basic_auth(ENV['MUX_TOKEN_ID'], ENV['MUX_TOKEN_SECRET'])
-# 
+#
 #       # Send the HTTP request
 #       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
 #         http.request(request)
 #       end
-# 
+#
 #       # Parse the response
 #       if response.is_a?(Net::HTTPSuccess)
 #         # Extract the signed upload URL from the JSON response
 #         response_body = JSON.parse(response.body)
 #         @signed_upload_url = response_body['data']['url']
-# 
+#
 #         # Render the admin page with the signed upload URL
 #         erb :admin
 #       else
@@ -47,7 +46,6 @@
 #   end
 # end
 
-
 # post 'films' do
 #   redirect '/login' unless admin?
 #   @film = Film.create(title:params[:title], description: params[:description])
@@ -60,7 +58,7 @@
 #   redirect '/'
 # end
 
-#helpers do
+# helpers do
 #   def authenticated?
 #     session[:authenticated] && !session_expired?
 #   end
@@ -100,7 +98,6 @@
 
 # Routes
 
-
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
 # # Prepare the request body
@@ -111,27 +108,27 @@
 #           encoding_tier: 'baseline'
 #         }
 #       }.to_json
-# 
+#
 #       # Prepare the request URI
 #       uri = URI('https://api.mux.com/video/v1/uploads')
-# 
+#
 #       # Create a new HTTP request
 #       request = Net::HTTP::Post.new(uri)
 #       request.body = request_body
 #       request['Content-Type'] = 'application/json'
 #       request.basic_auth(ENV['MUX_TOKEN_ID'], ENV['MUX_TOKEN_SECRET'])
-# 
+#
 #       # Send the HTTP request
 #       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
 #         http.request(request)
 #       end
-# 
+#
 #       # Parse the response
 #       if response.is_a?(Net::HTTPSuccess)
 #         # Extract the signed upload URL from the JSON response
 #         response_body = JSON.parse(response.body)
 #         @signed_upload_url = response_body['data']['url']
-# 
+#
 #         # Render the admin page with the signed upload URL
 #         erb :admin
 #       else
@@ -149,7 +146,6 @@
 #   end
 # end
 
-
 # post 'films' do
 #   redirect '/login' unless admin?
 #   @film = Film.create(title:params[:title], description: params[:description])
@@ -162,7 +158,7 @@
 #   redirect '/'
 # end
 
-#helpers do
+# helpers do
 #   def authenticated?
 #     session[:authenticated] && !session_expired?
 #   end
