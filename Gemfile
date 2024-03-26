@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '>=3.0'
+ruby '>=3.0.0'
 
 gem 'logger'
 gem 'mux_ruby', '~> 3.14'
