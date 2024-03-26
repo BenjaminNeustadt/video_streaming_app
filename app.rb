@@ -6,7 +6,30 @@ require 'uri'
 require 'dotenv/load'
 require 'sinatra/activerecord'
 
+# class PirateAsset < Sinatra::ActiveRecord
+#   has_a :title
+#   has_a :description
+#   has_a :playback_id
+#   has_a :duration
+#   has_many :tags
+# end
+#
+
 class Application < Sinatra::Base
+
+  configure do
+    register Sinatra::ActiveRecordExtention
+    set :database, {adapter: "sqlite3", database: "test_pirate_hub.sqlite3"}
+  end
+
+  configure :developmment do
+    register Sinatra::Reloader
+  end
+
+  MuxRuby.configure do |config|
+    config.username = ENV.fetch('MUX_TOKEN_ID', nil)
+    config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
+  end
 
   private
 
@@ -28,14 +51,6 @@ class Application < Sinatra::Base
   attr_reader :assets
   attr_writer :assets
 
-  configure :developmment do
-    register Sinatra::Reloader
-  end
-
-  MuxRuby.configure do |config|
-    config.username = ENV.fetch('MUX_TOKEN_ID', nil)
-    config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
-  end
 
   enable :sessions
   set :bind, '0.0.0.0'
