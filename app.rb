@@ -6,13 +6,29 @@ require 'uri'
 require 'dotenv/load'
 require 'logger'
 
+puts 'See the log files:',
+log_file = 'logs/app.log',
+error_log = 'logs/app_error.log'
+
+LOG = Logger.new(log_file, 'daily')
+LOG.info { 'Starting PirateHub' }
+
+# Create a Logger that prints to STDERR
+ERROR_LOG = Logger.new(error_log, 'daily')
+
+at_exit do
+  LOG.info { 'Program finished' }
+  LOG.close
+  ERROR_LOG.close
+end
+
 class Application < Sinatra::Base
 
   configure :developmment do
     register Sinatra::Reloader
   end
 
-  openapi = MuxRuby.configure do |config|
+  MuxRuby.configure do |config|
     config.username = ENV.fetch('MUX_TOKEN_ID', nil)
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
   end
@@ -79,11 +95,11 @@ class Application < Sinatra::Base
 
   def special_endpoint
     # API Client Initialization #
-    assets_api = MuxRuby::AssetsApi.new
-    playback_ids_api = MuxRuby::PlaybackIDApi.new
+    MuxRuby::AssetsApi.new
+    MuxRuby::PlaybackIDApi.new
     uploads_api = MuxRuby::DirectUploadsApi.new
 
-    # ========== create-direct-upload ==========
+    LOG.info { 'Create direct upload' }
     create_asset_request = MuxRuby::CreateAssetRequest.new
     create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
 
@@ -97,7 +113,8 @@ class Application < Sinatra::Base
     upload_id = upload.data.id
 
     # playback_id_thread = Thread.new do
-    puts "This is the upload_id: #{upload_id}"
+    LOG.info { 'This is the upload_id: %s' % upload_id }
+
     get_the_playback_id_of_last_asset(upload_id)
     # end
 
@@ -106,28 +123,27 @@ class Application < Sinatra::Base
 
   def metadata_for_last_asset
     assets_api = MuxRuby::AssetsApi.new
-    playback_ids_api = MuxRuby::PlaybackIDApi.new
     assets = assets_api.list_assets
-    p 'The last data from assets is:'
-    p assets.data.first
+    LOG.info do
+      'The last data from assets is: %s' % assets.data.first.inspect
+    end
     # puts "These are the methods on assets_api %s" % assets_api.methods
     # puts "These are the methods on an asset %s" % assets.data.last.methods
-    last_asset = assets.data.last
-    playback_id_for_latest_asset = assets.data.first.playback_ids.first.id
-    methods_on_mux_class = assets.data.first.class.methods.sort
-    # playback_id_for_latest_asset = assets.data.first['data']['playback_ids'].first['id']
-    p '=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+'
-    p 'This is the playback id for the latest asset:'
-    p playback_id_for_latest_asset
-    p '=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+'
-    p 'These are the methods'
-    p methods_on_mux_class
+    LOG.debug do
+      playback_id_for_latest_asset = assets.data.first.playback_ids.first.id
+      ['playback id for latest asset:', playback_id_for_latest_asset]
+    end
+    LOG.debug do
+      methods_on_mux_class = assets.data.first.class.instance_methods(false).sort
+      ['Instance Methods on Mux::Assets class:', methods_on_mux_class]
+    end
   end
 
   def get_the_playback_id_of_last_asset(asset_id)
-    p 'preparing to get the playback id of this last asset'
+    LOG.info { 'preparing to get the playback id of this last asset' }
     # mux_url = "https://api.mux.com/video/v1/uploads/#{upload_id}"
-    mux_url_assets = "https://api.mux.com/video/v1/assets/#{asset_id}"
+    mux_url_assets =
+      'https://api.mux.com/video/v1/assets/%<asset_id>s' % {asset_id:}
 
     uri = URI.parse(mux_url_assets)
     http = Net::HTTP.new(uri.host, uri.port)
@@ -137,16 +153,19 @@ class Application < Sinatra::Base
     request.basic_auth(ENV.fetch('MUX_TOKEN_ID', nil), ENV.fetch('MUX_TOKEN_SECRET', nil))
 
     # Send the request and handle the response
-    p 'Sending request and handing the response…'
+    LOG.info { 'Sending request and handing the response…' }
     response = http.request(request)
 
-    p 'Response code is: %i' % response.code
+    LOG.info { 'Response code is: %i' % response.code }
     # Return the response body or an error message
     if response.code == '200'
       content_type :json
-      p response.body
+      LOG.info { response.body }
     else
-      p "Failed to fetch upload metadata: #{response.code} #{response.message}"
+      LOG.info do
+        'Failed to fetch upload metadata: %<code>s %<message>s' % {code: response.code, message: response.message}
+      end
+
     end
   end
 
