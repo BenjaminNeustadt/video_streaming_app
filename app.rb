@@ -4,8 +4,7 @@ require 'mux_ruby'
 require 'net/http'
 require 'uri'
 require 'dotenv/load'
-
-require 'pp'
+require 'logger'
 
 class Application < Sinatra::Base
 
@@ -52,6 +51,11 @@ class Application < Sinatra::Base
   end
 
   get '/admin' do
+    erb :admin
+  end
+
+  post '/metadata_for_last_asset' do
+    metadata_for_last_asset
     erb :admin
   end
 
@@ -118,11 +122,6 @@ class Application < Sinatra::Base
     p '=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+'
     p 'These are the methods'
     p methods_on_mux_class
-  end
-
-  post '/metadata_for_last_asset' do
-    metadata_for_last_asset
-    erb :admin
   end
 
   def get_the_playback_id_of_last_asset(asset_id)
