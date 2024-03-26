@@ -10,6 +10,7 @@ GEM
     ffi (1.16.3)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
+    logger (1.6.0)
     mapkick-rb (0.1.5)
     multi_json (1.15.0)
     mustermann (3.0.0)
@@ -109,6 +110,7 @@ PLATFORMS
 
 DEPENDENCIES
   dotenv (~> 3.1.0)
+  logger
   mapkick-rb (~> 0.1.4)
   mux_ruby (~> 3.14)
   nokogiri (~> 1.14)
