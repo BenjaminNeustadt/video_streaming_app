@@ -38,14 +38,6 @@ class Application < Sinatra::Base
     self.assets = assets_api.list_assets
   end
 
-  def debugger_logger
-    print Time.now, ': '
-    puts "These are the current assets in the Mux:"
-    p assets
-    puts "These are the current number of assets:"
-    p assets.count
-  end
-
   public
 
   attr_reader :assets
@@ -62,6 +54,14 @@ class Application < Sinatra::Base
 
   get '/admin' do
     erb :admin
+  end
+
+  def debugger_logger
+    print Time.now, ': '
+    puts "These are the current assets in the Mux:"
+    p assets
+    puts "These are the current number of assets:"
+    p assets.count
   end
 
   def special_endpoint
