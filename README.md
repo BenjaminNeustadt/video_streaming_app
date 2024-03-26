@@ -6,13 +6,20 @@ This is the _alpha_ version
 
 Currently, `.env` file is ignored from version control.
 In order for it to run, write your own `.env` with necessary credentials.
+Currently the logs/app.log and logs/app_error.log is not automatically
+created. In order for the app to run do:
 
+```
+mkdir logs
+touch logs/app.log logs/app_error.log
+```
+
+.Then create the env file:
 ```
 touch .env
 ```
 
-inside the `.env`:
-
+.inside the `.env`:
 ```
 MUX_TOKEN_ID=[your mux ID token]
 MUX_TOKEN_SECRET=[your mux token secret key]
