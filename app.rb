@@ -143,7 +143,7 @@ class Application < Sinatra::Base
     LOG.info { 'preparing to get the playback id of this last asset' }
     # mux_url = "https://api.mux.com/video/v1/uploads/#{upload_id}"
     mux_url_assets =
-      'https://api.mux.com/video/v1/assets/%<asset_id>s' % {asset_id:}
+      'https://api.mux.com/video/v1/assets/%<asset_id>s' % {asset_id: asset_id}
 
     uri = URI.parse(mux_url_assets)
     http = Net::HTTP.new(uri.host, uri.port)
