@@ -18,7 +18,7 @@ require 'sinatra/activerecord'
 class Application < Sinatra::Base
 
   configure do
-    register Sinatra::ActiveRecordExtention
+    register Sinatra::ActiveRecordExtension
     set :database, {adapter: "sqlite3", database: "test_pirate_hub.sqlite3"}
   end
 
