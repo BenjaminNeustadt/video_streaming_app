@@ -31,24 +31,15 @@ class Application < Sinatra::Base
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
   end
 
-  private
-
-  def initialize
-    assets_api = MuxRuby::AssetsApi.new
-    self.assets = assets_api.list_assets
-  end
-
-  public
-
-  attr_reader :assets
-  attr_writer :assets
-
+  assets_api = MuxRuby::AssetsApi.new
+  assets = assets_api.list_assets
 
   enable :sessions
   set :bind, '0.0.0.0'
   set :port, 8080
 
   get '/' do
+    @assets = assets.data
     erb :index
   end
 
@@ -65,7 +56,7 @@ class Application < Sinatra::Base
   end
 
   def special_endpoint
-    # mux_uploader_api = MuxRuby::DirectUploadsApi.new
+    mux_uploader_api = MuxRuby::DirectUploadsApi.new
     create_asset_request = MuxRuby::CreateAssetRequest.new
     create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
 
@@ -75,9 +66,9 @@ class Application < Sinatra::Base
     create_upload_request.cors_origin = 'http://localhost:9292/admin'
 
     uploaded_video = mux_uploader_api.create_direct_upload(create_upload_request)
-    uploaded_asset_id = upload.data.id
+    uploaded_asset_id = uploaded_video.data.id
     puts "This is the upload_id: #{uploaded_asset_id}"
-    get_the_playback_id_of_last_asset(uploaded_asset_id)
+    playback_id_for_latest_asset
     uploaded_video.data.url
   end
 
