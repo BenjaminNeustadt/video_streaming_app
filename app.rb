@@ -90,4 +90,17 @@ class Application < Sinatra::Base
     erb :admin
   end
 
+  post '/upload_asset_metadata' do
+
+# :TODO: this is where we create a Pirate asset with the metadata as attributes on the object created
+# and sent to the database
+
+    p title = params[:title]
+    p description = params[:description]
+    p year = params[:year]
+    p country = params[:country]
+    p genre = params[:genre] # will this be given as an array by default?
+    p notes = params[:notes]
+  end
+
 end
