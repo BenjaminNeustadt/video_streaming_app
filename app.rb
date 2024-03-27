@@ -14,6 +14,7 @@ require 'sinatra/activerecord'
 #   has_many :tags
 # end
 #
+#
 
 class Application < Sinatra::Base
 
@@ -80,7 +81,8 @@ class Application < Sinatra::Base
     assets = assets_api.list_assets
     p 'The last data from assets is:'
     p assets.data.first
-    assets.data.first.playback_ids.first.id
+    p 'The playback_id for the last asset is:'
+    p assets.data.first.playback_ids.first.id
   end
 
   post '/metadata_for_last_asset' do

@@ -16,7 +16,7 @@
 <div class="admin_cli_logs">
   <form action="/metadata_for_last_asset" method="post">
     <label>
-     <input type="submit" value="TESTING">
+     <input type="submit" value="LOG LAST PLAYBACK_ID TO TERMINAL">
    </form>
 </div>
 
@@ -62,9 +62,9 @@
   </form>
 </div>
 
-  <script>
-    // JavaScript to populate the year dropdown dynamically
-  var currentYear = new Date().getFullYear();
+<script>
+  // JavaScript to populate the year dropdown dynamically
+var currentYear = new Date().getFullYear();
 var yearDropdown = document.getElementById("year");
 for (var i = currentYear; i >= 1900; i--) {
   var option = document.createElement("option");
@@ -84,15 +84,11 @@ countries.forEach(function(country) {
   option.value = country;
   countryDatalist.appendChild(option);
 });
-  </script>
+</script>
 
 </body>
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/@mux/mux-uploader@1.0.0-beta.6"></script>
 </html>
-<!--
-Or you may need to put the Mux upload feature here
-instead.
--->
 
