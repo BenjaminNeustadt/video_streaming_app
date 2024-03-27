@@ -5,8 +5,8 @@ gem 'logger'
 gem 'mux_ruby', '~> 3.14'
 gem 'rackup', '~> 2.1.0'
 gem 'sinatra'
-gem 'sinatra-contrib'
 gem 'solid_assert', '~> 1.1'
+gem 'sinatra-contrib'
 
 group :development, :test do
   #  gem 'bcrypt',               '~> 3.1'
@@ -17,6 +17,7 @@ group :development, :test do
   gem 'rspec',                '~> 3.12'
   gem "sinatra-activerecord", "~> 2.0"
   #  gem "sinatra-partial",      "~> 1.0"
+  gem "sinatra-reloader", "~> 1.0"
   gem 'rubocop'
   gem 'sqlite3', '~> 1.6'
   gem 'webrick', '~> 1.8'
