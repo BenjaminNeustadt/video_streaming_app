@@ -6,21 +6,12 @@ require 'uri'
 require 'dotenv/load'
 require 'sinatra/activerecord'
 
-# class PirateAsset < Sinatra::ActiveRecord
-#   has_a :title
-#   has_a :description
-#   has_a :playback_id
-#   has_a :duration
-#   has_many :tags
-# end
-#
-#
 
 class Application < Sinatra::Base
 
   configure do
     register Sinatra::ActiveRecordExtension
-    set :database, {adapter: "sqlite3", database: "test_pirate_hub.sqlite3"}
+    set :database, {adapter: "sqlite3", database: "db/test_pirate_hub.sqlite3"}
   end
 
   configure :developmment do
@@ -94,13 +85,29 @@ class Application < Sinatra::Base
 
 # :TODO: this is where we create a Pirate asset with the metadata as attributes on the object created
 # and sent to the database
-
     p title = params[:title]
     p description = params[:description]
     p year = params[:year]
     p country = params[:country]
-    p genre = params[:genre] # will this be given as an array by default?
+    p genre = params[:genre]
     p notes = params[:notes]
+    pirate_asset = Asset.create(
+      title: title,
+      description: description,
+      year: year,
+      genre: genre,
+      notes: notes,
+      playback_id: 'Hello, Governor!'
+    )
+    p pirate_asset
   end
-
 end
+
+class Asset < ActiveRecord::Base
+  # has_a :title
+  # has_a :description
+  # has_a :playback_id
+  # has_a :duration
+  # has_many :tags
+end
+
