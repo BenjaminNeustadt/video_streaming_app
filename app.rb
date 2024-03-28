@@ -36,6 +36,7 @@ class Application < Sinatra::Base
   end
 
   get '/admin' do
+    p "WE ARE IN THE ADMIN PANEL"
     erb :admin
   end
 
@@ -100,6 +101,7 @@ class Application < Sinatra::Base
       playback_id: 'Hello, Governor!'
     )
     p pirate_asset
+    redirect '/admin'
   end
 end
 
