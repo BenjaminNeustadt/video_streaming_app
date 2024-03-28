@@ -101,6 +101,8 @@ class Application < Sinatra::Base
       playback_id: 'Hello, Governor!'
     )
     p pirate_asset
+    all_assets = Asset.all
+    p all_assets
     redirect '/admin'
   end
 end
