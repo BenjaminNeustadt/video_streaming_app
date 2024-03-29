@@ -27,6 +27,7 @@ body {
 .video_asset {
   margin: 10px;
   width: 40%; /* Adjust as needed */
+  height: 40%; /* Adjust as needed */
 }
 
 @media (max-width: 768px) {
