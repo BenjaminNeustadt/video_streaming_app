@@ -117,7 +117,8 @@ class Application < Sinatra::Base
       year: year,
       genre: genre,
       notes: notes,
-      playback_id: playback_id_for_latest_asset
+      playback_id: playback_id_for_latest_asset,
+      id: asset_id_for_latest_asset  
     )
     p pirate_asset
     all_assets = Asset.all
