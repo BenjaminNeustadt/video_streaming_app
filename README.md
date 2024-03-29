@@ -107,6 +107,10 @@ _Use this to get the asset information of the last thing that you uploaded_:
 
 _To be inserted, currently in Obisidian_
 
+- Mux assets:
+
+https://dashboard.mux.com/organizations/vkhb2l/environments/pdndb2/video/assets
+
 - Mux upload a video:
 
 https://docs.mux.com/guides/mux-uploader#upload-a-video
