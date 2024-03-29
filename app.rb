@@ -138,10 +138,5 @@ class Asset < ActiveRecord::Base
   # has_a :playback_id
   # has_a :duration
   # has_many :tags
-  # Create a functino that returns the playback ID
-  # Create a function that returns the url
-  # Create a function that returns the title
-  # Create a function that returns the description
-  # Create a function that returns notes
 end
 
