@@ -15,10 +15,19 @@
         ></mux-player>
 
         <div class="asset_info">
-          <div> Title: <%= asset.title%> </div>
-          <div> Description: <%= asset.description%> </div>
-          <div> Year: <%= asset.year%> </div>
-          <div> Notes: <%= asset.notes%> </div>
+          <div class="asset_title">
+          <b>Title:</b> <%= asset.title%>
+          </div>
+          <div class="asset_description">
+          <b>Description:</b> <%= asset.description%>
+          </div>
+          <div class="asset_year">
+          <b>Year:</b> <%= asset.year%>
+          </div>
+          <div class="asset_notes">
+          <b>Notes:</b> <%= asset.notes%>
+          </div>
+          <div class="divider"></div>
           <div> The playback ID is: <%= asset.playback_id%> </div>
           <div> The asset ID is: <%= asset.asset_id%> </div>
           <div> The database ID is: <%= asset.database_id%> </div>

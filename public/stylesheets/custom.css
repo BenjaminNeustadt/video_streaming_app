@@ -1,3 +1,8 @@
+:root {
+  --primary-colour:;
+  --backup-colour:;
+}
+
 /* Reset default styles */
 body, html {
   margin: 0;
@@ -44,4 +49,35 @@ body {
 .upload_asset_metadata {
   margin: 50px;
   border: 2px solid black;
+}
+
+.asset_info {
+  padding: 0px 10px 40px ;
+  border: 2px solid black;
+  font-weight: 400;
+}
+
+.divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the top */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the bottom */
+  border-left: 1px solid rgba(0, 0, 0, 0.5); /* Vertical line at the left */
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.asset_title {
+  margin-top:10px;
+}
+
+.asset_description {
+  margin-top:10px;
+}
+
+.asset_notes {
+  margin-top:10px;
+}
+
+.asset_year {
+  margin-top:10px;
 }
