@@ -34,3 +34,8 @@ body {
     width: 80%; /* Adjust for smaller screens */
   }
 }
+
+.monitoring {
+  border: 2px solid black;
+  position: relative;
+}

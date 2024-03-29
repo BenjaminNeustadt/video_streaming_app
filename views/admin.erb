@@ -2,6 +2,24 @@
 <html lang="en">
 <body>
   <h1>Admin Dashboard</h1>
+
+  <!-- Each of these should be a partial later on   -->
+
+  <div class="monitoring">
+  <h3>Monitoring panel</h3>
+    <div class="admin_cli_logs">
+      <form action="/metadata_for_last_asset" method="post">
+        <label>
+        <input type="submit" value="LOG LAST PLAYBACK_ID TO TERMINAL">
+      </form>
+    </div>
+    <ul>Number of assets in Mux=</ul>
+    <ul>Number of assets in database= </ul>
+    <ul>Number of views= </ul>
+    <ul>Most viewed video= </ul>
+
+  </div>
+
   <h2>Add New Asset</h3>
 
   <h3>Upload Video</h2>
@@ -11,16 +29,12 @@
       endpoint='<%= special_endpoint%>'
       ></mux-uploader>
   </div>
-</div>
 
-<div class="admin_cli_logs">
-  <form action="/metadata_for_last_asset" method="post">
-    <label>
-     <input type="submit" value="LOG LAST PLAYBACK_ID TO TERMINAL">
-   </form>
+
 </div>
 
 <div class="upload_asset_metadata">
+<h3>Asset metadata</h3>
   <form action="/upload_asset_metadata#" method="post">
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title"><br><br>
