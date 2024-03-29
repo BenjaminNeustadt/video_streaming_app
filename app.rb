@@ -55,37 +55,49 @@ class Application < Sinatra::Base
   end
 
   def special_endpoint
-    # mux_uploader_api = MuxRuby::DirectUploadsApi.new
-    # create_asset_request = MuxRuby::CreateAssetRequest.new
-    # create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
+    mux_uploader_api = MuxRuby::DirectUploadsApi.new
+    create_asset_request = MuxRuby::CreateAssetRequest.new
+    create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
 
-    # create_upload_request = MuxRuby::CreateUploadRequest.new
-    # create_upload_request.new_asset_settings = create_asset_request
-    # create_upload_request.timeout = 3600
-    # create_upload_request.cors_origin = 'http://localhost:9292/admin'
+    create_upload_request = MuxRuby::CreateUploadRequest.new
+    create_upload_request.new_asset_settings = create_asset_request
+    create_upload_request.timeout = 3600
+    create_upload_request.cors_origin = 'http://localhost:9292/admin'
 
-    # uploaded_video = mux_uploader_api.create_direct_upload(create_upload_request)
-    # uploaded_asset_id = uploaded_video.data.id
-    # puts "This is the upload_id: #{uploaded_asset_id}"
-    # playback_id_for_latest_asset
-    # uploaded_video.data.url
+    uploaded_video = mux_uploader_api.create_direct_upload(create_upload_request)
+    uploaded_asset_id = uploaded_video.data.id
+    puts "This is the upload_id: #{uploaded_asset_id}"
+    playback_id_for_latest_asset
+    uploaded_video.data.url
   end
 
   def playback_id_for_latest_asset
-    # assets_api = MuxRuby::AssetsApi.new
-    # assets = assets_api.list_assets
-    # p 'The last data from assets is:'
-    # p assets.data.first
-    # assets = assets_api.list_assets
-    # p 'The last data from assets is:'
-    # p assets.data.first
-    # p 'The playback_id for the last asset is:'
-    # p assets.data.first.playback_ids.first.id
-    "000000000000000000000000000000000"
+    assets_api = MuxRuby::AssetsApi.new
+    assets = assets_api.list_assets
+    if assets && assets.data && !assets.data.empty?
+      p 'The last data from assets is:'
+      p assets.data.first
+      p 'The playback_id for the last asset is:'
+      p assets.data.first.playback_ids.first.id
+    else
+      "Nothing here yet"
+    end
   end
 
+  def asset_id_for_latest_asset
+    assets_api = MuxRuby::AssetsApi.new
+    assets = assets_api.list_assets
+    if assets && assets.data && !assets.data.empty?
+      assets = assets_api.list_assets
+      p 'The asset id for the last assets is:'
+      assets.data.first.id
+    end
+  end
+
+
   post '/metadata_for_last_asset' do
-    # playback_id_for_latest_asset
+    p playback_id_for_latest_asset
+    p asset_id_for_latest_asset
     erb :admin
   end
 
@@ -124,12 +136,12 @@ class Application < Sinatra::Base
       p 'Asset still exists after deletion. Error!'
       exit 255
     rescue MuxRuby::NotFoundError => e
-      assert e != nil
       p 'Asset deleted successfully!'
     end
     puts "delete-asset OK ✅"
     redirect '/'
   end
+
 end
 
 class Asset < ActiveRecord::Base
