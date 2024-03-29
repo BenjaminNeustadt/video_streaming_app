@@ -24,8 +24,8 @@ class Application < Sinatra::Base
   end
 
   # This should be used for monitoring instead
-  # assets_api = MuxRuby::AssetsApi.new
-  # assets = assets_api.list_assets
+  assets_api = MuxRuby::AssetsApi.new
+  assets = assets_api.list_assets
 
   enable :sessions
   set :bind, '0.0.0.0'
@@ -33,9 +33,9 @@ class Application < Sinatra::Base
 
   get '/' do
     p "The assets are:"
-    @assets = Asset.all
+    # @assets = Asset.all
     # p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-    # @assets = assets.data
+    @assets = assets.data
     # "testing in progress"
     erb :index
   end
@@ -110,6 +110,20 @@ class Application < Sinatra::Base
     all_assets = Asset.all
     p all_assets
     redirect '/admin'
+  end
+
+  delete '/assets/:id' do
+    asset_id = params[:id]
+    mux_assets_api = MuxRuby::AssetsApi.new
+
+    begin
+      mux_assets_api.delete_asset(asset_id)
+      status 204 # No content
+    rescue MuxRuby::ApiErrot => e
+      status e.code
+      body e.response_body
+    end
+
   end
 end
 
