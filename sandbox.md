@@ -1,5 +1,16 @@
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
+
+        <%# <div>
+          <%# <%= asset.title%> %>
+        </div>
+        <div>
+          <%# <%= asset.description%> %>
+        </div>
+        <div>
+          <%# <%= asset.year%> %>
+        </div> %>
+
 # # Prepare the request body
 #       request_body = {
 #         cors_origin: '*',
