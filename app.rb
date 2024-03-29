@@ -33,11 +33,12 @@ class Application < Sinatra::Base
   set :port, 8080
 
   get '/' do
-    p "The assets are:"
-    # @assets = Asset.all
-    # p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-    @assets = assets.data
-    # "testing in progress"
+    p "The assets in the database are:"
+    p Asset.all
+    @assets = Asset.all
+    p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+    p "The assets in the MUX are:"
+    p assets.data
     erb :index
   end
 
@@ -92,6 +93,7 @@ class Application < Sinatra::Base
       p 'The asset id for the last assets is:'
       assets.data.first.id
     end
+    assets.data.first.id
   end
 
 
@@ -118,7 +120,7 @@ class Application < Sinatra::Base
       genre: genre,
       notes: notes,
       playback_id: playback_id_for_latest_asset,
-      id: asset_id_for_latest_asset  
+      asset_id: asset_id_for_latest_asset  
     )
     p pirate_asset
     all_assets = Asset.all
@@ -151,5 +153,10 @@ class Asset < ActiveRecord::Base
   # has_a :playback_id
   # has_a :duration
   # has_many :tags
+
+  def database_id
+    self.id
+  end
+
 end
 

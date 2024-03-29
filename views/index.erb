@@ -7,14 +7,24 @@
     <div class="video_asset">
       <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
         <mux-player
-            playback-id= <%= asset.playback_ids.first.id%>
+            playback-id= <%= asset.playback_id%>
             metadata-video-title="Placeholder (optional)"
             metadata-viewer-user-id="Placeholder (optional)"
             primary-color="#d38a8a"
             accent-color="#d38a8a"
         ></mux-player>
+
+        <div class="asset_info">
+          <div> Title: <%= asset.title%> </div>
+          <div> Description: <%= asset.description%> </div>
+          <div> Year: <%= asset.year%> </div>
+          <div> Notes: <%= asset.notes%> </div>
+          <div> The playback ID is: <%= asset.playback_id%> </div>
+          <div> The asset ID is: <%= asset.asset_id%> </div>
+          <div> The database ID is: <%= asset.database_id%> </div>
+        </div>
        <!-- Form for deleting the asset -->
-        <form action="/assets/<%= asset.id %>" method="POST" class="delete-form">
+        <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit">Delete</button>
         </form>
