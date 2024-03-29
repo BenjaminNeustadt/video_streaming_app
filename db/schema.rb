@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_27_235105) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_29_223113) do
   create_table "assets", force: :cascade do |t|
     t.string "name"
     t.string "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_27_235105) do
     t.string "genre"
     t.string "notes"
     t.string "playback_id"
+    t.string "asset_id"
   end
 
 end
