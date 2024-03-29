@@ -11,6 +11,7 @@ class Application < Sinatra::Base
 
   configure do
     register Sinatra::ActiveRecordExtension
+    set :method_override, true
     set :database, {adapter: "sqlite3", database: "db/test_pirate_hub.sqlite3"}
   end
 
@@ -115,15 +116,19 @@ class Application < Sinatra::Base
   delete '/assets/:id' do
     asset_id = params[:id]
     mux_assets_api = MuxRuby::AssetsApi.new
-
+    mux_assets_api.delete_asset(asset_id)
+    status 204 # No content
+    p "ASSET DELETED"
     begin
-      mux_assets_api.delete_asset(asset_id)
-      status 204 # No content
-    rescue MuxRuby::ApiErrot => e
-      status e.code
-      body e.response_body
+      mux_assets_api.get_asset(asset_id)
+      p 'Asset still exists after deletion. Error!'
+      exit 255
+    rescue MuxRuby::NotFoundError => e
+      assert e != nil
+      p 'Asset deleted successfully!'
     end
-
+    puts "delete-asset OK ✅"
+    redirect '/'
   end
 end
 
