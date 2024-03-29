@@ -2,20 +2,29 @@
 <% if @assets.any? %>
   <h2> PirateHub </h2>
   <p> This is where the films go:</p>
-  <ul>
+  <div class="video-container">
     <% @assets.each do |asset| %>
-    <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
-              <mux-player
-                  playback-id= <%= asset.playback_ids.first.id%>
-                  metadata-video-title="Placeholder (optional)"
-                  metadata-viewer-user-id="Placeholder (optional)"
-                  primary-color="#d38a8a"
-                  accent-color="#d38a8a"
-              ></mux-player>
-      <li>
-      </li>
+    <div class="video_asset">
+      <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+        <mux-player
+            playback-id= <%= asset.playback_id%>
+            metadata-video-title="Placeholder (optional)"
+            metadata-viewer-user-id="Placeholder (optional)"
+            primary-color="#d38a8a"
+            accent-color="#d38a8a"
+        ></mux-player>
+        <div>
+          <%= asset.title%>
+        </div>
+        <div>
+          <%= asset.description%>
+        </div>
+        <div>
+          <%= asset.year%>
+        </div>
+    </div>
     <% end %>
-  </ul>
 <% else %>
   <p>No films available at the moment...</p>
 <% end %>
+</div>
