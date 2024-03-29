@@ -28,9 +28,9 @@
           <b>Notes:</b> <%= asset.notes%>
           </div>
           <div class="divider"></div>
-          <div> The playback ID is: <%= asset.playback_id%> </div>
-          <div> The asset ID is: <%= asset.asset_id%> </div>
-          <div> The database ID is: <%= asset.database_id%> </div>
+          <div><b>The playback ID is:</b> <%= asset.playback_id%> </div>
+          <div><b> The asset ID is:</b> <%= asset.asset_id%> </div>
+          <div><b>The database ID is:</b> <%= asset.database_id%> </div>
         </div>
        <!-- Form for deleting the asset -->
         <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
