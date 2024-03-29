@@ -6,23 +6,30 @@
   <!-- Each of these should be a partial later on   -->
 
   <div class="monitoring">
-  <h3>Monitoring panel</h3>
-    <div class="admin_cli_logs">
-      <form action="/metadata_for_last_asset" method="post">
-        <label>
-        <input type="submit" value="LOG LAST PLAYBACK_ID TO TERMINAL">
-      </form>
-    </div>
-    <ul>Number of assets in Mux=</ul>
-    <ul>Number of assets in database= </ul>
-    <ul>Number of views= </ul>
-    <ul>Most viewed video= </ul>
+
+    <h3>Monitoring panel</h3>
+      <div class="admin_cli_logs">
+        <form action="/metadata_for_last_asset" method="post">
+          <label>
+          <input type="submit" value="LOG LAST PLAYBACK_ID TO TERMINAL">
+        </form>
+      </div>
+      <ul>Number of assets in Mux=</ul>
+      <ul>Number of assets in database= </ul>
+      <ul>Number of views= </ul>
+      <ul>Most viewed video= </ul>
 
   </div>
 
+
+
+</div>
+
+<div class="upload_asset_metadata">
   <h2>Add New Asset</h3>
 
   <h3>Upload Video</h2>
+
   <!-- You can also upload subtitle files along with this -->
   <div class="upload_asset">
     <mux-uploader
@@ -30,50 +37,46 @@
       ></mux-uploader>
   </div>
 
+  <h3>Asset metadata</h3>
+    <form action="/upload_asset_metadata#" method="post">
+      <label for="title">Title:</label><br>
+      <input type="text" id="title" name="title"><br><br>
 
-</div>
+      <label for="description">Description:</label><br>
+      <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
 
-<div class="upload_asset_metadata">
-<h3>Asset metadata</h3>
-  <form action="/upload_asset_metadata#" method="post">
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title"><br><br>
+      <label for="year">Year:</label><br>
+      <select id="year" name="year">
+        <option value="">Select Year</option>
+        <!-- Using JavaScript to populate years dynamically -->
+      </select><br><br>
 
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+      <label for="country">Country:</label><br>
+      <input type="text" id="country" name="country" list="countries"><br>
+      <datalist id="countries">
+        <!-- Include options for all countries -->
+      </datalist><br><br>
 
-    <label for="year">Year:</label><br>
-    <select id="year" name="year">
-      <option value="">Select Year</option>
-      <!-- Using JavaScript to populate years dynamically -->
-    </select><br><br>
+      <label for="genre">Genre/Tags:</label><br>
+      <input type="checkbox" id="action" name="genre[]" value="Action">
+      <label for="action">Action</label><br>
+      <input type="checkbox" id="comedy" name="genre[]" value="Comedy">
+      <label for="comedy">Comedy</label><br>
+      <input type="checkbox" id="drama" name="genre[]" value="Drama">
+      <label for="drama">Drama</label><br>
+      <input type="checkbox" id="romance" name="genre[]" value="Romance">
+      <label for="romance">Romance</label><br>
+      <input type="checkbox" id="documentary" name="genre[]" value="Documentary">
+      <label for="documentary">Documentary</label><br>
+      <input type="checkbox" id="other" name="genre[]" value="Other">
+      <label for="other">Other</label><br>
+      <br>
 
-    <label for="country">Country:</label><br>
-    <input type="text" id="country" name="country" list="countries"><br>
-    <datalist id="countries">
-      <!-- Include options for all countries -->
-    </datalist><br><br>
+      <label for="notes">Notes:</label><br>
+      <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
 
-    <label for="genre">Genre/Tags:</label><br>
-    <input type="checkbox" id="action" name="genre[]" value="Action">
-    <label for="action">Action</label><br>
-    <input type="checkbox" id="comedy" name="genre[]" value="Comedy">
-    <label for="comedy">Comedy</label><br>
-    <input type="checkbox" id="drama" name="genre[]" value="Drama">
-    <label for="drama">Drama</label><br>
-    <input type="checkbox" id="romance" name="genre[]" value="Romance">
-    <label for="romance">Romance</label><br>
-    <input type="checkbox" id="documentary" name="genre[]" value="Documentary">
-    <label for="documentary">Documentary</label><br>
-    <input type="checkbox" id="other" name="genre[]" value="Other">
-    <label for="other">Other</label><br>
-    <br>
-
-    <label for="notes">Notes:</label><br>
-    <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
-
-    <input type="submit" value="Submit">
-  </form>
+      <input type="submit" value="Submit">
+    </form>
 </div>
 
 <script>

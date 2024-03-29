@@ -37,5 +37,10 @@ body {
 
 .monitoring {
   border: 2px solid black;
-  position: relative;
+  margin: 50px;
+}
+
+.upload_asset_metadata {
+  margin: 50px;
+  border: 2px solid black;
 }
