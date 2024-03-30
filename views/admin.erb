@@ -27,11 +27,16 @@
           </ul>
         <%end%>
 
-      <ul><b class="monitoring-segment">MUX COUNT:</b> <%=@sum_mux_assets%></ul>
-      <ul><b class="monitoring-segment">DATABASE COUNT:</b> <%=@sum_db_assets%></ul>
+      <ul><b class="monitoring-segment">MUX ASSET COUNT ...............................</b> <%=@sum_mux_assets%></ul>
+      <ul><b class="monitoring-segment">DATABASE ASSET COUNT ..........................</b> <%=@sum_db_assets%></ul>
 
-      <ul><b class="monitoring-segment"> NUMBER OF VIEWS:</b> </ul>
-      <ul><b class="monitoring-segment"> MOST VIEWED VIDEO:</b> </ul>
+      <div class="divider"></div>
+      <ul><b class="monitoring-segment"> WATCH TIME ....................................</b> <%=@watch_time%> </ul>
+      <ul><b class="monitoring-segment"> VIEW COUNT ....................................</b> <%=@view_count%> </ul>
+      <ul><b class="monitoring-segment"> STARTED VIEWS .................................</b> <%=@started_views%> </ul>
+      <ul><b class="monitoring-segment"> ENDED VIEWS ...................................</b> <%=@ended_views%> </ul>
+      <ul><b class="monitoring-segment"> UNIQUE VIEWS...................................</b> <%=@unique_viewers%></ul>
+      <ul><b class="monitoring-segment"> TOTAL PLAYING TIME ............................ </b> <a id="important-info"><%=@total_playing_time%></a></ul>
       </div> 
       <a href="https://docs.mux.com/api-reference#data/operation/list-all-metric-values"> Mux docs on metrics</a><br>
       <a href="https://docs.mux.com/api-reference#data/operation/list-monitoring-metrics"> Mux docs on monitoring</a>
