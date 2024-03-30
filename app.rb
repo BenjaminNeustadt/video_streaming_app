@@ -3,6 +3,7 @@ require 'sinatra/reloader' if development?
 require 'mux_ruby'
 require 'net/http'
 require 'uri'
+require 'json'
 require 'dotenv/load'
 require 'sinatra/activerecord'
 
@@ -44,6 +45,9 @@ class Application < Sinatra::Base
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
   end
 
+  assets_api = MuxRuby::AssetsApi.new
+  assets = assets_api.list_assets
+
   enable :sessions
   set :bind, '0.0.0.0'
   set :port, 8080
@@ -60,10 +64,45 @@ class Application < Sinatra::Base
 
   get '/admin' do
     p "WE ARE IN THE ADMIN PANEL"
+
+    url = URI('https://api.mux.com/data/v1/metrics/comparison')
+
+    mux_token_id = ENV.fetch('MUX_TOKEN_ID')
+    mux_secret_id = ENV.fetch('MUX_TOKEN_SECRET')
+
+    request = Net::HTTP::Get.new(url.to_s)
+    request.basic_auth("#{mux_token_id}","#{mux_secret_id}")
+    request.content_type = 'application/json'
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    response = http.request(request)
+
+    if response.code == '200'
+      data = JSON.parse(response.body)
+      p data["data"].first
+      @watch_time = data["data"].first["watch_time"]
+      @view_count = data["data"].first["view_count"]
+      @started_views = data["data"].first["started_views"]
+      @ended_views = data["data"].first["ended_views"]
+      @unique_viewers = data["data"].first["unique_viewers"]
+      @total_playing_time = data["data"].first["total_playing_time"]
+    else
+      p status response.code.to_i
+      body response.body
+    end
+
     @sum_db_assets = amount_database_assets
     @sum_mux_assets = amount_of_mux_assets
     erb :admin
   end
+
+  # get '/metrics' do
+  #   if request.xhr
+  #   else
+  #     erb :admin
+  #   end
+  # end
 
   def debugger_logger
     print Time.now, ': '
