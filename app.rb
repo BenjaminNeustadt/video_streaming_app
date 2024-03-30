@@ -133,6 +133,8 @@ class Application < Sinatra::Base
     mux_assets_api = MuxRuby::AssetsApi.new
     mux_assets_api.delete_asset(asset_id)
     status 204 # No content
+    asset_to_remove = Asset.find_by(asset_id: asset_id)
+    asset_to_remove.destroy
     p "ASSET DELETED"
     begin
       mux_assets_api.get_asset(asset_id)
