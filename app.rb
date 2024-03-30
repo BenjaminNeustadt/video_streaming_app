@@ -7,7 +7,27 @@ require 'dotenv/load'
 require 'sinatra/activerecord'
 
 
+module Monitoring
+
+  def assets_raw_data
+    assets_api = MuxRuby::AssetsApi.new
+    assets = assets_api.list_assets
+  end
+
+  def amount_of_mux_assets
+    assets_api = MuxRuby::AssetsApi.new
+    assets = assets_api.list_assets
+    assets.data.count
+  end
+
+  def amount_database_assets
+    Asset.all.count
+  end
+
+end
+
 class Application < Sinatra::Base
+  include Monitoring
 
   configure do
     register Sinatra::ActiveRecordExtension
@@ -24,10 +44,6 @@ class Application < Sinatra::Base
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
   end
 
-  # This should be used for monitoring instead
-  assets_api = MuxRuby::AssetsApi.new
-  assets = assets_api.list_assets
-
   enable :sessions
   set :bind, '0.0.0.0'
   set :port, 8080
@@ -38,12 +54,14 @@ class Application < Sinatra::Base
     @assets = Asset.all
     p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     p "The assets in the MUX are:"
-    p assets.data
+    p assets_raw_data
     erb :index
   end
 
   get '/admin' do
     p "WE ARE IN THE ADMIN PANEL"
+    @sum_db_assets = amount_database_assets
+    @sum_mux_assets = amount_of_mux_assets
     erb :admin
   end
 
@@ -104,16 +122,14 @@ class Application < Sinatra::Base
   end
 
   post '/upload_asset_metadata' do
+    title = params[:title]
+    description = params[:description]
+    year = params[:year]
+    country = params[:country]
+    genre = params[:genre]
+    notes = params[:notes]
 
-# :TODO: this is where we create a Pirate asset with the metadata as attributes on the object created
-# and sent to the database
-    p title = params[:title]
-    p description = params[:description]
-    p year = params[:year]
-    p country = params[:country]
-    p genre = params[:genre]
-    p notes = params[:notes]
-    pirate_asset = Asset.create(
+    asset = Asset.create(
       title: title,
       description: description,
       year: year,
@@ -122,9 +138,8 @@ class Application < Sinatra::Base
       playback_id: playback_id_for_latest_asset,
       asset_id: asset_id_for_latest_asset  
     )
-    p pirate_asset
-    all_assets = Asset.all
-    p all_assets
+    p "Successfully added metadata to uploaded asset..."
+    p asset
     redirect '/admin'
   end
 

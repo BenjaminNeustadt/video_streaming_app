@@ -14,11 +14,25 @@
           <input type="submit" value="LOG LAST PLAYBACK_ID TO TERMINAL">
         </form>
       </div>
-      <ul>Number of assets in Mux=</ul>
-      <ul>Number of assets in database= </ul>
-      <ul>Number of views= </ul>
-      <ul>Most viewed video= </ul>
 
+      <div class="monitoring-data">
+
+        <% if @sum_mux_assets == @sum_db_assets %>
+          <ul class="monitoring-count-ok">
+          Identical asset count
+          </ul>
+        <%else%>
+          <ul class="monitoring-count-error">
+          <b>Error: asset count invalid</b>
+          </ul>
+        <%end%>
+
+      <ul><b class="monitoring-segment">MUX COUNT:</b> <%=@sum_mux_assets%></ul>
+      <ul><b class="monitoring-segment">DATABASE COUNT:</b> <%=@sum_db_assets%></ul>
+
+      <ul class="monitoring-segment">Number of views: </ul>
+      <ul class="monitoring-segment">Most viewed video: </ul>
+      </div> 
   </div>
 
 

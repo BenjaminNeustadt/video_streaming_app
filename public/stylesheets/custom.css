@@ -81,3 +81,23 @@ body {
 .asset_year {
   margin-top:10px;
 }
+
+.monitoring-data {
+  padding: 5px;
+  font-weight: 400;
+  color: white;
+  background-color: grey;
+}
+
+.monitoring-segment {
+  color: black;
+}
+
+.monitoring-count-error {
+  color: rgb(134, 19, 19);
+
+}
+
+.monitoring-count-ok {
+  color: lightgreen;
+}
