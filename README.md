@@ -9,6 +9,18 @@ In order for it to run, write your own `.env` with necessary credentials.
 Currently the logs/app.log and logs/app_error.log is not automatically
 created. In order for the app to run do:
 
+
+.Build the database locally:
+```
+bundle exec rake db:create
+bundle exec rake db:create
+touch logs/app.log logs/app_error.log
+```
+
+A message will appear in the monitoring panel to inform whether there is a discrepancy
+between what is currently stored in Mux, and what is in the database (your local database).
+
+.Make the log files:
 ```
 mkdir logs
 touch logs/app.log logs/app_error.log
