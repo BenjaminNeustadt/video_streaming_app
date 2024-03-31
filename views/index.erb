@@ -32,7 +32,24 @@
           <div><b> The asset ID is:</b> <%= asset.asset_id%> </div>
           <div><b>The database ID is:</b> <%= asset.database_id%> </div>
         </div>
-       <!-- Form for deleting the asset -->
+
+        <!-- Edit button -->
+        <button class="edit-button" data-asset-id="<%= asset.asset_id %>">Edit</button>
+
+        <!-- Edit form (hidden by default) -->
+        <form id="editForm_<%= asset.asset_id %>" action="/update_asset_metadata/<%= asset.asset_id %>" method="POST" style="display: none;">
+          <input type="hidden" name="_method" value="PUT">
+          <label for="editTitle_<%= asset.asset_id %>">Title:</label>
+          <input type="text" id="editTitle_<%= asset.asset_id %>" name="title" value="<%= asset.title %>">
+          <label for="editDescription_<%= asset.asset_id %>">Description:</label>
+          <textarea id="editDescription_<%= asset.asset_id %>" name="description"><%= asset.description %></textarea>
+          <label for="editYear_<%= asset.asset_id %>">Year:</label>
+          <input type="text" id="editYear_<%= asset.asset_id %>" name="year" value="<%= asset.year %>">
+          <label for="editNotes_<%= asset.asset_id %>">Notes:</label>
+          <textarea id="editNotes_<%= asset.asset_id %>" name="notes"><%= asset.notes %></textarea>
+          <button type="submit">Save</button>
+        </form>
+        <!-- Form for deleting the asset -->
         <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit">Delete</button>
@@ -42,4 +59,16 @@
 <% else %>
   <p>No films available at the moment...</p>
 <% end %>
+
+<!-- Script for hiding and revealing EDIT form -->
+<script>
+  document.querySelectorAll('.edit-button').forEach(function(button) {
+    button.addEventListener('click', function() {
+      var assetId = this.getAttribute('data-asset-id');
+      var editForm = document.getElementById('editForm_' + assetId);
+      editForm.style.display = 'block';
+      this.style.display = 'none';
+    });
+  });
+</script>
 </div>

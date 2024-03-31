@@ -193,6 +193,20 @@ class Application < Sinatra::Base
     redirect '/admin'
   end
 
+# Route for updating an asset
+
+  put '/update_asset_metadata/:id' do
+
+    @asset = Asset.find_by(asset_id: params[:id])
+    @asset.update(
+      title: params[:title],
+      description: params[:description],
+      year: params[:year],
+      notes: params[:notes]
+    )
+    redirect '/'
+  end
+
   delete '/assets/:id' do
     asset_id = params[:id]
     mux_assets_api = MuxRuby::AssetsApi.new
