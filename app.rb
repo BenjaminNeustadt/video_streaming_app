@@ -36,9 +36,14 @@ class Application < Sinatra::Base
     set :database, {adapter: "sqlite3", database: "db/test_pirate_hub.sqlite3"}
   end
 
+  before do
+    @user_ip = request.ip
+  end
+
   configure :developmment do
     register Sinatra::Reloader
   end
+
 
   MuxRuby.configure do |config|
     config.username = ENV.fetch('MUX_TOKEN_ID', nil)
@@ -52,6 +57,11 @@ class Application < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, 8080
 
+  
+  before do
+    @user_ip = request.ip
+  end
+
   get '/' do
     p "The assets in the database are:"
     p Asset.all
@@ -64,6 +74,7 @@ class Application < Sinatra::Base
 
   get '/admin' do
     p "WE ARE IN THE ADMIN PANEL"
+    @ip_data = "The IP address we found for your account is: #{@user_ip}"
 
     url = URI('https://api.mux.com/data/v1/metrics/comparison')
 

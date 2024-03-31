@@ -250,3 +250,14 @@ Consulted for [uploading a file].
 [slot reference]: https://docs.mux.com/guides/mux-uploader#slots-reference
 [mux-ruby-sdk]: https://github.com/muxinc/mux-ruby?tab=readme-ov-file
 [uploading a file]:https://azemoh.com/2016/05/17/sinatra-managing-file-uploads/
+
+
+## Resources for USer IP data:
+
+https://www.ip2location.io
+
+https://www.ip2location.com
+
+Going to try this one:
+
+https://ipwhois.io

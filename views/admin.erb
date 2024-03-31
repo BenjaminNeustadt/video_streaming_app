@@ -38,6 +38,18 @@
       <ul><b class="monitoring-segment"> UNIQUE VIEWS...................................</b> <%=@unique_viewers%></ul>
       <ul><b class="monitoring-segment"> TOTAL PLAYING TIME ............................ </b> <a id="important-info"><%=@total_playing_time%></a></ul>
       </div> 
+
+      <div class="divider"></div>
+      <i>This all needs to be tested using Ngrok...
+      This is preliminary info that we can use to guage where a user is connecting from...
+      The data we will store is, where user first logged in from...
+      Where user last connected from (so data at start if user's account and data at last state)
+      We can use this data to switch the language for the user if we like...
+      </i>
+      <ul><b class="monitoring-user-data"> IP ADDRESS OF USER ....................................</b> <%=@ip_data%> </ul>
+      <ul><b class="monitoring-user-data"> GEOLOCATION OF USER ....................................</b> <%=@ip_data%> </ul>
+      <div class="divider"></div>
+
       <a href="https://docs.mux.com/api-reference#data/operation/list-all-metric-values"> Mux docs on metrics</a><br>
       <a href="https://docs.mux.com/api-reference#data/operation/list-monitoring-metrics"> Mux docs on monitoring</a>
   </div>
