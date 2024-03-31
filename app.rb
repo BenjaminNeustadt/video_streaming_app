@@ -7,28 +7,13 @@ require 'json'
 require 'dotenv/load'
 require 'sinatra/activerecord'
 
-
-module Monitoring
-
-  def assets_raw_data
-    assets_api = MuxRuby::AssetsApi.new
-    assets = assets_api.list_assets
-  end
-
-  def amount_of_mux_assets
-    assets_api = MuxRuby::AssetsApi.new
-    assets = assets_api.list_assets
-    assets.data.count
-  end
-
-  def amount_database_assets
-    Asset.all.count
-  end
-
-end
+require './helpers/monitoring_helper.rb'
+require './helpers/mux_helpers.rb'
+require './models/asset.rb'
 
 class Application < Sinatra::Base
-  include Monitoring
+  include MonitoringHelpers
+  include MuxHelpers
 
   configure do
     register Sinatra::ActiveRecordExtension
@@ -44,7 +29,6 @@ class Application < Sinatra::Base
     register Sinatra::Reloader
   end
 
-
   MuxRuby.configure do |config|
     config.username = ENV.fetch('MUX_TOKEN_ID', nil)
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
@@ -57,7 +41,6 @@ class Application < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, 8080
 
-  
   before do
     @user_ip = request.ip
   end
@@ -108,63 +91,6 @@ class Application < Sinatra::Base
     erb :admin
   end
 
-  # get '/metrics' do
-  #   if request.xhr
-  #   else
-  #     erb :admin
-  #   end
-  # end
-
-  def debugger_logger
-    print Time.now, ': '
-    puts "These are the current assets in the Mux:"
-    p assets
-    puts "These are the current number of assets:"
-    p assets.count
-  end
-
-  def special_endpoint
-    mux_uploader_api = MuxRuby::DirectUploadsApi.new
-    create_asset_request = MuxRuby::CreateAssetRequest.new
-    create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
-
-    create_upload_request = MuxRuby::CreateUploadRequest.new
-    create_upload_request.new_asset_settings = create_asset_request
-    create_upload_request.timeout = 3600
-    create_upload_request.cors_origin = 'http://localhost:9292/admin'
-
-    uploaded_video = mux_uploader_api.create_direct_upload(create_upload_request)
-    uploaded_asset_id = uploaded_video.data.id
-    puts "This is the upload_id: #{uploaded_asset_id}"
-    playback_id_for_latest_asset
-    uploaded_video.data.url
-  end
-
-  def playback_id_for_latest_asset
-    assets_api = MuxRuby::AssetsApi.new
-    assets = assets_api.list_assets
-    if assets && assets.data && !assets.data.empty?
-      p 'The last data from assets is:'
-      p assets.data.first
-      p 'The playback_id for the last asset is:'
-      p assets.data.first.playback_ids.first.id
-    else
-      "Nothing here yet"
-    end
-  end
-
-  def asset_id_for_latest_asset
-    assets_api = MuxRuby::AssetsApi.new
-    assets = assets_api.list_assets
-    if assets && assets.data && !assets.data.empty?
-      assets = assets_api.list_assets
-      p 'The asset id for the last assets is:'
-      assets.data.first.id
-    end
-    assets.data.first.id
-  end
-
-
   post '/metadata_for_last_asset' do
     p playback_id_for_latest_asset
     p asset_id_for_latest_asset
@@ -186,7 +112,7 @@ class Application < Sinatra::Base
       genre: genre,
       notes: notes,
       playback_id: playback_id_for_latest_asset,
-      asset_id: asset_id_for_latest_asset  
+      asset_id: asset_id_for_latest_asset
     )
     p "Successfully added metadata to uploaded asset..."
     p asset
@@ -228,16 +154,4 @@ class Application < Sinatra::Base
 
 end
 
-class Asset < ActiveRecord::Base
-  # has_a :title
-  # has_a :description
-  # has_a :playback_id
-  # has_a :duration
-  # has_many :tags
-
-  def database_id
-    self.id
-  end
-
-end
 
