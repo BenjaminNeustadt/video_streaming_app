@@ -13,7 +13,7 @@ created. In order for the app to run do:
 .Build the database locally:
 ```
 bundle exec rake db:create
-bundle exec rake db:create
+bundle exec rake db:migrate
 touch logs/app.log logs/app_error.log
 ```
 
@@ -69,7 +69,7 @@ _To be inserted, currently in Obisidian_
         # ========== create-direct-upload ==========
         create_asset_request = MuxRuby::CreateAssetRequest.new
         create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
-  
+
         create_upload_request = MuxRuby::CreateUploadRequest.new
 
         # TRY AND PUT THE FORM SOMEWHERE IN HERE FOR PASSING IN TITLE, DESCRIPTION, and TAG....
@@ -86,13 +86,13 @@ _To be inserted, currently in Obisidian_
         # So it would upload, the bar would load and fill as it does,
         # and then the user would need to upload the details and metadata after
         # and click "submit"
-  
+
         create_upload_request.new_asset_settings = create_asset_request
         create_upload_request.timeout = 3600
         create_upload_request.cors_origin = "http://localhost:9292/admin"
-  
+
         upload = uploads_api.create_direct_upload(create_upload_request)
-  
+
         endpoint= upload.data.url
         endpoint
   end
