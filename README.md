@@ -260,4 +260,11 @@ https://www.ip2location.com
 
 Going to try this one:
 
-https://ipwhois.io
+https://ipwhois.io will not use this one yet as the security data is only accessible when paid for...
+
+This seems to be a good article on identifying the good services to use:
+
+https://medium.com/the-era-of-apis/top-10-best-ip-geolocation-apis-210e3f568b63
+
+Need to talk about the above with KOTP as need to establish the correct API to use from the get go before setting up the methods to extract the correct info...
+
