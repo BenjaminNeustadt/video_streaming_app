@@ -45,7 +45,6 @@ class Application < Sinatra::Base
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
   end
 
-
   assets_api = MuxRuby::AssetsApi.new
   assets = assets_api.list_assets
 
@@ -117,27 +116,31 @@ class Application < Sinatra::Base
   end
 
   post '/assets/:asset_id/add_subtitle_track' do
+
     asset_id = params[:asset_id]
     subtitle_track_file = params[:subtitle_track][:tempfile]
-  
+    subtitle_name = params[:subtitle_name]
+    language_code = params[:language_code]
+
     upload_to_aws_s3_storage(subtitle_track_file, params[:subtitle_track][:filename])
-  
+
     create_track_request = MuxRuby::CreateTrackRequest.new(
       url: @subtitle_track_url,
       type: 'text',
       text_type: 'subtitles',
-      language_code: 'fr', 
-      name: 'danish subs', 
+      language_code: language_code,
+      name: subtitle_name,
       closed_captions: false
     )
-  
+
     assets_api = MuxRuby::AssetsApi.new
     create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
 
     redirect '/'
-  
+
   end
-  
+
+
 
   post '/upload_asset_metadata' do
     title = params[:title]
@@ -146,6 +149,26 @@ class Application < Sinatra::Base
     country = params[:country]
     genre = params[:genre]
     notes = params[:notes]
+
+    subtitle_track_file = params[:subtitle_track][:tempfile]
+    subtitle_name = params[:subtitle_name]
+    language_code = params[:language_code]
+
+    upload_to_aws_s3_storage(subtitle_track_file, params[:subtitle_track][:filename])
+
+    # creating a subtitle track
+    create_track_request = MuxRuby::CreateTrackRequest.new(
+      url: @subtitle_track_url,
+      type: 'text',
+      text_type: 'subtitles',
+      language_code: language_code,
+      name: subtitle_name,
+      closed_captions: false
+    )
+
+    asset_id = asset_id_for_latest_asset
+    assets_api = MuxRuby::AssetsApi.new
+    create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
 
     asset = Asset.create(
       title: title,
