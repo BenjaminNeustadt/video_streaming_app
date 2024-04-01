@@ -11,6 +11,8 @@ require './helpers/monitoring_helper.rb'
 require './helpers/mux_helpers.rb'
 require './models/asset.rb'
 
+require 'aws-sdk-s3'
+
 class Application < Sinatra::Base
   include MonitoringHelpers
   include MuxHelpers
@@ -19,6 +21,15 @@ class Application < Sinatra::Base
     register Sinatra::ActiveRecordExtension
     set :method_override, true
     set :database, {adapter: "sqlite3", database: "db/test_pirate_hub.sqlite3"}
+
+  # AWS credentials
+  Aws.config.update({
+    region: 'eu-north-1',
+    credentials: Aws::Credentials.new(ENV['S3_ACCESS_KEY'], ENV['S3_SECRET_KEY'])
+    })
+    set :s3, Aws::S3::Resource.new
+    # TODO: THIS BUCKET WILL HAVE TO CHANGE TO SOMETHING ELSE
+    set :bucket, settings.s3.bucket('folio-test-bucket')
   end
 
   before do
@@ -33,6 +44,7 @@ class Application < Sinatra::Base
     config.username = ENV.fetch('MUX_TOKEN_ID', nil)
     config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
   end
+
 
   assets_api = MuxRuby::AssetsApi.new
   assets = assets_api.list_assets
@@ -97,20 +109,25 @@ class Application < Sinatra::Base
     erb :admin
   end
 
+  def upload_to_aws_s3_storage(file, file_name)
+    # Upload file to AWS S3: these methods belond to the aws sdk
+    object = settings.bucket.object(file_name)
+    object.upload_file(file)
+    @subtitle_track_url = object.public_url.to_s
+  end
+
   post '/assets/:asset_id/add_subtitle_track' do
     asset_id = params[:asset_id]
-    # subtitle_track_file = params[:subtitle_track]
+    subtitle_track_file = params[:subtitle_track][:tempfile]
   
-    # subtitle_track_content = File.binread(subtitle_track_file[:tempfile].path)
+    upload_to_aws_s3_storage(subtitle_track_file, params[:subtitle_track][:filename])
   
-    url = "https://folio-test-bucket.s3.eu-north-1.amazonaws.com/Delicatessen.1991.1080p.BluRay.x264.anoXmous_eng.srt"
-
     create_track_request = MuxRuby::CreateTrackRequest.new(
-      url: url,
+      url: @subtitle_track_url,
       type: 'text',
       text_type: 'subtitles',
-      language_code: 'en', 
-      name: 'Subs test in folio', 
+      language_code: 'fr', 
+      name: 'danish subs', 
       closed_captions: false
     )
   

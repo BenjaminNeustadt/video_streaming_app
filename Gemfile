@@ -23,3 +23,5 @@ group :development, :test do
   gem 'webrick', '~> 1.8'
 end
 
+
+gem "aws-sdk-s3", "~> 1.146"
