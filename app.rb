@@ -22,14 +22,13 @@ class Application < Sinatra::Base
     set :method_override, true
     set :database, {adapter: "sqlite3", database: "db/test_pirate_hub.sqlite3"}
 
-  # AWS credentials
-  Aws.config.update({
-    region: 'eu-north-1',
-    credentials: Aws::Credentials.new(ENV['S3_ACCESS_KEY'], ENV['S3_SECRET_KEY'])
-    })
-    set :s3, Aws::S3::Resource.new
-    # TODO: THIS BUCKET WILL HAVE TO CHANGE TO SOMETHING ELSE
-    set :bucket, settings.s3.bucket('folio-test-bucket')
+    Aws.config.update({
+      region: 'eu-north-1',
+      credentials: Aws::Credentials.new(ENV['S3_ACCESS_KEY'], ENV['S3_SECRET_KEY'])
+      })
+      set :s3, Aws::S3::Resource.new
+      # TODO: THIS BUCKET WILL HAVE TO CHANGE TO SOMETHING ELSE
+      set :bucket, settings.s3.bucket('folio-test-bucket')
   end
 
   before do
@@ -54,29 +53,24 @@ class Application < Sinatra::Base
 
   before do
     @user_ip = request.ip
+    @mux_token_id = ENV.fetch('MUX_TOKEN_ID')
+    @mux_secret_id = ENV.fetch('MUX_TOKEN_SECRET')
   end
 
   get '/' do
-    p "The assets in the database are:"
-    p Asset.all
     @assets = Asset.all
-    p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-    p "The assets in the MUX are:"
-    p assets_raw_data
     erb :index
   end
 
   get '/admin' do
     p "WE ARE IN THE ADMIN PANEL"
-    @ip_data = "The IP address we found for your account is: #{@user_ip}"
+    @ip_data = "#{@user_ip}"
 
+    # this is the endpoint for retrieving metrics data
     url = URI('https://api.mux.com/data/v1/metrics/comparison')
 
-    mux_token_id = ENV.fetch('MUX_TOKEN_ID')
-    mux_secret_id = ENV.fetch('MUX_TOKEN_SECRET')
-
     request = Net::HTTP::Get.new(url.to_s)
-    request.basic_auth("#{mux_token_id}","#{mux_secret_id}")
+    request.basic_auth("#{@mux_token_id}","#{@mux_secret_id}")
     request.content_type = 'application/json'
 
     http = Net::HTTP.new(url.host, url.port)
@@ -85,12 +79,14 @@ class Application < Sinatra::Base
 
     if response.code == '200'
       data = JSON.parse(response.body)
+      p "The metrics retrieved from the Mux api are:"
       p data["data"].first
-      @watch_time = data["data"].first["watch_time"]
-      @view_count = data["data"].first["view_count"]
-      @started_views = data["data"].first["started_views"]
-      @ended_views = data["data"].first["ended_views"]
-      @unique_viewers = data["data"].first["unique_viewers"]
+      p '=+' * 70
+      @watch_time         = data["data"].first["watch_time"]
+      @view_count         = data["data"].first["view_count"]
+      @started_views      = data["data"].first["started_views"]
+      @ended_views        = data["data"].first["ended_views"]
+      @unique_viewers     = data["data"].first["unique_viewers"]
       @total_playing_time = data["data"].first["total_playing_time"]
     else
       p status response.code.to_i
@@ -102,9 +98,10 @@ class Application < Sinatra::Base
     erb :admin
   end
 
+  # This is a logging button
   post '/metadata_for_last_asset' do
-    p playback_id_for_latest_asset
-    p asset_id_for_latest_asset
+     playback_id_for_latest_asset
+     asset_id_for_latest_asset
     erb :admin
   end
 
@@ -117,10 +114,10 @@ class Application < Sinatra::Base
 
   post '/assets/:asset_id/add_subtitle_track' do
 
-    asset_id = params[:asset_id]
+    asset_id            = params[:asset_id]
     subtitle_track_file = params[:subtitle_track][:tempfile]
-    subtitle_name = params[:subtitle_name]
-    language_code = params[:language_code]
+    subtitle_name       = params[:subtitle_name]
+    language_code       = params[:language_code]
 
     upload_to_aws_s3_storage(subtitle_track_file, params[:subtitle_track][:filename])
 
@@ -143,20 +140,19 @@ class Application < Sinatra::Base
 
 
   post '/upload_asset_metadata' do
-    title = params[:title]
-    description = params[:description]
-    year = params[:year]
-    country = params[:country]
-    genre = params[:genre]
-    notes = params[:notes]
+    title               = params[:title]
+    description         = params[:description]
+    year                = params[:year]
+    country             = params[:country]
+    genre               = params[:genre]
+    notes               = params[:notes]
 
     subtitle_track_file = params[:subtitle_track][:tempfile]
-    subtitle_name = params[:subtitle_name]
-    language_code = params[:language_code]
+    subtitle_name       = params[:subtitle_name]
+    language_code       = params[:language_code]
 
     upload_to_aws_s3_storage(subtitle_track_file, params[:subtitle_track][:filename])
 
-    # creating a subtitle track
     create_track_request = MuxRuby::CreateTrackRequest.new(
       url: @subtitle_track_url,
       type: 'text',
@@ -179,8 +175,8 @@ class Application < Sinatra::Base
       playback_id: playback_id_for_latest_asset,
       asset_id: asset_id_for_latest_asset
     )
-    p "Successfully added metadata to uploaded asset..."
-    p asset
+    # :TODO: Remove logging
+    p "Successfully added metadata to uploaded asset"
     redirect '/admin'
   end
 
@@ -208,12 +204,15 @@ class Application < Sinatra::Base
     p "ASSET DELETED"
     begin
       mux_assets_api.get_asset(asset_id)
+      # :TODO: Remove logging
       p 'Asset still exists after deletion. Error!'
       exit 255
     rescue MuxRuby::NotFoundError => e
+      # :TODO: Remove logging
       p 'Asset deleted successfully!'
     end
-    puts "delete-asset OK ✅"
+      # :TODO: Remove logging
+    puts "delete-asset OK"
     redirect '/'
   end
 
