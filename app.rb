@@ -17,31 +17,33 @@ class Application < Sinatra::Base
   include MonitoringHelpers
   include MuxHelpers
 
+  before do
+    @user_ip = request.ip
+    @aws_s3_access_key = ENV['S3_ACCESS_KEY']
+    @aws_s3_secret_key = ENV['S3_SECRET_KEY']
+  end
+
+  configure :developmment, :test do
+    register Sinatra::Reloader
+  end
+
   configure do
     register Sinatra::ActiveRecordExtension
     set :method_override, true
-    set :database, {adapter: "sqlite3", database: "db/test_pirate_hub.sqlite3"}
+    set :database, {adapter: 'sqlite3', database: 'db/test_pirate_hub.sqlite3'}
 
     Aws.config.update({
       region: 'eu-north-1',
-      credentials: Aws::Credentials.new(ENV['S3_ACCESS_KEY'], ENV['S3_SECRET_KEY'])
+      credentials: Aws::Credentials.new(@aws_s3_access_key, @aws_s3_secret_key)
       })
       set :s3, Aws::S3::Resource.new
       # TODO: THIS BUCKET WILL HAVE TO CHANGE TO SOMETHING ELSE
       set :bucket, settings.s3.bucket('folio-test-bucket')
   end
 
-  before do
-    @user_ip = request.ip
-  end
-
-  configure :developmment do
-    register Sinatra::Reloader
-  end
-
   MuxRuby.configure do |config|
-    config.username = ENV.fetch('MUX_TOKEN_ID', nil)
-    config.password = ENV.fetch('MUX_TOKEN_SECRET', nil)
+    config.username = ENV.fetch('MUX_TOKEN_ID')
+    config.password = ENV.fetch('MUX_TOKEN_SECRET')
   end
 
   assets_api = MuxRuby::AssetsApi.new
@@ -51,11 +53,6 @@ class Application < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, 8080
 
-  before do
-    @user_ip = request.ip
-    @mux_token_id = ENV.fetch('MUX_TOKEN_ID')
-    @mux_secret_id = ENV.fetch('MUX_TOKEN_SECRET')
-  end
 
   get '/' do
     @assets = Asset.all
@@ -63,14 +60,14 @@ class Application < Sinatra::Base
   end
 
   get '/admin' do
-    p "WE ARE IN THE ADMIN PANEL"
-    @ip_data = "#{@user_ip}"
+    p 'WE ARE IN THE ADMIN PANEL'
+    @ip_data = @user_ip.to_s
 
-    # this is the endpoint for retrieving metrics data
+    # This is the endpoint for retrieving metrics data
     url = URI('https://api.mux.com/data/v1/metrics/comparison')
 
     request = Net::HTTP::Get.new(url.to_s)
-    request.basic_auth("#{@mux_token_id}","#{@mux_secret_id}")
+    request.basic_auth("#{@mux_token_id}", "#{@mux_secret_id}")
     request.content_type = 'application/json'
 
     http = Net::HTTP.new(url.host, url.port)
@@ -79,15 +76,15 @@ class Application < Sinatra::Base
 
     if response.code == '200'
       data = JSON.parse(response.body)
-      p "The metrics retrieved from the Mux api are:"
-      p data["data"].first
+      p 'The metrics retrieved from the Mux api are:'
+      p data['data'].first
       p '=+' * 70
-      @watch_time         = data["data"].first["watch_time"]
-      @view_count         = data["data"].first["view_count"]
-      @started_views      = data["data"].first["started_views"]
-      @ended_views        = data["data"].first["ended_views"]
-      @unique_viewers     = data["data"].first["unique_viewers"]
-      @total_playing_time = data["data"].first["total_playing_time"]
+      @watch_time         = data['data'].first['watch_time']
+      @view_count         = data['data'].first['view_count']
+      @started_views      = data['data'].first['started_views']
+      @ended_views        = data['data'].first['ended_views']
+      @unique_viewers     = data['data'].first['unique_viewers']
+      @total_playing_time = data['data'].first['total_playing_time']
     else
       p status response.code.to_i
       body response.body
@@ -134,10 +131,7 @@ class Application < Sinatra::Base
     create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
 
     redirect '/'
-
   end
-
-
 
   post '/upload_asset_metadata' do
     title               = params[:title]
@@ -217,5 +211,3 @@ class Application < Sinatra::Base
   end
 
 end
-
-
