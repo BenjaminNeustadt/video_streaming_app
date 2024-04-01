@@ -53,8 +53,25 @@ class Application < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, 8080
 
+  LANGUAGES = [
+    { code: 'ja', name: 'Japanese' },
+    { code: 'zh', name: 'Chinese' },
+    { code: 'fr', name: 'French' },
+    { code: 'de', name: 'German' },
+    { code: 'es', name: 'Spanish' },
+    { code: 'it', name: 'Italian' },
+    { code: 'ru', name: 'Russian' },
+    { code: 'uk', name: 'Ukrainian' },
+    { code: 'en', name: 'English' },
+    { code: 'th', name: 'Thai' },
+    { code: 'pl', name: 'Polish' },
+    { code: 'nl', name: 'Dutch' },
+    { code: 'ee', name: 'Esperanto' },
+    { code: 'ar', name: 'Arabic' }
+  ]
 
   get '/' do
+    @language_options = LANGUAGES
     @assets = Asset.all
     erb :index
   end
@@ -97,8 +114,8 @@ class Application < Sinatra::Base
 
   # This is a logging button
   post '/metadata_for_last_asset' do
-     playback_id_for_latest_asset
-     asset_id_for_latest_asset
+    playback_id_for_latest_asset
+    asset_id_for_latest_asset
     erb :admin
   end
 
@@ -174,7 +191,7 @@ class Application < Sinatra::Base
     redirect '/admin'
   end
 
-# Route for updating an asset
+  # Route for updating an asset
 
   put '/update_asset_metadata/:id' do
 
@@ -205,7 +222,7 @@ class Application < Sinatra::Base
       # :TODO: Remove logging
       p 'Asset deleted successfully!'
     end
-      # :TODO: Remove logging
+    # :TODO: Remove logging
     puts "delete-asset OK"
     redirect '/'
   end
