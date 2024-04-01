@@ -268,3 +268,7 @@ https://medium.com/the-era-of-apis/top-10-best-ip-geolocation-apis-210e3f568b63
 
 Need to talk about the above with KOTP as need to establish the correct API to use from the get go before setting up the methods to extract the correct info...
 
+
+## Organising code base
+
+Consider Sinatra partials gem: https://github.com/yb66/Sinatra-Partial

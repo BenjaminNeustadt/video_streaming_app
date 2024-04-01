@@ -97,6 +97,31 @@ class Application < Sinatra::Base
     erb :admin
   end
 
+  post '/assets/:asset_id/add_subtitle_track' do
+    asset_id = params[:asset_id]
+    # subtitle_track_file = params[:subtitle_track]
+  
+    # subtitle_track_content = File.binread(subtitle_track_file[:tempfile].path)
+  
+    url = "https://folio-test-bucket.s3.eu-north-1.amazonaws.com/Delicatessen.1991.1080p.BluRay.x264.anoXmous_eng.srt"
+
+    create_track_request = MuxRuby::CreateTrackRequest.new(
+      url: url,
+      type: 'text',
+      text_type: 'subtitles',
+      language_code: 'en', 
+      name: 'Subs test in folio', 
+      closed_captions: false
+    )
+  
+    assets_api = MuxRuby::AssetsApi.new
+    create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
+
+    redirect '/'
+  
+  end
+  
+
   post '/upload_asset_metadata' do
     title = params[:title]
     description = params[:description]

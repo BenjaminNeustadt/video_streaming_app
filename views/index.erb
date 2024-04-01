@@ -12,6 +12,8 @@
             metadata-viewer-user-id="Placeholder (optional)"
             primary-color="#d38a8a"
             accent-color="#d38a8a"
+            thumbnail-time="15"
+            title=" <%= asset.title %>"
         ></mux-player>
 
         <div class="asset_info">
@@ -54,6 +56,14 @@
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit">Delete</button>
         </form>
+
+          <h2>Add Subtitle Track to Asset</h2>
+          <form action="/assets/<%= asset.asset_id %>/add_subtitle_track" method="post" enctype="multipart/form-data">
+            <label for="subtitle_track">Subtitle Track File:</label>
+            <%# <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt" required><br><br> %>
+
+            <button type="submit">Add Subtitle Track</button>
+          </form>
     </div>
     <% end %>
 <% else %>
