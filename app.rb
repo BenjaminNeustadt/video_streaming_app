@@ -7,7 +7,7 @@ require 'json'
 require 'dotenv/load'
 require 'sinatra/activerecord'
 
-require './helpers/monitoring_helper.rb'
+require './helpers/monitoring_helpers.rb'
 require './helpers/mux_helpers.rb'
 require './helpers/view_helpers.rb'
 require './helpers/aws_helpers.rb'
