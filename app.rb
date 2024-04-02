@@ -63,6 +63,7 @@ class Application < Sinatra::Base
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
     @ip_data = @user_ip.to_s
+    @language_options = LANGUAGE_CODES
 
     # This is the endpoint for retrieving metrics data
     url = URI('https://api.mux.com/data/v1/metrics/comparison')

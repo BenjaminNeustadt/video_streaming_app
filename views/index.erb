@@ -68,7 +68,7 @@
                   <label for="language_code">Language Code:</label>
                   <select id="language_code" name="language_code">
                     <% @language_options.each do |language| %>
-                      <option value=<%= language[:code] %>"><%= language[:name] %></option>
+                      <option value="<%= language[:code] %>"><%= language[:name] %></option>
                     <% end %>
                   </select><br><br>
             <button type="submit">Add Subtitle Track</button>
