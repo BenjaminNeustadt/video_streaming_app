@@ -5,8 +5,8 @@ gem 'logger'
 gem 'mux_ruby', '~> 3.14'
 gem 'rackup', '~> 2.1.0'
 gem 'sinatra'
-gem 'solid_assert', '~> 1.1'
 gem 'sinatra-contrib'
+gem 'solid_assert', '~> 1.1'
 
 group :development, :test do
   #  gem 'bcrypt',               '~> 3.1'
@@ -15,15 +15,14 @@ group :development, :test do
   gem 'nokogiri',             '~> 1.14'
   gem 'rake',                 '~> 13.0'
   gem 'rspec',                '~> 3.12'
-  gem "sinatra-activerecord", "~> 2.0"
-  #  gem "sinatra-partial",      "~> 1.0"
-  gem "sinatra-reloader", "~> 1.0"
   gem 'rubocop'
+  gem 'sinatra-activerecord', '~> 2.0'
+  #  gem "sinatra-partial",      "~> 1.0"
+  gem 'sinatra-reloader', '~> 1.0'
   gem 'sqlite3', '~> 1.6'
   gem 'webrick', '~> 1.8'
 end
 
+gem 'aws-sdk-s3', '~> 1.146'
 
-gem "aws-sdk-s3", "~> 1.146"
-
-gem "pg", "~> 1.5"
+gem 'pg', '~> 1.5'

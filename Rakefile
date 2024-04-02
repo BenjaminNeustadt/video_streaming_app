@@ -1,10 +1,14 @@
-# Rakefile
+#  ____       _         __ _ _
+# |  _ \ __ _| | _____ / _(_) | ___
+# | |_) / _` | |/ / _ \ |_| | |/ _ \
+# |  _ < (_| |   <  __/  _| | |  __/
+# |_| \_\__,_|_|\_\___|_| |_|_|\___|
 #
 require 'sinatra/activerecord/rake'
 
 namespace :db do
   task :load_config do
-    require "./app"
+    require './app'
   end
 
   # desc 'Migrate the database'

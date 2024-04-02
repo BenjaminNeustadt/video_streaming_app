@@ -32,22 +32,8 @@ class Application < Sinatra::Base
     register Sinatra::ActiveRecordExtension
     set :method_override, true
 
-    @rds_psql_username = ENV['RDS_MASTER_USERNAME']
-    @rds_psql_password = ENV['RDS_MASTER_PASSWORD']
-    @database_name     = 'postgres_test'
-    @database_hostname = 'database-1.cpq468yg4nk5.eu-west-2.rds.amazonaws.com'
 
-    db_config = {
-      adapter: 'postgresql',
-      host: @database_hostname,
-      port: '5432',
-      database: @database_name,
-      username: @rds_psql_username,
-      password: @rds_psql_password
-
-    }
-
-    set :database, db_config
+    #set :database_file,  pathe to file
 
     Aws.config.update({
       region: 'eu-north-1',
