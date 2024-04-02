@@ -32,9 +32,6 @@ class Application < Sinatra::Base
     register Sinatra::ActiveRecordExtension
     set :method_override, true
 
-
-    #set :database_file,  pathe to file
-
     Aws.config.update({
       region: 'eu-north-1',
       credentials: Aws::Credentials.new(@aws_s3_access_key, @aws_s3_secret_key)
