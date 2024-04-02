@@ -6,6 +6,7 @@ require 'uri'
 require 'json'
 require 'dotenv/load'
 require 'sinatra/activerecord'
+require 'sinatra/partial'
 
 require './helpers/monitoring_helpers.rb'
 require './helpers/mux_helpers.rb'
@@ -34,6 +35,7 @@ class Application < Sinatra::Base
   configure do
     register Sinatra::ActiveRecordExtension
     set :method_override, true
+    register Sinatra::Partial
 
     Aws.config.update({
       region: 'eu-north-1',
@@ -55,6 +57,9 @@ class Application < Sinatra::Base
   enable :sessions
   set :bind, '0.0.0.0'
   set :port, 8080
+
+  enable :partial_underscores
+  set :partial_template_engine, :erb
 
   get '/' do
     @language_options = LANGUAGE_CODES

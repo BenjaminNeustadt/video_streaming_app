@@ -5,57 +5,8 @@
 
   <!-- Each of these should be a partial later on   -->
 
-  <div class="monitoring">
-
-    <h3>Monitoring panel</h3>
-      <div class="admin_cli_logs">
-        <form action="/metadata_for_last_asset" method="post">
-          <label>
-          <input type="submit" value="LOG LAST PLAYBACK_ID TO TERMINAL">
-        </form>
-      </div>
-
-      <div class="monitoring-data">
-
-        <% if @sum_mux_assets == @sum_db_assets %>
-          <ul class="monitoring-count-ok">
-          Identical asset count
-          </ul>
-        <%else%>
-          <ul class="monitoring-count-error">
-          <b>Error: asset count invalid</b>
-          </ul>
-        <%end%>
-
-      <ul><b class="monitoring-segment">MUX ASSET COUNT ...............................</b> <%=@sum_mux_assets%></ul>
-      <ul><b class="monitoring-segment">DATABASE ASSET COUNT ..........................</b> <%=@sum_db_assets%></ul>
-
-      <div class="divider"></div>
-      <ul><b class="monitoring-segment"> WATCH TIME ....................................</b> <%=@watch_time%> </ul>
-      <ul><b class="monitoring-segment"> VIEW COUNT ....................................</b> <%=@view_count%> </ul>
-      <ul><b class="monitoring-segment"> STARTED VIEWS .................................</b> <%=@started_views%> </ul>
-      <ul><b class="monitoring-segment"> ENDED VIEWS ...................................</b> <%=@ended_views%> </ul>
-      <ul><b class="monitoring-segment"> UNIQUE VIEWS...................................</b> <%=@unique_viewers%></ul>
-      <ul><b class="monitoring-segment"> TOTAL PLAYING TIME ............................ </b> <a id="important-info"><%=@total_playing_time%></a></ul>
-      </div> 
-
-      <div class="divider"></div>
-      <i>This all needs to be tested using Ngrok...
-      This is preliminary info that we can use to guage where a user is connecting from...
-      The data we will store is, where user first logged in from...
-      Where user last connected from (so data at start if user's account and data at last state)
-      We can use this data to switch the language for the user if we like...
-      </i>
-      <ul><b class="monitoring-user-data"> IP ADDRESS OF USER ....................................</b> <%=@ip_data%> </ul>
-      <ul><b class="monitoring-user-data"> GEOLOCATION OF USER ....................................</b> <%=@ip_data%> </ul>
-      <div class="divider"></div>
-
-      <a href="https://docs.mux.com/api-reference#data/operation/list-all-metric-values"> Mux docs on metrics</a><br>
-      <a href="https://docs.mux.com/api-reference#data/operation/list-monitoring-metrics"> Mux docs on monitoring</a>
-  </div>
-
-
-
+<div class="monitoring">
+  <%= partial :"partials/monitoring"%>
 </div>
 
 <div class="upload_asset_metadata">
