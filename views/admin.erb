@@ -3,8 +3,6 @@
 <body>
   <h1>Admin Dashboard</h1>
 
-  <!-- Each of these should be a partial later on   -->
-
 <div class="monitoring">
   <%= partial :"partials/admin_panel/monitoring"%>
 </div>
@@ -14,7 +12,9 @@
 </div>
 
 <script>
-  // JavaScript to populate the year dropdown dynamically
+
+// JavaScript to populate the year dropdown dynamically //
+
 var currentYear = new Date().getFullYear();
 var yearDropdown = document.getElementById("year");
 for (var i = currentYear; i >= 1900; i--) {
@@ -24,7 +24,7 @@ for (var i = currentYear; i >= 1900; i--) {
   yearDropdown.add(option);
 }
 
-// JavaScript to populate the country datalist dynamically
+// JavaScript to populate the country datalist dynamically //
 
 var countries = [
   "French", "Japan", "China", "English", "German", "Italy", "US"

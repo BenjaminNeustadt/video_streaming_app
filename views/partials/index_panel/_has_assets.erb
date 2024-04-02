@@ -1,0 +1,77 @@
+
+  <h2> </h2>
+  <p> Available films:</p>
+
+  <div class="video-container">
+    <% @assets.each do |asset| %>
+    <div class="video_asset">
+      <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+        <mux-player
+            playback-id= <%= asset.playback_id%>
+            metadata-video-title="Placeholder (optional)"
+            metadata-viewer-user-id="Placeholder (optional)"
+            primary-color="#d38a8a"
+            accent-color="#d38a8a"
+            thumbnail-time="15"
+            title=" <%= asset.title %>"
+        ></mux-player>
+
+        <div class="asset_info">
+          <div class="asset_title">
+          <b>Title:</b> <%= asset.title%>
+          </div>
+          <div class="asset_description">
+          <b>Description:</b> <%= asset.description%>
+          </div>
+          <div class="asset_year">
+          <b>Year:</b> <%= asset.year%>
+          </div>
+          <div class="asset_notes">
+          <b>Notes:</b> <%= asset.notes%>
+          </div>
+          <div class="divider"></div>
+          <div><b>The playback ID is:</b> <%= asset.playback_id%> </div>
+          <div><b> The asset ID is:</b> <%= asset.asset_id%> </div>
+          <div><b>The database ID is:</b> <%= asset.database_id%> </div>
+        </div>
+
+        <!-- Edit button -->
+        <button class="edit-button" data-asset-id="<%= asset.asset_id %>">Edit</button>
+
+        <!-- Edit form (hidden by default) -->
+        <form id="editForm_<%= asset.asset_id %>" action="/update_asset_metadata/<%= asset.asset_id %>" method="POST" style="display: none;">
+          <input type="hidden" name="_method" value="PUT">
+          <label for="editTitle_<%= asset.asset_id %>">Title:</label>
+          <input type="text" id="editTitle_<%= asset.asset_id %>" name="title" value="<%= asset.title %>">
+          <label for="editDescription_<%= asset.asset_id %>">Description:</label>
+          <textarea id="editDescription_<%= asset.asset_id %>" name="description"><%= asset.description %></textarea>
+          <label for="editYear_<%= asset.asset_id %>">Year:</label>
+          <input type="text" id="editYear_<%= asset.asset_id %>" name="year" value="<%= asset.year %>">
+          <label for="editNotes_<%= asset.asset_id %>">Notes:</label>
+          <textarea id="editNotes_<%= asset.asset_id %>" name="notes"><%= asset.notes %></textarea>
+          <button type="submit">Save</button>
+        </form>
+        <!-- Form for deleting the asset -->
+        <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit">Delete</button>
+        </form>
+
+          <h2>Add Subtitle Track to Asset</h2>
+          <form action="/assets/<%= asset.asset_id %>/add_subtitle_track" method="post" enctype="multipart/form-data">
+            <label for="subtitle_track">Subtitle Track File:</label>
+            <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt" required><br><br>
+
+            <label for="subtitle_name">Subtitle Name:</label>
+                  <input type="text" id="subtitle_name" name="subtitle_name"><br><br>
+
+                  <label for="language_code">Language Code:</label>
+                  <select id="language_code" name="language_code">
+                    <% @language_options.each do |language| %>
+                      <option value="<%= language[:code] %>"><%= language[:name] %></option>
+                    <% end %>
+                  </select><br><br>
+            <button type="submit">Add Subtitle Track</button>
+          </form>
+    </div>
+    <% end %>
