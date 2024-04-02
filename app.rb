@@ -9,6 +9,7 @@ require 'sinatra/activerecord'
 
 require './helpers/monitoring_helper.rb'
 require './helpers/mux_helpers.rb'
+require './helpers/view_helpers.rb'
 require './models/asset.rb'
 
 require 'aws-sdk-s3'
