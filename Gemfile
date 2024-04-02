@@ -26,3 +26,5 @@ end
 gem 'aws-sdk-s3', '~> 1.146'
 
 gem 'pg', '~> 1.5'
+
+gem "sinatra-partial", "~> 1.0"

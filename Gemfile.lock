@@ -132,6 +132,8 @@ GEM
       rack-protection (= 4.0.0)
       sinatra (= 4.0.0)
       tilt (~> 2.0)
+    sinatra-partial (1.0.1)
+      sinatra (>= 1.4)
     sinatra-reloader (1.0)
       sinatra-contrib
     solid_assert (1.1.0)
@@ -173,6 +175,7 @@ DEPENDENCIES
   sinatra
   sinatra-activerecord (~> 2.0)
   sinatra-contrib
+  sinatra-partial (~> 1.0)
   sinatra-reloader (~> 1.0)
   solid_assert (~> 1.1)
   sqlite3 (~> 1.6)
