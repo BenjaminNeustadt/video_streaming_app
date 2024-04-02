@@ -16,6 +16,7 @@ require 'aws-sdk-s3'
 class Application < Sinatra::Base
   include MonitoringHelpers
   include MuxHelpers
+  include ViewHelpers
 
   before do
     @user_ip = request.ip
@@ -53,25 +54,8 @@ class Application < Sinatra::Base
   set :bind, '0.0.0.0'
   set :port, 8080
 
-  LANGUAGES = [
-    { code: 'ja', name: 'Japanese' },
-    { code: 'zh', name: 'Chinese' },
-    { code: 'fr', name: 'French' },
-    { code: 'de', name: 'German' },
-    { code: 'es', name: 'Spanish' },
-    { code: 'it', name: 'Italian' },
-    { code: 'ru', name: 'Russian' },
-    { code: 'uk', name: 'Ukrainian'},
-    { code: 'en', name: 'English' },
-    { code: 'th', name: 'Thai' },
-    { code: 'pl', name: 'Polish' },
-    { code: 'nl', name: 'Dutch' },
-    { code: 'ee', name: 'Esperanto' },
-    { code: 'ar', name: 'Arabic' }
-  ]
-
   get '/' do
-    @language_options = LANGUAGES
+    @language_options = LANGUAGE_CODES
     @assets = Asset.all
     erb :index
   end
