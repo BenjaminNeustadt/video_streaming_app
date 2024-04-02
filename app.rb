@@ -10,6 +10,7 @@ require 'sinatra/activerecord'
 require './helpers/monitoring_helper.rb'
 require './helpers/mux_helpers.rb'
 require './helpers/view_helpers.rb'
+require './helpers/aws_helpers.rb'
 require './models/asset.rb'
 
 require 'aws-sdk-s3'
@@ -18,6 +19,7 @@ class Application < Sinatra::Base
   include MonitoringHelpers
   include MuxHelpers
   include ViewHelpers
+  include AWSHelpers
 
   before do
     @user_ip = request.ip
@@ -28,7 +30,6 @@ class Application < Sinatra::Base
   configure :developmment, :test do
     register Sinatra::Reloader
   end
-
 
   configure do
     register Sinatra::ActiveRecordExtension
@@ -103,13 +104,6 @@ class Application < Sinatra::Base
     playback_id_for_latest_asset
     asset_id_for_latest_asset
     erb :admin
-  end
-
-  def upload_to_aws_s3_storage(file, file_name)
-    # Upload file to AWS S3: these methods belond to the aws sdk
-    object = settings.bucket.object(file_name)
-    object.upload_file(file)
-    @subtitle_track_url = object.public_url.to_s
   end
 
   post '/assets/:asset_id/add_subtitle_track' do
