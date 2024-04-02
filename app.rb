@@ -61,7 +61,7 @@ class Application < Sinatra::Base
     { code: 'es', name: 'Spanish' },
     { code: 'it', name: 'Italian' },
     { code: 'ru', name: 'Russian' },
-    { code: 'uk', name: 'Ukrainian' },
+    { code: 'uk', name: 'Ukrainian'},
     { code: 'en', name: 'English' },
     { code: 'th', name: 'Thai' },
     { code: 'pl', name: 'Polish' },
