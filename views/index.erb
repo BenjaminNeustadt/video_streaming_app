@@ -2,12 +2,11 @@
 <div id="sidebar">
   <!-- Navbar content goes here -->
 </div>
-<% if @assets.any? %>
-  <%= partial :"partials/index_panel/has_assets"%>
-<% else %>
-  <p>No films available at the moment...</p>
-<% end %>
+<div>
+  <% if @assets.any? %>
+    <%= partial :"partials/index_panel/has_assets"%>
+  <% else %>
+    <p>No films available at the moment...</p>
+  <% end %>
 
-<!-- Script for hiding and revealing EDIT form -->
-<script src="../javascript/show_edit_button.js"></script>
 </div>
