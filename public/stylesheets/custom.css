@@ -64,6 +64,14 @@ body {
   margin-top:10px;
 }
 
+.asset_info {
+  padding: 0px 10px 40px ;
+  border: 2px solid black;
+  font-weight: 400;
+  word-wrap: break-word; /* Wrap long words */
+  overflow-wrap: break-word; /* Break words at any character */
+}
+
 .monitoring-data {
   padding: 5px;
   font-weight: 400;
@@ -98,8 +106,9 @@ body {
 
 .video_asset {
   margin: 10px;
-  width: 40%;
-  height: 40%;
+  width: 300px; /* Set a fixed width for each video asset */
+  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
+  height: auto; /* Allow the height to adjust based on aspect ratio */
 }
 
 /* ************************ */
@@ -217,4 +226,8 @@ body {
   padding: 0px 10px 40px ;
   border: 2px solid black;
   font-weight: 400;
+}
+
+footer {
+  margin-top:150px;
 }
