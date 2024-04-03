@@ -67,10 +67,13 @@ class Application < Sinatra::Base
     erb :index
   end
 
+  COUNTRY_OPTIONS = ["French", "Japan", "China", "English", "German", "Italy", "US", "Thailand"]
+
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
     @ip_data = @user_ip.to_s
     @language_options = LANGUAGE_CODES
+    @country_options = COUNTRY_OPTIONS
 
     # This is the endpoint for retrieving metrics data
     url = URI('https://api.mux.com/data/v1/metrics/comparison')

@@ -23,10 +23,12 @@
         <!-- Using JavaScript to populate years dynamically, the script takes care of it... -->
       </select><br><br>
 
-      <label for="country">Country:</label><br>
-      <input type="text" id="country" name="country" list="countries"><br>
-      <datalist id="countries">
-        <!-- Include options for all countries -->
+      <label for="countries">Country:</label>
+      <input list="countryList" id="countries" name="countries">
+      <datalist id="countryList">
+        <% @country_options.each do |country| %>
+          <option value="<%= country %>">
+        <% end %>
       </datalist><br><br>
 
       <label for="subtitle_track">Subtitle Track File:</label>
