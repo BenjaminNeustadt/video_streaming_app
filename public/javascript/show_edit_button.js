@@ -1,8 +1,15 @@
-  document.querySelectorAll('.edit-button').forEach(function(button) {
-    button.addEventListener('click', function() {
-      var assetId = this.getAttribute('data-asset-id');
-      var editForm = document.getElementById('editForm_' + assetId);
-      editForm.style.display = 'block';
-      this.style.display = 'none';
-    });
+document.querySelectorAll('.edit-button').forEach(function(button) {
+  button.addEventListener('click', function() {
+    // Get the corresponding asset actions container
+    var assetActions = this.parentElement.querySelector('.asset-actions');
+
+    // Toggle visibility of asset actions container and its children
+    if (assetActions) {
+      var displayValue = (assetActions.style.display === 'none') ? 'block' : 'none';
+      assetActions.style.display = displayValue;
+      assetActions.querySelectorAll('*').forEach(function(element) {
+        element.style.display = displayValue;
+      });
+    }
   });
+});
