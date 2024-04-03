@@ -1,6 +1,9 @@
 <!-- views/index.erb -->
+<div id="sidebar">
+  <!-- Navbar content goes here -->
+</div>
 <% if @assets.any? %>
-  <%= partials :"partials/index_panel/has_assets"%>
+  <%= partial :"partials/index_panel/has_assets"%>
 <% else %>
   <p>No films available at the moment...</p>
 <% end %>

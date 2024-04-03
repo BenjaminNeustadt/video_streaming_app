@@ -145,36 +145,40 @@ class Application < Sinatra::Base
     genre               = params[:genre]
     notes               = params[:notes]
 
-    subtitle_track_file = params[:subtitle_track][:tempfile]
     subtitle_name       = params[:subtitle_name]
     language_code       = params[:language_code]
+    file_given          = params.dig(:subtitle_track, :tempfile)
 
-    upload_to_aws_s3_storage(subtitle_track_file, params[:subtitle_track][:filename])
+    if file_given
+      subtitle_track_file = params[:subtitle_track][:tempfile]
+      track_filename      = params[:subtitle_track][:filename]
 
-    create_track_request = MuxRuby::CreateTrackRequest.new(
-      url: @subtitle_track_url,
-      type: 'text',
-      text_type: 'subtitles',
-      language_code: language_code,
-      name: subtitle_name,
-      closed_captions: false
-    )
+      upload_to_aws_s3_storage(subtitle_track_file, track_filename)
+      create_track_request = MuxRuby::CreateTrackRequest.new(
+        url: @subtitle_track_url,
+        type: 'text',
+        text_type: 'subtitles',
+        language_code: language_code,
+        name: subtitle_name,
+        closed_captions: false
+      )
+      asset_id = asset_id_for_latest_asset
+      assets_api = MuxRuby::AssetsApi.new
+      create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
+    end
 
-    asset_id = asset_id_for_latest_asset
-    assets_api = MuxRuby::AssetsApi.new
-    create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
+      asset = Asset.create(
+        title: title,
+        description: description,
+        year: year,
+        genre: genre,
+        notes: notes,
+        playback_id: playback_id_for_latest_asset,
+        asset_id: asset_id_for_latest_asset
+      )
+      # :TODO: Remove logging
+      p "Successfully added metadata to uploaded asset"
 
-    asset = Asset.create(
-      title: title,
-      description: description,
-      year: year,
-      genre: genre,
-      notes: notes,
-      playback_id: playback_id_for_latest_asset,
-      asset_id: asset_id_for_latest_asset
-    )
-    # :TODO: Remove logging
-    p "Successfully added metadata to uploaded asset"
     redirect '/admin'
   end
 
