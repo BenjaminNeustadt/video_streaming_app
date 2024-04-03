@@ -272,3 +272,7 @@ Need to talk about the above with KOTP as need to establish the correct API to u
 ## Organising code base
 
 Consider Sinatra partials gem: https://github.com/yb66/Sinatra-Partial
+
+## Mux customisation css
+
+https://docs.mux.com/guides/player-customize-look-and-feel
