@@ -22,25 +22,6 @@ body {
   line-height: 17.148px;
 }
 
-.video-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.video_asset {
-  margin: 10px;
-  width: 40%; /* Adjust as needed */
-  height: 40%; /* Adjust as needed */
-}
-
-@media (max-width: 768px) {
-  .video_asset {
-    width: 80%; /* Adjust for smaller screens */
-  }
-}
-
 .monitoring {
   border: 2px solid black;
   margin: 50px;
@@ -104,4 +85,26 @@ body {
 
 #important-info {
   color: yellow;
+}
+
+.asset-actions {
+  display: none;
+  transition: display 0.5s ease;
+}
+
+.asset-actions.show {
+  display: block;
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.video_asset {
+  margin: 10px;
+  width: 40%; /* Adjust as needed */
+  height: 40%; /* Adjust as needed */
 }
