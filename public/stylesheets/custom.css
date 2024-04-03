@@ -87,14 +87,6 @@ body {
   color: yellow;
 }
 
-.asset-actions {
-  display: none;
-  transition: display 0.5s ease;
-}
-
-.asset-actions.show {
-  display: block;
-}
 
 .video-container {
   display: flex;
@@ -107,4 +99,28 @@ body {
   margin: 10px;
   width: 40%; /* Adjust as needed */
   height: 40%; /* Adjust as needed */
+}
+
+.edit-button {
+  background-color: #333; /* Darken button on hover */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Adjust padding for size */
+  box-shadow: 0 4px 8px rgb(82, 79, 80); 
+  cursor: pointer; /* Add a pointer cursor for interaction */
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+.edit-button:hover {
+  background-color: rgba(65, 23, 63, 0.939); /* Add a shadow */
+}
+
+.asset-actions {
+  display: none;
+  transition: display 0.5s ease;
+}
+
+.asset-actions.show {
+  display: block;
 }
