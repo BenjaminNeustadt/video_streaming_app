@@ -61,6 +61,8 @@
       <div class="asset-actions">
 
         <div class="edit-form">
+          <h3>Modify Asset Info</h3>
+
           <form id="editForm_<%= asset.asset_id %>" action="/update_asset_metadata/<%= asset.asset_id %>" method="POST">
             <input type="hidden" name="_method" value="PUT">
             <label for="editTitle_<%= asset.asset_id %>">Title:</label>
@@ -75,15 +77,9 @@
           </form>
         </div>
 
-        <div class="delete-form">
-          <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit">Delete</button>
-          </form>
-        </div>
 
         <div class="new-track-form">
-          <h2>Add Subtitle Track to Asset</h2>
+          <h3>New Subtitle Track</h3>
 
           <form action="/assets/<%= asset.asset_id %>/add_subtitle_track" method="post" enctype="multipart/form-data">
             <label for="subtitle_track">Subtitle Track File:</label>
@@ -100,6 +96,12 @@
           </form>
         </div>
 
+        <div class="delete-form">
+          <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="delete-button" type="submit">DELETE ASSET</button>
+          </form>
+        </div>
       <%# end of asset action div %>
       </div>
 

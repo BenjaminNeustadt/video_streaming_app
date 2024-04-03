@@ -32,12 +32,6 @@ body {
   border: 2px solid black;
 }
 
-.asset_info {
-  padding: 0px 10px 40px ;
-  border: 2px solid black;
-  font-weight: 400;
-}
-
 .divider {
   border-top: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the top */
   border-bottom: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the bottom */
@@ -116,11 +110,91 @@ body {
   background-color: rgba(65, 23, 63, 0.939); /* Add a shadow */
 }
 
+.edit-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.edit-form input[type="text"],
+.edit-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.edit-form button {
+  background-color: #333; /* Darken button on hover */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgb(82, 79, 80);
+  cursor: pointer;
+  font-family: "Press Start 2P", monospace;
+}
+
+.edit-form button:hover {
+  background-color: rgba(65, 23, 63, 0.939); /* Add a shadow */
+}
+
+.delete-form {
+  float: right;
+}
+
+.delete-button {
+  background-color: rgb(107, 23, 23);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "Press Start 2P", monospace;
+}
+
+.delete-button:hover {
+  background-color: rgb(192, 18, 18);
+}
+
+.new-track-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.new-track-form input[type="text"],
+.new-track-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.new-track-form button {
+  background-color: #333; /* Darken button on hover */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgb(82, 79, 80);
+  cursor: pointer;
+  font-family: "Press Start 2P", monospace;
+}
+
+.new-track-form button:hover {
+  background-color: rgba(65, 23, 63, 0.939); /* Add a shadow */
+}
+
 .asset-actions {
   display: none;
+  border: 2px solid black;
   transition: display 0.5s ease;
 }
 
 .asset-actions.show {
   display: block;
+}
+
+.asset_info {
+  padding: 0px 10px 40px ;
+  border: 2px solid black;
+  font-weight: 400;
 }
