@@ -2,7 +2,6 @@
 
   <h3>Upload Video</h2>
 
-  <!-- You can also upload subtitle files along with this -->
   <div class="upload_asset">
     <mux-uploader
       endpoint='<%= special_endpoint%>'
@@ -11,25 +10,20 @@
 
   <h3>Asset metadata</h3>
     <form action="/upload_asset_metadata#" method="post" enctype="multipart/form-data">
+
       <label for="title">Title:</label><br>
-      <input type="text" id="title" name="title"><br><br>
+        <input type="text" id="title" name="title"><br><br>
 
       <label for="description">Description:</label><br>
-      <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
-<%# 
-      <label for="year">Year:</label><br>
-      <select id="year" name="year">
-        <option value="">Select Year</option>
-        <!-- Using JavaScript to populate years dynamically, the script takes care of it... -->
-      </select><br><br> %>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
 
       <label for="year">Year:</label><br>
-      <select id="year" name="year">
-        <option value="">Select Year</option>
-        <% (1900..Time.now.year).to_a.reverse.each do |year| %>
-          <option value="<%= year %>"><%= year %></option>
-        <% end %>
-      </select><br><br>
+        <select id="year" name="year">
+          <option value="">Select Year</option>
+          <% (1900..Time.now.year).to_a.reverse.each do |year| %>
+            <option value="<%= year %>"><%= year %></option>
+          <% end %>
+        </select><br><br>
 
       <label for="countries">Country:</label>
       <input list="countryList" id="countries" name="countries">
@@ -40,17 +34,17 @@
       </datalist><br><br>
 
       <label for="subtitle_track">Subtitle Track File:</label>
-                <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt" required><br><br>
+        <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt" required><br><br>
 
-                <label for="subtitle_name">Subtitle Name:</label>
-                  <input type="text" id="subtitle_name" name="subtitle_name"><br><br>
+      <label for="subtitle_name">Subtitle Name:</label>
+        <input type="text" id="subtitle_name" name="subtitle_name"><br><br>
 
-                <label for="language_code">Language Code:</label>
-                  <select id="language_code" name="language_code">
-                    <% @language_options.each do |language| %>
-                      <option value="<%= language[:code] %>"><%= language[:name] %></option>
-                    <% end %>
-                  </select><br><br>
+      <label for="language_code">Language Code:</label>
+        <select id="language_code" name="language_code">
+          <% @language_options.each do |language| %>
+            <option value="<%= language[:code] %>"><%= language[:name] %></option>
+          <% end %>
+        </select><br><br>
 
       <label for="genre">Genre/Tags:</label><br>
       <input type="checkbox" id="action" name="genre[]" value="Action">
