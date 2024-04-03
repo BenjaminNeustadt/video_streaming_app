@@ -17,4 +17,15 @@ module ViewHelpers
     { code: 'ar', name: 'Arabic' }
   ]
 
+  COUNTRY_OPTIONS = [
+    "French",
+    "Japan",
+    "China",
+    "English",
+    "German",
+    "Italy",
+    "US",
+    "Thailand"
+  ]
+
 end

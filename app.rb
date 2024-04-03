@@ -67,7 +67,6 @@ class Application < Sinatra::Base
     erb :index
   end
 
-  COUNTRY_OPTIONS = ["French", "Japan", "China", "English", "German", "Italy", "US", "Thailand"]
 
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
