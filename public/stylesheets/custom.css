@@ -231,3 +231,9 @@ body {
 footer {
   margin-top:150px;
 }
+
+video {
+  width: 100% !important; 
+  height: 100% !important;
+}
+
