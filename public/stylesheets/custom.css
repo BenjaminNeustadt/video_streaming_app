@@ -1,6 +1,13 @@
 :root {
+  --base-colour: white;
   --primary-colour:;
   --backup-colour:;
+  --alet-colour: rgb(107, 23, 23);
+  --alert-color-hover: rgb(134, 19, 19);
+  --valid-color: lightgreen;
+  --button-colour:  #333; 
+  --font-family: "Press Start 2P", monospace;
+  --button-hover: rgba(65, 23, 63, 0.939); 
 }
 
 /* Reset default styles */
@@ -11,12 +18,12 @@ body, html {
 
 /* Set a background color */
 body {
-  background-color: white;
+  background-color: var(--base-colour);
 }
 
 /* Set font styles */
 body {
-  font-family: "Press Start 2P", monospace;
+  font-family: var(--font-family);
   font-size: 14px;
   font-weight: 700;
   line-height: 17.148px;
@@ -69,12 +76,12 @@ body {
 }
 
 .monitoring-count-error {
-  color: rgb(134, 19, 19);
+  color: var(--alert-color);
 
 }
 
 .monitoring-count-ok {
-  color: lightgreen;
+  color: var(--valid-color);
 }
 
 #important-info {
@@ -91,23 +98,26 @@ body {
 
 .video_asset {
   margin: 10px;
-  width: 40%; /* Adjust as needed */
-  height: 40%; /* Adjust as needed */
+  width: 40%;
+  height: 40%;
 }
 
+/* ************************ */
+/* ADMINISTRATOR EDIT FORMS */
+/* ************************ */
 .edit-button {
-  background-color: #333; /* Darken button on hover */
-  color: white;
+  background-color: var(--button-colour);
+  color: var(--base-colour);
   border: none;
-  padding: 10px 20px; /* Adjust padding for size */
+  padding: 10px 20px;
   box-shadow: 0 4px 8px rgb(82, 79, 80); 
-  cursor: pointer; /* Add a pointer cursor for interaction */
-  font-family: "Press Start 2P", monospace;
-  font-size: 16px; /* Adjust the font size as needed */
+  cursor: pointer; 
+  font-family: var(--font-family);
+  font-size: 16px; 
 }
 
 .edit-button:hover {
-  background-color: rgba(65, 23, 63, 0.939); /* Add a shadow */
+  background-color: var(--button-hover);
 }
 
 .edit-form label {
@@ -125,35 +135,42 @@ body {
 }
 
 .edit-form button {
-  background-color: #333; /* Darken button on hover */
-  color: white;
+  background-color: var(--button-colour);
+  color: var(--base-colour);
   border: none;
   padding: 10px 20px;
   box-shadow: 0 4px 8px rgb(82, 79, 80);
   cursor: pointer;
-  font-family: "Press Start 2P", monospace;
+  font-family: var(--font-family);
 }
 
 .edit-form button:hover {
-  background-color: rgba(65, 23, 63, 0.939); /* Add a shadow */
+  background-color: var(--button-hover);
 }
 
+/* ************************** */
+/* ADMINISTRATOR DELETE FORMS */
+/* ************************** */
 .delete-form {
   float: right;
 }
 
 .delete-button {
-  background-color: rgb(107, 23, 23);
-  color: white;
+  background-color: var(--alert-color-1);
+  color: var(--base-colour);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-  font-family: "Press Start 2P", monospace;
+  font-family: var(--font-family);
 }
 
 .delete-button:hover {
-  background-color: rgb(192, 18, 18);
+  background-color: var(--alert-color-hover);
 }
+
+/* *************************** */
+/* ADMINISTRATOR ADD SUB TRACK */
+/* *************************** */
 
 .new-track-form label {
   display: block;
@@ -170,19 +187,22 @@ body {
 }
 
 .new-track-form button {
-  background-color: #333; /* Darken button on hover */
-  color: white;
+  background-color: var(--button-colour);
+  color: var(--base-colour);
   border: none;
   padding: 10px 20px;
   box-shadow: 0 4px 8px rgb(82, 79, 80);
   cursor: pointer;
-  font-family: "Press Start 2P", monospace;
+  font-family: var(--font-family);
 }
 
 .new-track-form button:hover {
-  background-color: rgba(65, 23, 63, 0.939); /* Add a shadow */
+  background-color: var(--button-hover);
 }
 
+/* ************************************ */
+/* ADMINISTRATOR SHOW ASSET ACTIONS BOX */
+/* ************************************ */
 .asset-actions {
   display: none;
   border: 2px solid black;
