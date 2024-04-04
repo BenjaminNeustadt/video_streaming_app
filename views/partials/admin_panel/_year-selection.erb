@@ -1,0 +1,8 @@
+      <label for="year">Year:</label><br>
+        <select id="year" name="year">
+          <option value="">Select Year</option>
+          <% (1900..Time.now.year).to_a.reverse.each do |year| %>
+            <option value="<%= year %>"><%= year %></option>
+          <% end %>
+        </select><br><br>
+
