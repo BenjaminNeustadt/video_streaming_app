@@ -65,11 +65,39 @@ body {
 }
 
 .asset_info {
+  display: none;
   padding: 0px 10px 40px ;
   border: 2px solid black;
   font-weight: 400;
   word-wrap: break-word; /* Wrap long words */
   overflow-wrap: break-word; /* Break words at any character */
+  transition: display 0.3s ease, transform 0.2s ease, z-index 0.2s ease;
+  position: relative;
+  z-index: 0;
+}
+
+.asset_info.show {
+  display: block;
+  z-index: 1; /* Bring the asset-info to the foreground */
+  transform: scale(1.05); /* Expand it slightly */
+}
+
+.video_asset {
+  margin: 10px;
+  width: 600px; /* Set a fixed width for each video asset */
+  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
+  height: auto; /* Allow the height to adjust based on aspect ratio */
+}
+
+.video_asset:hover {
+  z-index: 1; /* Bring the video asset to the foreground */
+  transform: scale(1.05); /* Expand it slightly */
+}
+
+.video_asset:hover .asset_info {
+  display: block;
+  z-index: 1; /* Bring the asset-info to the foreground */
+  transform: scale(1.05); /* Expand it slightly */
 }
 
 .monitoring-data {
@@ -102,13 +130,6 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 30px;
-}
-
-.video_asset {
-  margin: 10px;
-  width: 600px; /* Set a fixed width for each video asset */
-  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
-  height: auto; /* Allow the height to adjust based on aspect ratio */
 }
 
 /* ************************ */
