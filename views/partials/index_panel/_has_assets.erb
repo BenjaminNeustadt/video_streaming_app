@@ -22,39 +22,30 @@
 
       </div>
 
-    <div class="asset_details_container">
-      <div class="asset_info">
+      <div class="asset_details_container">
 
-        <div class="asset_title">
-          <b>Title:</b> <%= asset.title%>
-          </div>
+        <div class="asset_info">
 
-          <div class="asset_description">
-          <b>Description:</b> <%= asset.description%>
-          </div>
+          <div class="asset_title"><b>Title:</b> <%= asset.title%> </div>
 
-          <div class="asset_year">
-          <b>Year:</b> <%= asset.year%>
-          </div>
+            <div class="asset_description"><b>Description:</b> <%= asset.description%> </div>
 
-          <div class="asset_notes">
-          <b>Notes:</b> <%= asset.notes%>
-          </div>
+            <div class="asset_year"><b>Year:</b> <%= asset.year%> </div>
+
+            <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
 
         <div class="divider"></div>
 
+        </div>
+
+
         <div class="asset-data">
-          <div>
-          <b>The playback ID is:</b> <%= asset.playback_id%>
-          </div>
 
-          <div>
-          <b> The asset ID is:</b> <%= asset.asset_id%>
-          </div>
+          <div> <b>The playback ID is:</b> <%= asset.playback_id%> </div>
 
-          <div>
-          <b>The database ID is:</b> <%= asset.database_id%>
-          </div>
+          <div> <b> The asset ID is:</b> <%= asset.asset_id%> </div>
+
+          <div> <b>The database ID is:</b> <%= asset.database_id%> </div>
         <%# end of asset data div %>
         </div>
 
@@ -64,7 +55,6 @@
           <button class="edit-button" data-asset-id="<%= asset.asset_id %>">EDIT</button>
 
         <%# end of asset-info div %>
-        </div>
 
         <div class="asset-actions">
 
@@ -83,12 +73,13 @@
               <textarea id="editNotes_<%= asset.asset_id %>" name="notes"><%= asset.notes %></textarea>
               <button type="submit">Save</button>
             </form>
+
           </div>
 
 
           <div class="new-track-form">
-            <h3>New Subtitle Track</h3>
 
+            <h3>New Subtitle Track</h3>
             <form action="/assets/<%= asset.asset_id %>/add_subtitle_track" method="post" enctype="multipart/form-data">
               <label for="subtitle_track">Subtitle Track File:</label>
                 <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt" required><br><br>
@@ -102,20 +93,23 @@
                 </select><br><br>
               <button type="submit">Add Subtitle Track</button>
             </form>
+
           </div>
 
           <div class="delete-form">
+
             <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
               <input type="hidden" name="_method" value="DELETE">
               <button class="delete-button" type="submit">DELETE ASSET</button>
             </form>
+
           </div>
 
         <%# end of asset action div %>
         </div>
 
       <%# end of asset_details_container"> %>
-      </div> 
+      </div>
     <%# end of video asset div %>
     </div>
     <% end %>
