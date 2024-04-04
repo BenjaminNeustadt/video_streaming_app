@@ -122,25 +122,10 @@
     <%# end of video container div %>
     </div>
 
-  <script>
-  document.querySelectorAll('.video-stream').forEach(function(videoStream) {
-    videoStream.addEventListener('mouseenter', function() {
-      var assetInfo = this.closest('.video_asset').querySelector('.asset_info');
-      if (assetInfo) {
-        assetInfo.classList.add('show');
-      }
-    });
 
-    videoStream.addEventListener('mouseleave', function() {
-      var assetInfo = this.closest('.video_asset').querySelector('.asset_info');
-      if (assetInfo) {
-        assetInfo.classList.remove('show');
-      }
-    });
-  });
-</script>
 
   <script src="/javascript/show_asset_actions.js"></script>
+  <script src="/javascript/show_asset_details_on_hover.js"></script>
   <script src="/javascript/show_asset-data.js"></script>
   <script src="/javascript/confirm_deletion_of_asset.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
