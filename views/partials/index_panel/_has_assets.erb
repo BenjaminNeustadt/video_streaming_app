@@ -21,95 +21,100 @@
         ></mux-player>
         </div>
 
-    <div class="asset_info">
+    <div class="asset_details_container">
+      <div class="asset_info">
 
-      <div class="asset_title">
-      <b>Title:</b> <%= asset.title%>
-      </div>
+        <div class="asset_title">
+          <b>Title:</b> <%= asset.title%>
+          </div>
 
-      <div class="asset_description">
-      <b>Description:</b> <%= asset.description%>
-      </div>
+          <div class="asset_description">
+          <b>Description:</b> <%= asset.description%>
+          </div>
 
-      <div class="asset_year">
-      <b>Year:</b> <%= asset.year%>
-      </div>
+          <div class="asset_year">
+          <b>Year:</b> <%= asset.year%>
+          </div>
 
-      <div class="asset_notes">
-      <b>Notes:</b> <%= asset.notes%>
-      </div>
+          <div class="asset_notes">
+          <b>Notes:</b> <%= asset.notes%>
+          </div>
 
-      <div class="divider"></div>
+        <div class="divider"></div>
 
-      <div class="asset-data">
-        <div>
-        <b>The playback ID is:</b> <%= asset.playback_id%>
+        <div class="asset-data">
+          <div>
+          <b>The playback ID is:</b> <%= asset.playback_id%>
+          </div>
+
+          <div>
+          <b> The asset ID is:</b> <%= asset.asset_id%>
+          </div>
+
+          <div>
+          <b>The database ID is:</b> <%= asset.database_id%>
+          </div>
+        <%# end of asset data div %>
         </div>
 
-        <div>
-        <b> The asset ID is:</b> <%= asset.asset_id%>
+            <!-- assets data button -->
+          <button class="asset-data-button" data-asset-id="<%= asset.asset_id %>">asset data</button>
+            <!-- Edit button -->
+          <button class="edit-button" data-asset-id="<%= asset.asset_id %>">EDIT</button>
+
+        <%# end of asset-info div %>
         </div>
 
-        <div>
-        <b>The database ID is:</b> <%= asset.database_id%>
-        </div>
-    <%# end of asset data div %>
-    </div>
+        <div class="asset-actions">
 
-    <button class="asset-data-button" data-asset-id="<%= asset.asset_id %>">asset data</button>
-    <%# end of asset info div %>
-        <!-- Edit button -->
-      <button class="edit-button" data-asset-id="<%= asset.asset_id %>">EDIT</button>
-    </div>
+          <div class="edit-form">
+            <h3>Modify Asset Info</h3>
 
-
-      <div class="asset-actions">
-
-        <div class="edit-form">
-          <h3>Modify Asset Info</h3>
-
-          <form id="editForm_<%= asset.asset_id %>" action="/update_asset_metadata/<%= asset.asset_id %>" method="POST">
-            <input type="hidden" name="_method" value="PUT">
-            <label for="editTitle_<%= asset.asset_id %>">Title:</label>
-            <input type="text" id="editTitle_<%= asset.asset_id %>" name="title" value="<%= asset.title %>">
-            <label for="editDescription_<%= asset.asset_id %>">Description:</label>
-            <textarea id="editDescription_<%= asset.asset_id %>" name="description"><%= asset.description %></textarea>
-            <label for="editYear_<%= asset.asset_id %>">Year:</label>
-            <input type="text" id="editYear_<%= asset.asset_id %>" name="year" value="<%= asset.year %>">
-            <label for="editNotes_<%= asset.asset_id %>">Notes:</label>
-            <textarea id="editNotes_<%= asset.asset_id %>" name="notes"><%= asset.notes %></textarea>
-            <button type="submit">Save</button>
-          </form>
-        </div>
+            <form id="editForm_<%= asset.asset_id %>" action="/update_asset_metadata/<%= asset.asset_id %>" method="POST">
+              <input type="hidden" name="_method" value="PUT">
+              <label for="editTitle_<%= asset.asset_id %>">Title:</label>
+              <input type="text" id="editTitle_<%= asset.asset_id %>" name="title" value="<%= asset.title %>">
+              <label for="editDescription_<%= asset.asset_id %>">Description:</label>
+              <textarea id="editDescription_<%= asset.asset_id %>" name="description"><%= asset.description %></textarea>
+              <label for="editYear_<%= asset.asset_id %>">Year:</label>
+              <input type="text" id="editYear_<%= asset.asset_id %>" name="year" value="<%= asset.year %>">
+              <label for="editNotes_<%= asset.asset_id %>">Notes:</label>
+              <textarea id="editNotes_<%= asset.asset_id %>" name="notes"><%= asset.notes %></textarea>
+              <button type="submit">Save</button>
+            </form>
+          </div>
 
 
-        <div class="new-track-form">
-          <h3>New Subtitle Track</h3>
+          <div class="new-track-form">
+            <h3>New Subtitle Track</h3>
 
-          <form action="/assets/<%= asset.asset_id %>/add_subtitle_track" method="post" enctype="multipart/form-data">
-            <label for="subtitle_track">Subtitle Track File:</label>
-              <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt" required><br><br>
-            <label for="subtitle_name">Subtitle Name:</label>
-              <input type="text" id="subtitle_name" name="subtitle_name"><br><br>
-            <label for="language_code">Language Code:</label>
-              <select id="language_code" name="language_code">
-                <% @language_options.each do |language| %>
-                  <option value="<%= language[:code] %>"><%= language[:name] %></option>
-                <% end %>
-              </select><br><br>
-            <button type="submit">Add Subtitle Track</button>
-          </form>
+            <form action="/assets/<%= asset.asset_id %>/add_subtitle_track" method="post" enctype="multipart/form-data">
+              <label for="subtitle_track">Subtitle Track File:</label>
+                <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt" required><br><br>
+              <label for="subtitle_name">Subtitle Name:</label>
+                <input type="text" id="subtitle_name" name="subtitle_name"><br><br>
+              <label for="language_code">Language Code:</label>
+                <select id="language_code" name="language_code">
+                  <% @language_options.each do |language| %>
+                    <option value="<%= language[:code] %>"><%= language[:name] %></option>
+                  <% end %>
+                </select><br><br>
+              <button type="submit">Add Subtitle Track</button>
+            </form>
+          </div>
+
+          <div class="delete-form">
+            <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
+              <input type="hidden" name="_method" value="DELETE">
+              <button class="delete-button" type="submit">DELETE ASSET</button>
+            </form>
+          </div>
+
+        <%# end of asset action div %>
         </div>
 
-        <div class="delete-form">
-          <form action="/assets/<%= asset.asset_id %>" method="POST" class="delete-form">
-            <input type="hidden" name="_method" value="DELETE">
-            <button class="delete-button" type="submit">DELETE ASSET</button>
-          </form>
-        </div>
-      <%# end of asset action div %>
-      </div>
-
+      <%# end of asset_details_container"> %>
+      </div> 
     <%# end of video asset div %>
     </div>
     <% end %>

@@ -64,9 +64,6 @@ body {
   margin-top:10px;
 }
 
-
-
-
 .monitoring-data {
   padding: 5px;
   font-weight: 400;
@@ -95,7 +92,6 @@ video {
   width: 100% !important; 
   height: 100% !important;
 }
-
 
 .video-container {
   display: flex;
@@ -262,8 +258,15 @@ video {
 /* ************************************ */
 .asset-actions {
   display: none;
+  position: absolute; /* or position: fixed; */
+  top: 100%; /* Position the div below the video */
+  left: 0;
+  width: 100%; /* Take full width of the video container */
+  padding: 10px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Include padding in width calculation */
   border: 2px solid black;
-  transition: display 0.5s ease;
+  background-color: white; /* Optionally, set a background color */
+  z-index: 999; 
 }
 
 .asset-actions.show {
@@ -282,6 +285,7 @@ footer {
 
 .asset-data {
   display: none;
+  position: relative;
   transition: display 0.5s ease;
 }
 
