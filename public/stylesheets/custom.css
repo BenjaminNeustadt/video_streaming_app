@@ -64,41 +64,8 @@ body {
   margin-top:10px;
 }
 
-.asset_info {
-  display: none;
-  padding: 0px 10px 40px ;
-  border: 2px solid black;
-  font-weight: 400;
-  word-wrap: break-word; /* Wrap long words */
-  overflow-wrap: break-word; /* Break words at any character */
-  transition: display 0.3s ease, transform 0.2s ease, z-index 0.2s ease;
-  position: relative;
-  z-index: 0;
-}
 
-.asset_info.show {
-  display: block;
-  z-index: 1; /* Bring the asset-info to the foreground */
-  transform: scale(1.05); /* Expand it slightly */
-}
 
-.video_asset {
-  margin: 10px;
-  width: 600px; /* Set a fixed width for each video asset */
-  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
-  height: auto; /* Allow the height to adjust based on aspect ratio */
-}
-
-.video_asset:hover {
-  z-index: 1; /* Bring the video asset to the foreground */
-  transform: scale(1.05); /* Expand it slightly */
-}
-
-.video_asset:hover .asset_info {
-  display: block;
-  z-index: 1; /* Bring the asset-info to the foreground */
-  transform: scale(1.05); /* Expand it slightly */
-}
 
 .monitoring-data {
   padding: 5px;
@@ -124,6 +91,11 @@ body {
   color: yellow;
 }
 
+video {
+  width: 100% !important; 
+  height: 100% !important;
+}
+
 
 .video-container {
   display: flex;
@@ -132,6 +104,61 @@ body {
   margin-top: 30px;
 }
 
+.video_asset:hover {
+  z-index: 1; /* Bring the video asset to the foreground */
+  transform: scale(1.05); /* Expand it slightly */
+}
+
+.video_asset {
+  position: relative;
+  margin: 10px;
+  width: 600px; /* Set a fixed width for each video asset */
+  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
+  height: auto; /* Allow the height to adjust based on aspect ratio */
+}
+
+.video-stream {
+  width: 100%;
+}
+
+.asset_info {
+  display: none;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: 2px solid black;
+  font-weight: 400;
+  word-wrap: break-word; /* Wrap long words */
+  overflow-wrap: break-word; /* Break words at any character */
+  transition: display 0.3s ease, transform 0.2s ease, z-index 0.2s ease;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  background-color: white;
+}
+
+.video_asset:hover .asset_info {
+  display: block;
+  z-index: 1; /* Bring the asset-info to the foreground */
+  transform: translateY(100%); /* Move it down by its own height */
+  transform-origin: bottom; /* Anchor it to the bottom of the video */
+  width: 100%; 
+  height: auto;
+}
+
+.asset_info.show {
+  display: block;
+  z-index: 1; /* Bring the asset-info to the foreground */
+  transform: scale(1.05); /* Expand it slightly */
+}
 /* ************************ */
 /* ADMINISTRATOR EDIT FORMS */
 /* ************************ */
@@ -251,11 +278,6 @@ body {
 
 footer {
   margin-top:150px;
-}
-
-video {
-  width: 100% !important; 
-  height: 100% !important;
 }
 
 .asset-data {
