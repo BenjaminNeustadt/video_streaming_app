@@ -1,5 +1,5 @@
 :root {
-  --base-colour: white;
+  --base-colour: #eaeaea;
   --primary-colour:;
   --backup-colour:;
   --alet-colour: rgb(107, 23, 23);
@@ -106,7 +106,7 @@ body {
 
 .video_asset {
   margin: 10px;
-  width: 400px; /* Set a fixed width for each video asset */
+  width: 600px; /* Set a fixed width for each video asset */
   max-width: calc(100% - 20px); /* Set a maximum width with some margin */
   height: auto; /* Allow the height to adjust based on aspect ratio */
 }
