@@ -1,15 +1,15 @@
 
-  <h2></h2>
+<h2></h2>
+<p> Available films:</p>
 
-  <p> Available films:</p>
+<div class="video-container">
 
-  <div class="video-container">
-
-    <% @assets.each do |asset| %>
+  <% @assets.each do |asset| %>
 
     <div class="video_asset">
 
-        <div class="video-stream">
+      <div class="video-stream">
+
         <mux-player
             playback-id= <%= asset.playback_id%>
             metadata-video-title="Placeholder (optional)"
@@ -19,7 +19,8 @@
             thumbnail-time="15"
             title=" <%= asset.title %>"
         ></mux-player>
-        </div>
+
+      </div>
 
     <div class="asset_details_container">
       <div class="asset_info">
@@ -121,8 +122,6 @@
 
     <%# end of video container div %>
     </div>
-
-
 
   <script src="/javascript/show_asset_actions.js"></script>
   <script src="/javascript/show_asset_details_on_hover.js"></script>
