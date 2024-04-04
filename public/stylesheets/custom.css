@@ -106,7 +106,7 @@ body {
 
 .video_asset {
   margin: 10px;
-  width: 300px; /* Set a fixed width for each video asset */
+  width: 400px; /* Set a fixed width for each video asset */
   max-width: calc(100% - 20px); /* Set a maximum width with some margin */
   height: auto; /* Allow the height to adjust based on aspect ratio */
 }
@@ -237,3 +237,24 @@ video {
   height: 100% !important;
 }
 
+.asset-data {
+  display: none;
+  transition: display 0.5s ease;
+}
+
+.asset-data.show {
+  display: block;
+}
+
+.asset-data-button {
+  background-color: var(--button-colour);
+  color: var(--base-colour);
+  border: none;
+  box-shadow: 0 4px 8px rgb(82, 79, 80);
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.asset-data-button:hover {
+  background-color: var(--button-hover);
+}
