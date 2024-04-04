@@ -10,6 +10,71 @@
   --button-hover: rgba(65, 23, 63, 0.939); 
 }
 
+/* ************************************ */
+/* ADMINISTRATOR SHOW ASSET ACTIONS BOX */
+/* ************************************ */
+.asset-actions {
+  display: none;
+  position: absolute; /* or position: fixed; */
+  top: 100%; /* Position the div below the video */
+  left: 0;
+  width: 100%; /* Take full width of the video container */
+  padding: 10px; /* Adjust padding as needed */
+  box-sizing: border-box; /* Include padding in width calculation */
+  border: 2px solid black;
+  background-color: white; /* Optionally, set a background color */
+  z-index: 999; 
+}
+
+.asset-actions.show {
+  display: block;
+}
+
+.asset_info {
+  padding: 0px 10px 40px ;
+  border: 2px solid black;
+  font-weight: 400;
+}
+
+.asset-data {
+  display: none;
+  position: relative;
+  transition: display 0.5s ease;
+}
+
+.asset-data.show {
+  display: block;
+}
+
+.asset-data-button {
+  background-color: var(--button-colour);
+  color: var(--base-colour);
+  border: none;
+  box-shadow: 0 4px 8px rgb(82, 79, 80);
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.asset-data-button:hover {
+  background-color: var(--button-hover);
+}
+
+.asset_title {
+  margin-top:10px;
+}
+
+.asset_description {
+  margin-top:10px;
+}
+
+.asset_notes {
+  margin-top:10px;
+}
+
+.asset_year {
+  margin-top:10px;
+}
+
 /* Reset default styles */
 body, html {
   margin: 0;
@@ -39,31 +104,6 @@ body {
   border: 2px solid black;
 }
 
-.divider {
-  border-top: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the top */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the bottom */
-  border-left: 1px solid rgba(0, 0, 0, 0.5); /* Vertical line at the left */
-  border-right: 1px solid rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.asset_title {
-  margin-top:10px;
-}
-
-.asset_description {
-  margin-top:10px;
-}
-
-.asset_notes {
-  margin-top:10px;
-}
-
-.asset_year {
-  margin-top:10px;
-}
-
 .monitoring-data {
   padding: 5px;
   font-weight: 400;
@@ -86,35 +126,6 @@ body {
 
 #important-info {
   color: yellow;
-}
-
-video {
-  width: 100% !important; 
-  height: 100% !important;
-}
-
-.video-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.video_asset:hover {
-  z-index: 1; /* Bring the video asset to the foreground */
-  transform: scale(1.05); /* Expand it slightly */
-}
-
-.video_asset {
-  position: relative;
-  margin: 10px;
-  width: 600px; /* Set a fixed width for each video asset */
-  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
-  height: auto; /* Allow the height to adjust based on aspect ratio */
-}
-
-.video-stream {
-  width: 100%;
 }
 
 .asset_info {
@@ -141,23 +152,45 @@ video {
   background-color: white;
 }
 
-.video_asset:hover .asset_info {
-  display: block;
-  z-index: 1; /* Bring the asset-info to the foreground */
-  transform: translateY(100%); /* Move it down by its own height */
-  transform-origin: bottom; /* Anchor it to the bottom of the video */
-  width: 100%; 
-  height: auto;
-}
-
 .asset_info.show {
   display: block;
   z-index: 1; /* Bring the asset-info to the foreground */
   transform: scale(1.05); /* Expand it slightly */
 }
+
+/* ************************** */
+/* ADMINISTRATOR DELETE FORMS */
+/* ************************** */
+.delete-form {
+  float: right;
+}
+
+.delete-button {
+  background-color: var(--alert-color-1);
+  color: var(--base-colour);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.delete-button:hover {
+  background-color: var(--alert-color-hover);
+}
+
+.divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the top */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the bottom */
+  border-left: 1px solid rgba(0, 0, 0, 0.5); /* Vertical line at the left */
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* ************************ */
 /* ADMINISTRATOR EDIT FORMS */
 /* ************************ */
+
 .edit-button {
   background-color: var(--button-colour);
   color: var(--base-colour);
@@ -201,26 +234,6 @@ video {
   background-color: var(--button-hover);
 }
 
-/* ************************** */
-/* ADMINISTRATOR DELETE FORMS */
-/* ************************** */
-.delete-form {
-  float: right;
-}
-
-.delete-button {
-  background-color: var(--alert-color-1);
-  color: var(--base-colour);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-.delete-button:hover {
-  background-color: var(--alert-color-hover);
-}
-
 /* *************************** */
 /* ADMINISTRATOR ADD SUB TRACK */
 /* *************************** */
@@ -253,55 +266,45 @@ video {
   background-color: var(--button-hover);
 }
 
-/* ************************************ */
-/* ADMINISTRATOR SHOW ASSET ACTIONS BOX */
-/* ************************************ */
-.asset-actions {
-  display: none;
-  position: absolute; /* or position: fixed; */
-  top: 100%; /* Position the div below the video */
-  left: 0;
-  width: 100%; /* Take full width of the video container */
-  padding: 10px; /* Adjust padding as needed */
-  box-sizing: border-box; /* Include padding in width calculation */
-  border: 2px solid black;
-  background-color: white; /* Optionally, set a background color */
-  z-index: 999; 
+video {
+  width: 100% !important; 
+  height: 100% !important;
 }
 
-.asset-actions.show {
+.video_asset:hover {
+  z-index: 1; /* Bring the video asset to the foreground */
+  transform: scale(1.05); /* Expand it slightly */
+}
+
+.video_asset {
+  position: relative;
+  margin: 10px;
+  width: 600px; /* Set a fixed width for each video asset */
+  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
+  height: auto; /* Allow the height to adjust based on aspect ratio */
+}
+
+.video-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.video-stream {
+  width: 100%;
+}
+
+.video_asset:hover .asset_info {
   display: block;
-}
-
-.asset_info {
-  padding: 0px 10px 40px ;
-  border: 2px solid black;
-  font-weight: 400;
+  z-index: 1; /* Bring the asset-info to the foreground */
+  transform: translateY(100%); /* Move it down by its own height */
+  transform-origin: bottom; /* Anchor it to the bottom of the video */
+  width: 100%; 
+  height: auto;
 }
 
 footer {
   margin-top:150px;
 }
 
-.asset-data {
-  display: none;
-  position: relative;
-  transition: display 0.5s ease;
-}
-
-.asset-data.show {
-  display: block;
-}
-
-.asset-data-button {
-  background-color: var(--button-colour);
-  color: var(--base-colour);
-  border: none;
-  box-shadow: 0 4px 8px rgb(82, 79, 80);
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-.asset-data-button:hover {
-  background-color: var(--button-hover);
-}
