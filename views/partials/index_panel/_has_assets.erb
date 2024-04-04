@@ -15,14 +15,13 @@
 
         <div class="asset_info">
           <%= partial :"partials/index_panel/asset-info-display", locals: { asset: asset }%>
-          <div class="asset_info_buttons">
-            <%= partial :"partials/index_panel/buttons", locals: { asset: asset }%>
-          </div>
+
+          <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
         </div>
 
 
         <div class="asset-actions">
-
+          <button class="close-admin-view" data-asset-id="<%= asset.asset_id %>">Quit admin view</button>
         <div class="asset-data">
           <%= partial :"partials/index_panel/asset-data", locals: { asset: asset }%>
         </div>
