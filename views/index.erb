@@ -2,11 +2,14 @@
 <div id="sidebar">
   <!-- Navbar content goes here -->
 </div>
-<div>
+
   <% if @assets.any? %>
+
     <%= partial :"partials/index_panel/has_assets"%>
+
   <% else %>
+
     <p>No films available at the moment...</p>
+
   <% end %>
 
-</div>
