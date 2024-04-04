@@ -16,26 +16,28 @@
         <div class="asset_info">
           <%= partial :"partials/index_panel/asset-info-display", locals: { asset: asset }%>
           <div class="asset_info_buttons">
-          <%= partial :"partials/index_panel/buttons", locals: { asset: asset }%>
+            <%= partial :"partials/index_panel/buttons", locals: { asset: asset }%>
           </div>
         </div>
+
+
+        <div class="asset-actions">
 
         <div class="asset-data">
           <%= partial :"partials/index_panel/asset-data", locals: { asset: asset }%>
         </div>
 
-        <div class="asset-actions">
           <%= partial :"partials/index_panel/asset-actions", locals: { asset: asset }%>
         </div>
 
       </div>
 
-  </div>
-    <% end %>
+    </div>
+  <% end %>
 </div>
 
-  <script src="/javascript/show_asset_actions.js"></script>
-  <script src="/javascript/show_asset_details_on_hover.js"></script>
-  <script src="/javascript/show_asset-data.js"></script>
-  <script src="/javascript/confirm_deletion_of_asset.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+<script src="/javascript/show_asset_actions.js"></script>
+<script src="/javascript/show_asset_details_on_hover.js"></script>
+<script src="/javascript/show_asset-data.js"></script>
+<script src="/javascript/confirm_deletion_of_asset.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
