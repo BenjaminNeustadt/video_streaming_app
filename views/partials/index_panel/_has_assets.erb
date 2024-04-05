@@ -15,26 +15,25 @@
 
         <div class="asset_info">
           <%= partial :"partials/index_panel/asset-info-display", locals: { asset: asset }%>
-
           <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
         </div>
 
-
         <div class="asset-actions">
           <button class="close-admin-view" data-asset-id="<%= asset.asset_id %>">Quit admin view</button>
-        <div class="asset-data">
-          <%= partial :"partials/index_panel/asset-data", locals: { asset: asset }%>
-        </div>
-
+          <div class="asset-data">
+            <%= partial :"partials/index_panel/asset-data", locals: { asset: asset }%>
+          </div>
           <%= partial :"partials/index_panel/asset-actions", locals: { asset: asset }%>
         </div>
 
       </div>
 
     </div>
+    <div id="videoOverlay"></div>
   <% end %>
 </div>
 
+<script src="/javascript/dark-overlay.js"></script>
 <script src="/javascript/show_asset_actions.js"></script>
 <script src="/javascript/show_asset_details_on_hover.js"></script>
 <script src="/javascript/show_asset-data.js"></script>
