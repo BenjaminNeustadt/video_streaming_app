@@ -176,7 +176,7 @@ body {
 
 .delete-button {
   background-color: var(--alert-color-1);
-  color: var(--base-colour);
+  color: var(--button-colour);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -185,6 +185,7 @@ body {
 
 .delete-button:hover {
   background-color: var(--alert-color-hover);
+  color: var(--base-colour);
 }
 
 .divider {
