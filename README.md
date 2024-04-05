@@ -276,3 +276,81 @@ Consider Sinatra partials gem: https://github.com/yb66/Sinatra-Partial
 ## Mux customisation css
 
 https://docs.mux.com/guides/player-customize-look-and-feel
+
+## Notes on preliminary data extraction design and config
+
+### Backend client data extraction
+
+Alongside what is currently in place, set up scripting to extract the
+client IP details and serve them to a page.
+Potentially log them later on, either in a log file, or by creating a
+user and updataing a database that could either be hosted in RDS on a
+relational database...
+
+Or creating a csv file, storing it in AWS S3, and updating that each
+time a user clicks on the site...logging that info...
+
+Potentially set up AWS SNS so that each time there is an event,it logs
+the data and an email is sent... this could be a good idea.
+
+The first option would require:
+
+sinatra active record
+a User model
+a database
+an admin view for viewing all of the users, but this might not make
+sense, or would it?
+
+
+The second option would involve just logging the fleeting information of
+users passing through.
+It seems that using the first option, it may be easier to actually find
+users that have visited more that once simply by writing a method to do
+so... the amount of code involve could potentially be identical in the
+long run
+
+It would also allow me to block the page from specific users according
+to their IP address if I want...
+
+As a first iteration, we will log the user data to the index page,
+and see if we can actually do that for one request.
+If we can, we will explore the other options.
+
+### Front end
+
+Two options again:
+
+Either store the images on the actual page and serve them that way...
+The second option would be to store the images in an S3 bucket
+
+Storing them locally could be the easier of the two options,
+and since they are supposed to be public anyway, why not?
+
+### APIs I'll play with
+
+#### IPSTACK (first one)
+[docs]https://ipstack.com/documentation
+
+#### IPINFO
+
+[docs](https://ipinfo.io/developers)
+
+
+#### IPGEOLOCATION
+
+[docs](https://ipgeolocation.io/what-is-my-ip/)
+
+#### IPAPI
+
+https://ipapi.co/#paid-vs-free
+
+This one is the most accurate one geolcation wise...
+
+
+#### VPNAPI
+
+https://vpnapi.io/pricing
+
+This one has the security options
+
+I'll start with this one...
