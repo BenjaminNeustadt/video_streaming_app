@@ -353,4 +353,9 @@ https://vpnapi.io/pricing
 
 This one has the security options
 
-I'll start with this one...
+I'll start with this one... this one seems to be the best...
+
+login: https://vpnapi.io/dashboard?verified=success
+
+Used this source: https://www.twilio.com/en-us/blog/5-ways-make-http-requests-ruby
+
