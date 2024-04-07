@@ -107,3 +107,21 @@
   background-color: var(--button-hover);
   color: var(--base-colour);
 }
+
+/* ************************** */
+/* ADMINISTRATOR asset DATA   */
+/* ************************** */
+
+.asset-data {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+  border: 2px solid black;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  transform: translateY(100%);
+}
