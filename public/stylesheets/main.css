@@ -137,7 +137,16 @@ footer {
   top: 10px;
   right: 10px;
   z-index: 1;
+
+  background-color: var(--button-colour);
+  color: var(--base-colour);
+  border: none;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgb(82, 79, 80);
+  cursor: pointer;
+  font-family: var(--font-family);
 }
+
 
 /* Enlarge the video to cover the entire screen */
 .video-fullscreen {
@@ -147,4 +156,43 @@ footer {
   width: 100%;
   height: 100%;
   z-index: 9999;
+}
+
+.full-screen-overlay {
+  position: absolute;
+  color: white;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  z-index: 9999;
+  transition: opacity 0.5s;
+}
+
+#back-button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: 36px;
+  position: fixed;
+  top: 10px; /* Adjust top position as needed */
+  right: 10px; /* Adjust right position as needed */
+  /* Styles for back button */
+}
+
+#video-title {
+  color: white;
+  font-family: var(--font-family);
+  font-size: 46px;
+  position: fixed;
+  bottom: 70px; /* Adjust top position as needed */
+  left: 70px; /* Adjust right position as needed */
+  /* Styles for video title */
 }
