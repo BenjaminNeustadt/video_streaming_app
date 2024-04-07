@@ -9,10 +9,12 @@
 
       <div class="video-stream">
         <%= partial :"partials/index_panel/mux-player", locals: { asset: asset }%>
-      </div>
+
       <div class="full-screen-overlay">
-        <button id="back-button">Back</button>
-        <div id="video-title">Video Title</div>
+        <button id="back-button" data-video-id="<%= asset.asset_id %>">Back</button>
+        <div id="video-title"><%= asset.title %></div>
+      </div>
+
       </div>
 
       <div class="asset_details_container">
@@ -34,7 +36,7 @@
       </div>
 
     </div>
-    <div id="videoOverlay"></div>
+    <%# <div id="videoOverlay"></div> %>
   <% end %>
 </div>
 
