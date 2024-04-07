@@ -2,6 +2,10 @@
 /* ADMIN PAGE                           */
 /* ************************************ */
 
+#important-info {
+  color: yellow;
+}
+
 .monitoring {
   border: 2px solid black;
   margin: 50px;

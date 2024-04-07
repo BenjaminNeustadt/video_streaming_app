@@ -1,7 +1,7 @@
 @import url('admin-panel-page.css');
 @import url('dividers.css');
 @import url('asset-detail-elements.css');
-@import url('admin-edit-overlay.css');
+@import url('admin-edit.css');
 @import url('new-track.css');
 
 :root {
@@ -15,6 +15,20 @@
   --font-family: "Press Start 2P", monospace;
   --button-hover: rgba(65, 23, 63, 0.939);
 }
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--base-colour);
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17.148px;
+}
+
 
 /* ************************************ */
 /* INDEX PAGE                           */
@@ -41,8 +55,6 @@
   display: block;
 }
 
-
-
 .asset-data {
   display: block;
   position: relative;
@@ -65,27 +77,6 @@
 .asset-data-button:hover {
   background-color: var(--button-hover);
 }
-
-/* Reset default styles */
-body, html {
-  margin: 0;
-  padding: 0;
-}
-
-/* Set font styles */
-body {
-  background-color: var(--base-colour);
-  font-family: var(--font-family);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17.148px;
-}
-
-
-#important-info {
-  color: yellow;
-}
-
 .asset_info {
   padding: 0px 10px 40px ;
   border: 2px solid black;
@@ -137,11 +128,6 @@ body {
 .close-admin-view:hover {
   background-color: var(--button-hover);
   color: var(--base-colour);
-}
-
-video {
-  width: 100% !important;
-  height: 100% !important;
 }
 
 .video_asset:hover {
