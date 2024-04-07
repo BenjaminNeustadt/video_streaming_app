@@ -108,22 +108,7 @@ body {
   transform: scale(1.05); /* Expand it slightly */
 }
 
-.close-admin-view {
-  background-color: var(--button-colour);
-  box-shadow: 0 4px 8px rgb(82, 79, 80);
-  font-family: var(--font-family);
-  color: var(--base-colour);
-  cursor: pointer;
-  border: none;
-  margin-left: 0;
-  position: absolute;
-  right: 0;
-}
 
-.close-admin-view:hover {
-  background-color: var(--button-hover);
-  color: var(--base-colour);
-}
 
 .video_asset:hover {
   z-index: 1; /* Bring the video asset to the foreground */
