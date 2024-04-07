@@ -1,3 +1,8 @@
+@import url('admin-panel-page.css');
+@import url('dividers.css');
+@import url('asset-detail-elements.css');
+@import url('admin-edit-overlay.css');
+
 :root {
   --base-colour: #eaeaea;
   --primary-colour:;
@@ -10,13 +15,10 @@
   --button-hover: rgba(65, 23, 63, 0.939);
 }
 
-
 /* ************************************ */
 /* INDEX PAGE                           */
 /* ************************************ */
-/* ************************************ */
-/* ADMIN PAGE                           */
-/* ************************************ */
+
 /* ************************************ */
 /* ADMINISTRATOR SHOW ASSET ACTIONS BOX */
 /* ************************************ */
@@ -33,7 +35,6 @@
   background-color: white; /* Optionally, set a background color */
   z-index: 999;
 }
-
 
 .asset-actions.show {
   display: block;
@@ -68,70 +69,21 @@
   background-color: var(--button-hover);
 }
 
-.asset_title {
-  margin-top:10px;
-}
-
-.asset_description {
-  margin-top:10px;
-}
-
-.asset_notes {
-  margin-top:10px;
-}
-
-.asset_year {
-  margin-top:10px;
-}
-
 /* Reset default styles */
 body, html {
   margin: 0;
   padding: 0;
 }
 
-/* Set a background color */
-body {
-  background-color: var(--base-colour);
-}
-
 /* Set font styles */
 body {
+  background-color: var(--base-colour);
   font-family: var(--font-family);
   font-size: 14px;
   font-weight: 700;
   line-height: 17.148px;
 }
 
-.monitoring {
-  border: 2px solid black;
-  margin: 50px;
-}
-
-.upload_asset_metadata {
-  margin: 50px;
-  border: 2px solid black;
-}
-
-.monitoring-data {
-  padding: 5px;
-  font-weight: 400;
-  color: white;
-  background-color: grey;
-}
-
-.monitoring-segment {
-  color: black;
-}
-
-.monitoring-count-error {
-  color: var(--alert-color);
-
-}
-
-.monitoring-count-ok {
-  color: var(--valid-color);
-}
 
 #important-info {
   color: yellow;
@@ -167,39 +119,6 @@ body {
   transform: scale(1.05); /* Expand it slightly */
 }
 
-/* ************************** */
-/* ADMINISTRATOR DELETE FORMS */
-/* ************************** */
-.delete-form {
-  float: right;
-}
-
-.delete-button {
-  background-color: var(--alert-color-1);
-  color: var(--button-colour);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-.delete-button:hover {
-  background-color: var(--alert-color-hover);
-  color: var(--base-colour);
-}
-
-.divider {
-  border-top: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the top */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the bottom */
-  border-left: 1px solid rgba(0, 0, 0, 0.5); /* Vertical line at the left */
-  border-right: 1px solid rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-/* ************************ */
-/* ADMINISTRATOR EDIT FORMS */
-/* ************************ */
 
 .close-admin-view {
   background-color: var(--button-colour);
@@ -212,72 +131,10 @@ body {
   position: absolute;
   right: 0;
 }
-    // Remove the overlay element from the body
 
 .close-admin-view:hover {
   background-color: var(--button-hover);
   color: var(--base-colour);
-}
-
-.edit-button {
-  background-color: var(--button-colour);
-  color: var(--base-colour);
-  border: none;
-  padding: 10px 20px;
-  box-shadow: 0 4px 8px rgb(82, 79, 80);
-  cursor: pointer;
-  font-family: var(--font-family);
-  font-size: 16px;
-}
-
-.video-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.681); /* Semi-transparent black */
-}
-
-.video.enlarged .video-overlay {
-  display: block;
-}
-
-.overlay-active {
-  display: block;
-}
-
-.edit-button:hover {
-  background-color: var(--button-hover);
-}
-
-.edit-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.edit-form input[type="text"],
-.edit-form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-}
-
-.edit-form button {
-  background-color: var(--button-colour);
-  color: var(--base-colour);
-  border: none;
-  padding: 10px 20px;
-  box-shadow: 0 4px 8px rgb(82, 79, 80);
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-.edit-form button:hover {
-  background-color: var(--button-hover);
 }
 
 /* *************************** */
@@ -382,3 +239,20 @@ footer {
   transform: translateY(100%);
 }
 
+  /* CSS styles for full-screen button */
+.fullscreen-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+/* Enlarge the video to cover the entire screen */
+.video-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}

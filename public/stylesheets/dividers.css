@@ -1,0 +1,9 @@
+.divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the top */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); /* Horizontal line at the bottom */
+  border-left: 1px solid rgba(0, 0, 0, 0.5); /* Vertical line at the left */
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
