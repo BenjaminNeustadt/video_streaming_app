@@ -58,23 +58,6 @@ footer {
   display: block;
 }
 
-.asset-data.show {
-  display: block;
-}
-
-.asset-data-button {
-  background-color: var(--button-colour);
-  color: var(--base-colour);
-  border: none;
-  box-shadow: 0 4px 8px rgb(82, 79, 80);
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-.asset-data-button:hover {
-  background-color: var(--button-hover);
-}
-
 .asset_info {
   display: none;
   position: absolute;
