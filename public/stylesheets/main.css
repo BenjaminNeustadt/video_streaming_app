@@ -2,6 +2,7 @@
 @import url('dividers.css');
 @import url('asset-detail-elements.css');
 @import url('admin-edit-overlay.css');
+@import url('new-track.css');
 
 :root {
   --base-colour: #eaeaea;
@@ -40,11 +41,7 @@
   display: block;
 }
 
-.asset_info {
-  padding: 0px 10px 40px ;
-  border: 2px solid black;
-  font-weight: 400;
-}
+
 
 .asset-data {
   display: block;
@@ -90,6 +87,12 @@ body {
 }
 
 .asset_info {
+  padding: 0px 10px 40px ;
+  border: 2px solid black;
+  font-weight: 400;
+}
+
+.asset_info {
   display: none;
   position: absolute;
   padding: 0;
@@ -119,7 +122,6 @@ body {
   transform: scale(1.05); /* Expand it slightly */
 }
 
-
 .close-admin-view {
   background-color: var(--button-colour);
   box-shadow: 0 4px 8px rgb(82, 79, 80);
@@ -135,38 +137,6 @@ body {
 .close-admin-view:hover {
   background-color: var(--button-hover);
   color: var(--base-colour);
-}
-
-/* *************************** */
-/* ADMINISTRATOR ADD SUB TRACK */
-/* *************************** */
-
-.new-track-form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.new-track-form input[type="text"],
-.new-track-form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-}
-
-.new-track-form button {
-  background-color: var(--button-colour);
-  color: var(--base-colour);
-  border: none;
-  padding: 10px 20px;
-  box-shadow: 0 4px 8px rgb(82, 79, 80);
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-.new-track-form button:hover {
-  background-color: var(--button-hover);
 }
 
 video {

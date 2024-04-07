@@ -1,0 +1,32 @@
+/* *************************** */
+/* ADMINISTRATOR ADD SUB TRACK */
+/* *************************** */
+
+.new-track-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.new-track-form input[type="text"],
+.new-track-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.new-track-form button {
+  background-color: var(--button-colour);
+  color: var(--base-colour);
+  border: none;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgb(82, 79, 80);
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.new-track-form button:hover {
+  background-color: var(--button-hover);
+}
+
