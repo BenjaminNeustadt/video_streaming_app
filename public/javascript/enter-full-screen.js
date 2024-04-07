@@ -1,6 +1,4 @@
-// Add event listeners to each full-screen button
-
-let overlayTimeout; // Declare overlayTimeout variable
+let overlayTimeout;
 
 document.querySelectorAll('.fullscreen-button').forEach(button => {
   button.addEventListener('click', () => {
@@ -13,12 +11,11 @@ document.querySelectorAll('.fullscreen-button').forEach(button => {
 });
 
 function showOverlay(element) {
-    element.style.display = 'block'; // Show overlay
+    element.style.display = 'block';
     element.style.opacity = '1';
     console.log('overlay called');
 };
 
-// Function to toggle full-screen mode
 function toggleFullScreen(element) {
   console.log('toggleFullScreen function called');
   if (!element.classList.contains('video-fullscreen')) {
@@ -37,23 +34,23 @@ document.querySelectorAll('.full-screen-overlay').forEach(button => {
 });
 
 function showOverlay(overlay) {
-  overlay.style.display = 'block'; // Show overlay
-  overlay.style.opacity = '1'; // Show overlay by setting opacity to 1
+  overlay.style.display = 'block';
+  overlay.style.opacity = '1';
   console.log('Overlay shown');
-  clearTimeout(overlayTimeout); // Clear any existing timeout
+  clearTimeout(overlayTimeout);
   overlayTimeout = setTimeout(() => {
-      overlay.style.opacity = '0'; // Fade out overlay after a period of inactivity
+      overlay.style.opacity = '0';
       console.log('Overlay faded out');
-  }, 1000); // Adjust the timeout duration as needed (e.g., 3000 milliseconds = 3 seconds)
+  }, 1000);
 }
 
 function addMouseActivityListener(overlay) {
   document.addEventListener('mousemove', () => {
-      overlay.style.opacity = '1'; // Restore full opacity when mouse moves over the overlay
-      clearTimeout(overlayTimeout); // Clear any existing timeout
+      overlay.style.opacity = '1';
+      clearTimeout(overlayTimeout);
       overlayTimeout = setTimeout(() => {
-          overlay.style.opacity = '0'; // Fade out overlay after a period of inactivity
+          overlay.style.opacity = '0';
           console.log('Overlay faded out');
-      }, 3000); // Adjust the timeout duration as needed (e.g., 3000 milliseconds = 3 seconds)
+      }, 3000);
   });
 }
