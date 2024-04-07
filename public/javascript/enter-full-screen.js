@@ -44,7 +44,7 @@ function showOverlay(overlay) {
   overlayTimeout = setTimeout(() => {
       overlay.style.opacity = '0'; // Fade out overlay after a period of inactivity
       console.log('Overlay faded out');
-  }, 3000); // Adjust the timeout duration as needed (e.g., 3000 milliseconds = 3 seconds)
+  }, 1000); // Adjust the timeout duration as needed (e.g., 3000 milliseconds = 3 seconds)
 }
 
 function addMouseActivityListener(overlay) {
