@@ -1,4 +1,14 @@
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
+
+@import url('component-styles.css');
+
+
+Removedd this from styles
+.video_asset:hover {
+  z-index: 1; /* Bring the video asset to the foreground */
+  transform: scale(1.05); /* Expand it slightly */
+}
+
 #=+=+=+=+=+=+=+=+=+=+=+=+=+=+==+=+=+=+=+=+=+=+=+=+=+=+=+=+=++
 
 # # Prepare the request body
