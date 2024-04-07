@@ -48,7 +48,7 @@ function showOverlay(overlay) {
 }
 
 function addMouseActivityListener(overlay) {
-  overlay.addEventListener('mousemove', () => {
+  document.addEventListener('mousemove', () => {
       overlay.style.opacity = '1'; // Restore full opacity when mouse moves over the overlay
       clearTimeout(overlayTimeout); // Clear any existing timeout
       overlayTimeout = setTimeout(() => {
