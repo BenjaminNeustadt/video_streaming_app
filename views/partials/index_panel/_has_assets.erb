@@ -11,10 +11,10 @@
         <%= partial :"partials/index_panel/mux-player", locals: { asset: asset }%>
       </div>
 
- <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">Full Screen</button>
       <div class="asset_details_container">
 
         <div class="asset_info">
+          <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">Full Screen</button>
           <%= partial :"partials/index_panel/asset-info-display", locals: { asset: asset }%>
           <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
         </div>
