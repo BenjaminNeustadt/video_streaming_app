@@ -25,3 +25,11 @@ function toggleFullScreen(element) {
     element.classList.remove('video-fullscreen');
   }
 }
+
+document.querySelectorAll('.full-screen-overlay').forEach(button => {
+  button.addEventListener('click', () => {
+    const muxplayer = button.closest('.video_asset').querySelector('.video-stream mux-player');
+    console.log("back button called")
+    toggleFullScreen(muxplayer);
+  });
+});
