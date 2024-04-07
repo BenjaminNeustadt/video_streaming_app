@@ -77,11 +77,6 @@ body {
 .asset-data-button:hover {
   background-color: var(--button-hover);
 }
-.asset_info {
-  padding: 0px 10px 40px ;
-  border: 2px solid black;
-  font-weight: 400;
-}
 
 .asset_info {
   display: none;
