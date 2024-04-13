@@ -137,6 +137,11 @@ class Application < Sinatra::Base
     redirect '/'
   end
 
+  def time_to_seconds(hour=0, minute=0, second=0)
+    seconds = hour * 3600 + minute * 60 + second
+    seconds.to_s
+  end
+
   post '/upload_asset_metadata' do
     title               = params[:title]
     description         = params[:description]
@@ -144,6 +149,28 @@ class Application < Sinatra::Base
     country             = params[:country]
     genre               = params[:genre]
     notes               = params[:notes]
+
+    # Thumbnail_time values
+    hour                = params[:hour]
+    minute              = params[:minute]
+    second              = params[:second]
+    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
+    p hour
+    p minute
+    p second
+    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
+    # convert them to integer for operations
+    hour                = hour.to_i
+    minute              = minute.to_i
+    second              = second.to_i
+
+    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
+    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
+    p hour
+    p minute
+    p second
+    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
+    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
 
     subtitle_name       = params[:subtitle_name]
     language_code       = params[:language_code]
@@ -173,9 +200,11 @@ class Application < Sinatra::Base
         year: year,
         genre: genre,
         notes: notes,
+        thumbnail_time: time_to_seconds(hour, minute, second),
         playback_id: playback_id_for_latest_asset,
         asset_id: asset_id_for_latest_asset
       )
+
       # :TODO: Remove logging
       p "Successfully added metadata to uploaded asset"
 

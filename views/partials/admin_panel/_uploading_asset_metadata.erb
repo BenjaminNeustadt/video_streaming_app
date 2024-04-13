@@ -25,6 +25,37 @@
 
         <%= partial :"partials/admin_panel/genre-selection"%>
 
+      <!-- Thumbnail Position Fields -->
+      <h4>Thumbnail Position</h4>
+      <div class="thumbnail-position">
+        <label for="hour">Hour:</label>
+        <select id="hour" name="hour">
+          <option value="">-</option>
+          <!-- Generate options for hours -->
+          <% (0..23).each do |hour| %>
+            <option value="<%= hour %>"><%= hour %></option>
+          <% end %>
+        </select><br>
+
+        <label for="minute">Minute:</label>
+        <select id="minute" name="minute">
+          <option value="">-</option>
+          <!-- Generate options for minutes -->
+          <% (0..59).each do |minute| %>
+            <option value="<%= minute %>"><%= minute %></option>
+          <% end %>
+        </select><br>
+
+        <label for="second">Second:</label>
+        <select id="second" name="second">
+          <option value="">-</option>
+          <!-- Generate options for seconds -->
+          <% (0..59).each do |second| %>
+            <option value="<%= second %>"><%= second %></option>
+          <% end %>
+        </select><br><br>
+      </div>
+
       <label for="notes">Notes:</label><br>
       <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
 
