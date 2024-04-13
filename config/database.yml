@@ -9,5 +9,5 @@ development:
   database:  <%= ENV['RDS_DATABASE'] %>
   username:  <%= ENV['RDS_USERNAME'] %>
   password:  <%= ENV['RDS_PASSWORD'] %>
-  host:      <%= ENV['RDS_HOST'] %>
-  port:      <%= ENV['RDS_PORT'] %>
+  host:      <%= ENV['EC2_DATABASE_HOST'] %>
+  port:      <%= ENV['PGSQL_PORT'] %>
