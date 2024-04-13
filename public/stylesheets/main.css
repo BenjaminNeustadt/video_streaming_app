@@ -55,7 +55,7 @@ footer {
 }
 
 .asset_info {
-  display: block;
+  display: none;
   position: absolute;
   margin: 0;
   background-color: white;
