@@ -6,8 +6,8 @@ default: &default
 
 development:
   <<: *default
-  database:  <%= ENV['RDS_DATABASE'] %>
-  username:  <%= ENV['RDS_USERNAME'] %>
-  password:  <%= ENV['RDS_PASSWORD'] %>
+  database:  <%= ENV['EC2_DB_NAME'] %>
+  username:  <%= ENV['EC2_PGSQL_DB_USERNAME'] %>
+  password:  <%= ENV['EC2_PGSQL_DB_PASSWORD'] %>
   host:      <%= ENV['EC2_DATABASE_HOST'] %>
   port:      <%= ENV['PGSQL_PORT'] %>
