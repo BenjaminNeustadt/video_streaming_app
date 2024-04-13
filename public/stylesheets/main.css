@@ -55,7 +55,7 @@ footer {
 }
 
 .asset_info {
-  display: none;
+  display: block;
   position: absolute;
   margin: 0;
   background-color: white;
@@ -107,6 +107,7 @@ footer {
 .video-stream {
   width: 100%;
   margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 
@@ -123,6 +124,7 @@ footer {
   transition-delay: 0.3s;
   /* transition: transform 0.3s ease; */
   transform: translateY(100%);
+  margin-top: 20px;
 }
 
 /* FULL SCREEN STUFF */
@@ -190,4 +192,3 @@ footer {
   left: 70px; /* Adjust right position as needed */
   /* Styles for video title */
 }
-
