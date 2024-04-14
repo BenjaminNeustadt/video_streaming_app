@@ -144,6 +144,9 @@ class Application < Sinatra::Base
   post '/upload_asset_metadata' do
     title               = params[:title]
     director            = params[:director]
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" 
+    p director
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" 
     description         = params[:description]
     year                = params[:year]
     country             = params[:country]
@@ -184,7 +187,7 @@ class Application < Sinatra::Base
 
       asset = Asset.create(
         title: title,
-        director: director,
+        directors: director,
         description: description,
         year: year,
         genre: genre,
@@ -214,6 +217,7 @@ class Application < Sinatra::Base
     @asset = Asset.find_by(asset_id: params[:id])
     @asset.update(
       title: params[:title],
+      directors: params[:director],
       description: params[:description],
       year: params[:year],
       notes: params[:notes],
