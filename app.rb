@@ -143,6 +143,7 @@ class Application < Sinatra::Base
 
   post '/upload_asset_metadata' do
     title               = params[:title]
+    director            = params[:director]
     description         = params[:description]
     year                = params[:year]
     country             = params[:country]
@@ -162,6 +163,7 @@ class Application < Sinatra::Base
     language_code       = params[:language_code]
     file_given          = params.dig(:subtitle_track, :tempfile)
 
+    # MAKE A METHOD out of this
     if file_given
       subtitle_track_file = params[:subtitle_track][:tempfile]
       track_filename      = params[:subtitle_track][:filename]
@@ -182,6 +184,7 @@ class Application < Sinatra::Base
 
       asset = Asset.create(
         title: title,
+        director: director,
         description: description,
         year: year,
         genre: genre,
