@@ -226,3 +226,28 @@ footer {
   text-shadow: 0 0 2px black;
   /* Styles for video title */
 }
+
+.overlay-text-pre {
+  position: absolute;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  display: block;
+  color: white;
+  text-shadow: 0 0 2px black;
+  font-family: var(--font-family);
+  font-size: 24px;
+  text-align: left;
+  padding: 10px; 
+  box-sizing: border-box;
+  left: 20px; 
+  bottom: 20px; 
+}
+
+.overlay-text-pre .video-title {
+  font-weight: bold;
+}
+
+.overlay-text-pre .video-director {
+  margin-top: 10px;
+}
