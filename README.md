@@ -359,3 +359,7 @@ login: https://vpnapi.io/dashboard?verified=success
 
 Used this source: https://www.twilio.com/en-us/blog/5-ways-make-http-requests-ruby
 
+
+#### Connecting an EC2 instance with Postgresql
+
+https://medium.com/@pantaanish/setting-up-postgresql-on-an-ec2-instance-a-step-by-step-guide-9be2e3348fdb
