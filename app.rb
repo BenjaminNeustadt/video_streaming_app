@@ -138,8 +138,7 @@ class Application < Sinatra::Base
   end
 
   def time_to_seconds(hour=0, minute=0, second=0)
-    seconds = hour * 3600 + minute * 60 + second
-    seconds.to_s
+    String(hour * 3600 + minute * 60 + second)
   end
 
   post '/upload_asset_metadata' do
@@ -154,23 +153,10 @@ class Application < Sinatra::Base
     hour                = params[:hour]
     minute              = params[:minute]
     second              = params[:second]
-    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
-    p hour
-    p minute
-    p second
-    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
     # convert them to integer for operations
     hour                = hour.to_i
     minute              = minute.to_i
     second              = second.to_i
-
-    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
-    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
-    p hour
-    p minute
-    p second
-    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
-    puts  "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+="
 
     subtitle_name       = params[:subtitle_name]
     language_code       = params[:language_code]
@@ -215,12 +201,20 @@ class Application < Sinatra::Base
 
   put '/update_asset_metadata/:id' do
 
+    # Thumbnail_time values
+    hour                = params[:hour]
+    minute              = params[:minute]
+    second              = params[:second]
+    # convert them to integer for operations
+    time = hour.to_i, minute.to_i, second.to_i
+
     @asset = Asset.find_by(asset_id: params[:id])
     @asset.update(
       title: params[:title],
       description: params[:description],
       year: params[:year],
-      notes: params[:notes]
+      notes: params[:notes],
+      thumbnail_time: time_to_seconds(*time)
     )
     redirect '/'
   end
