@@ -64,3 +64,19 @@
 
       <input type="submit" value="Submit">
     </form>
+
+    <script>
+      // Disable the submit button initially
+      const submitButton = document.getElementById('submit-button');
+
+      // Listen for changes in the mux-uploader section
+      const uploadAsset = document.querySelector('.upload_asset');
+
+      uploadAsset.addEventListener('change', () => {
+        // Check if the upload section has content
+        const hasContent = uploadAsset.innerText.includes('100%');
+
+        // Enable or disable the submit button based on the presence of content in the upload section
+        submitButton.disabled = !hasContent;
+      });
+    </script>
