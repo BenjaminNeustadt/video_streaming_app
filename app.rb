@@ -159,13 +159,9 @@ class Application < Sinatra::Base
     notes               = params[:notes]
 
     # Thumbnail_time values
-    hour                = params[:hour]
-    minute              = params[:minute]
-    second              = params[:second]
-    # convert them to integer for operations
-    hour                = hour.to_i
-    minute              = minute.to_i
-    second              = second.to_i
+    hour                = params[:hour].to_i
+    minute              = params[:minute].to_i
+    second              = params[:second].to_i
 
     subtitle_name       = params[:subtitle_name]
     language_code       = params[:language_code]
