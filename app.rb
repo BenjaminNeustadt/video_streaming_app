@@ -62,9 +62,14 @@ class Application < Sinatra::Base
   set :partial_template_engine, :erb
 
   get '/' do
+
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES" 
+    # p request.cookies
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES" 
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
-    erb :index
+    dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
+    erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
 
 
