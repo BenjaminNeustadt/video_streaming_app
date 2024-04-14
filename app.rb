@@ -172,25 +172,25 @@ class Application < Sinatra::Base
       track_filename      = params[:subtitle_track][:filename]
 
       upload_to_aws_s3_storage(subtitle_track_file, track_filename)
+
       asset_id = asset_id_for_latest_asset
       assets_api = MuxRuby::AssetsApi.new
-      create_track_response = assets_api.create_asset_track(asset_id, create_track_request_for_subtitle)
+      assets_api.create_asset_track(asset_id, create_track_request_for_subtitle)
     end
 
-      asset = Asset.create(
-        title: title,
-        directors: director,
-        description: description,
-        year: year,
-        genre: genre,
-        notes: notes,
-        thumbnail_time: time_to_seconds(hour, minute, second),
-        playback_id: playback_id_for_latest_asset,
-        asset_id: asset_id_for_latest_asset
-      )
+    asset = Asset.create(
+      title: title,
+      directors: director,
+      description: description,
+      year: year,
+      genre: genre,
+      notes: notes,
+      thumbnail_time: time_to_seconds(hour, minute, second),
+      playback_id: playback_id_for_latest_asset,
+      asset_id: asset_id_for_latest_asset
+    )
 
-      # :TODO: Remove logging
-      p "Successfully added metadata to uploaded asset"
+    p "Successfully added metadata to uploaded asset"
 
     redirect '/admin'
   end
