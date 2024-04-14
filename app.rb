@@ -178,7 +178,7 @@ class Application < Sinatra::Base
       assets_api.create_asset_track(asset_id, create_track_request_for_subtitle)
     end
 
-    asset = Asset.create(
+    Asset.create(
       title: title,
       directors: director,
       description: description,
