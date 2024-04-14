@@ -51,5 +51,16 @@ module MuxHelpers
     assets.data.first.id
   end
 
+  def create_track_request_for_subtitle
+    MuxRuby::CreateTrackRequest.new(
+      url: @subtitle_track_url,
+      type: 'text',
+      text_type: 'subtitles',
+      language_code: language_code,
+      name: subtitle_name,
+      closed_captions: false
+    )
+  end
+
 end
 

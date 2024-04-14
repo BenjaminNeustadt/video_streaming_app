@@ -68,6 +68,9 @@ class Application < Sinatra::Base
     # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES" 
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"  
+    p @assets
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"  
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
@@ -149,9 +152,6 @@ class Application < Sinatra::Base
   post '/upload_asset_metadata' do
     title               = params[:title]
     director            = params[:director]
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" 
-    p director
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" 
     description         = params[:description]
     year                = params[:year]
     country             = params[:country]
@@ -171,23 +171,14 @@ class Application < Sinatra::Base
     language_code       = params[:language_code]
     file_given          = params.dig(:subtitle_track, :tempfile)
 
-    # MAKE A METHOD out of this
     if file_given
       subtitle_track_file = params[:subtitle_track][:tempfile]
       track_filename      = params[:subtitle_track][:filename]
 
       upload_to_aws_s3_storage(subtitle_track_file, track_filename)
-      create_track_request = MuxRuby::CreateTrackRequest.new(
-        url: @subtitle_track_url,
-        type: 'text',
-        text_type: 'subtitles',
-        language_code: language_code,
-        name: subtitle_name,
-        closed_captions: false
-      )
       asset_id = asset_id_for_latest_asset
       assets_api = MuxRuby::AssetsApi.new
-      create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
+      create_track_response = assets_api.create_asset_track(asset_id, create_track_request_for_subtitle)
     end
 
       asset = Asset.create(
