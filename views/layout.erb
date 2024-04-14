@@ -32,20 +32,8 @@ mux-player::part(center play button) {
 
     </header>
     <button id="dark-mode-toggle">Toggle Dark Mode</button>
-    <%# <script src="toggle-dark-mode.js"></script> %>
 
-    <script>
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-
-    darkModeToggle.addEventListener('click', function() {
-        // Toggle dark mode
-        document.body.classList.toggle('dark-mode');
-
-        // Update cookie
-        const darkModeEnabled = document.body.classList.contains('dark-mode');
-        document.cookie = `darkModeEnabled=${darkModeEnabled}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-    });
-    </script>
+    <script src="/javascript/darkmode-toggle.js"></script>
 
     <main>
       <%= yield %>
