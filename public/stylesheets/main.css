@@ -183,12 +183,46 @@ footer {
   /* Styles for back button */
 }
 
+.overlay-text {
+  position: fixed;
+  bottom: 100px; /* Adjust the bottom position as needed */
+  left: 70px; 
+}
+
 #video-title {
   color: white;
   font-family: var(--font-family);
   font-size: 46px;
-  position: fixed;
-  bottom: 70px; /* Adjust top position as needed */
-  left: 70px; /* Adjust right position as needed */
+  /* position: fixed; */
+  /* bottom: 160px; */
+  /* left: 70px;  */
+  margin-top: 10px; 
+  text-shadow: 0 0 2px black;
+  /* Styles for video title */
+}
+
+#video-director {
+  color: white;
+  font-family: var(--font-family);
+  font-size: 30px;
+  /* position: fixed; */
+  /* bottom: 110px; */
+  /* left: 70px;  */
+  margin-top: 30px; 
+  text-shadow: 0 0 2px black;
+  /* Styles for video title */
+}
+
+#video-description {
+  color: grey;
+  font-family: var(--font-family);
+  font-weight: 100;
+  font-size: 26px;
+  /* position: fixed; */
+  /* bottom: 60px; */
+  /* left: 70px;  */
+  margin-top: 20px; 
+  line-height: 1.4;
+  text-shadow: 0 0 2px black;
   /* Styles for video title */
 }

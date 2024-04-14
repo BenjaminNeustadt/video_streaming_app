@@ -12,7 +12,11 @@
 
       <div class="full-screen-overlay">
         <button id="back-button" data-video-id="<%= asset.asset_id %>">Back</button>
-        <div id="video-title"><%= asset.title %></div>
+        <div class="overlay-text">
+          <div id="video-title"><%= asset.title %></div>
+          <div id="video-director"><%= asset.directors %></div>
+          <div id="video-description"><%= asset.description %></div>
+        </div>
       </div>
 
       </div>
