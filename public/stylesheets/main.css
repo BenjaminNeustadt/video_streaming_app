@@ -14,6 +14,7 @@
   --button-colour:  #333;
   --font-family: "Press Start 2P", monospace;
   --button-hover: rgba(65, 23, 63, 0.939);
+  --brand-colour:  rgb(104, 37, 104);
 }
 
 body, html {
@@ -274,12 +275,15 @@ footer {
 }
 
 .admin-nav a {
-  /* Your existing styles for the links */
-  background-color: blue;
+  background-color: var(--brand-colour);
   color: white;
   padding: 10px 20px;
   text-decoration: none;
   font-family: var(--font-family);
+}
+
+a {
+  color: var(--brand-colour);
 }
 
 .admin-nav a:hover {
@@ -293,14 +297,14 @@ footer {
 
 #submit-button {
   display: block;
-  background-color: #4CAF50; /* Green background */
-  color: white; /* White text */
-  padding: 10px 20px; /* Padding */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Cursor on hover */
+  background-color: #4CAF50; 
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
   font-family: var(--font-family);
-  font-size: 16px; /* Font size */
+  font-size: 16px;
 }
 
 
