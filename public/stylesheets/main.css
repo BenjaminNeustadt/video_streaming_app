@@ -309,3 +309,16 @@ footer {
   color: #666; /* Dark grey text */
   cursor: not-allowed; /* Cursor */
 }
+
+.thumbnail-position {
+  display: flex;
+  align-items: center;
+}
+
+.thumbnail-position label {
+  margin-right: 10px;
+}
+
+.thumbnail-position select {
+  margin-right: 10px;
+}
