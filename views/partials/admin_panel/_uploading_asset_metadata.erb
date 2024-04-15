@@ -62,7 +62,34 @@
       <label for="notes">Notes:</label><br>
       <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
 
-      <input type="submit" value="Submit">
+      <input id="submit-button" class="button-vis" type="submit" value="Submit" disabled>
+
     </form>
 
-    <script src="/javascript/submitbutton_disabled_enabled.js"></script>
+<script>
+
+function enableSubmitButton() {
+  console.log("Checking upload status...");
+  const statusMessage = document.querySelector("body > main > div.upload_asset_metadata > div > mux-uploader").shadowRoot.querySelector("mux-uploader-status").shadowRoot.querySelector("#status-message");
+
+  if (statusMessage && statusMessage.innerText.trim() === 'Upload complete!') {
+    console.log("Upload complete message found.");
+
+    const submitButton = document.getElementById('submit-button');
+    if (submitButton) {
+      submitButton.removeAttribute('disabled');
+    } else {
+      console.error("Submit button not found.");
+    }
+    clearInterval(uploadStatusCheckInterval);
+  } else {
+    console.log("Upload complete message not found.");
+  }
+}
+
+// Check upload status every 1 second
+const uploadStatusCheckInterval = setInterval(enableSubmitButton, 1000);
+
+</script>
+
+
