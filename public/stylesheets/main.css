@@ -322,3 +322,16 @@ footer {
 .thumbnail-position select {
   margin-right: 10px;
 }
+
+.genre-container {
+  display: flex;
+  align-items: center;
+}
+
+.genre-container input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.genre-container label {
+  margin-right: 10px;
+}
