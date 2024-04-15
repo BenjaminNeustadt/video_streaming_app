@@ -42,9 +42,9 @@ module MuxHelpers
 
   def asset_id_for_latest_asset
     assets_api = MuxRuby::AssetsApi.new
-    # assets = assets_api.list_assets
+    assets = assets_api.list_assets
     if assets && assets.data && !assets.data.empty?
-      assets = assets_api.list_assets
+      # assets = assets_api.list_assets
       assets.data.first.id
     else
       p "There are no assets currently in the Mux storage..."
