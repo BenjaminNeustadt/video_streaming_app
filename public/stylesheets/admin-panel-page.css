@@ -28,10 +28,10 @@
 }
 
 .monitoring-count-error {
-  color: var(--alert-color);
+  color: var(--alert-colour);
 
 }
 
 .monitoring-count-ok {
-  color: var(--valid-color);
+  color: var(--valid-colour);
 }

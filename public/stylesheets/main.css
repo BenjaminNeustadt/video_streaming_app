@@ -8,9 +8,9 @@
   --base-colour: #eaeaea;
   --primary-colour:;
   --backup-colour:;
-  --alet-colour: rgb(107, 23, 23);
+  --alert-colour: rgb(107, 23, 23);
   --alert-color-hover: rgb(134, 19, 19);
-  --valid-color: lightgreen;
+  --valid-colour: lightgreen;
   --button-colour:  #333;
   --font-family: "Press Start 2P", monospace;
   --button-hover: rgba(65, 23, 63, 0.939);
