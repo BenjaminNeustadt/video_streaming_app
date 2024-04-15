@@ -290,3 +290,7 @@ footer {
   text-shadow: 0 0 0 white;
 
 }
+
+#submit-button {
+  display: block;
+}
