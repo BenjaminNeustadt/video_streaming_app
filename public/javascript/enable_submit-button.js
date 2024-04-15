@@ -18,3 +18,7 @@ function enableSubmitButton() {
 }
 
 const uploadStatusCheckInterval = setInterval(enableSubmitButton, 1000);
+
+// This function runs every second when on the admin page,
+// when it discovers the 'Upload complete!' MessageChannel, it enables click
+// functionality on the submit button.
