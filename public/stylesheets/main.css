@@ -335,3 +335,12 @@ footer {
 .genre-container label {
   margin-right: 10px;
 }
+
+.year-container {
+  display: flex;
+  align-items: center;
+}
+
+.year-container label {
+  margin-right: 10px;
+}
