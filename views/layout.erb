@@ -14,6 +14,8 @@ mux-player::part(center play button) {
   }
     mux-player {
       aspect-ratio: 16 / 11.5;
+      /* --controls: none; */
+
       /* --controls-backdrop-color: rgb(0 0 0 / 60%); */
 }
       /* --media-object-fit: cover;
@@ -32,15 +34,12 @@ mux-player::part(center play button) {
 
     </header>
     <button id="dark-mode-toggle">Toggle Dark Mode</button>
-
     <script src="/javascript/darkmode-toggle.js"></script>
 
     <main>
       <%= yield %>
     </main>
-    <%# <script src="https://cdn.jsdelivr.net/npm/@mux/mux-uploader@1.0.0-beta.6"></script> %>
   </body>
   <footer>
   </footer>
 </html>
-
