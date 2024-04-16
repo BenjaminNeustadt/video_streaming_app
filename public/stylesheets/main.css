@@ -149,40 +149,6 @@ footer {
 }
 
 
-.thumbnail-position {
-  display: flex;
-  align-items: center;
-}
-
-.thumbnail-position label {
-  margin-right: 10px;
-}
-
-.thumbnail-position select {
-  margin-right: 10px;
-}
-
-.genre-container {
-  display: flex;
-  align-items: center;
-}
-
-.genre-container input[type="checkbox"] {
-  margin-right: 5px;
-}
-
-.genre-container label {
-  margin-right: 10px;
-}
-
-.year-container {
-  display: flex;
-  align-items: center;
-}
-
-.year-container label {
-  margin-right: 10px;
-}
 
 .overlay-text-pre.hide-overlay {
   display: none;
