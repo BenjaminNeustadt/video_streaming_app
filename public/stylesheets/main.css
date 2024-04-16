@@ -348,3 +348,7 @@ a {
 .year-container label {
   margin-right: 10px;
 }
+
+.overlay-text-pre.hide-overlay {
+  display: none;
+}
