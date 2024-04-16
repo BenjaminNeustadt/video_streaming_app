@@ -148,28 +148,6 @@ footer {
   font-family: var(--font-family);
 }
 
-a {
-  color: var(--brand-colour);
-}
-
-#submit-button {
-  display: block;
-  background-color: #4CAF50; 
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: var(--font-family);
-  font-size: 16px;
-}
-
-
-#submit-button:disabled {
-  background-color: #ccc; /* Grey background */
-  color: #666; /* Dark grey text */
-  cursor: not-allowed; /* Cursor */
-}
 
 .thumbnail-position {
   display: flex;
