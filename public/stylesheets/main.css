@@ -4,6 +4,7 @@
 @import url('admin-edit.css');
 @import url('new-track.css');
 @import url('video-fullscreen-mode.css');
+@import url('ui-ux-functionality.css');
 
 :root {
   --base-colour: #eaeaea;
@@ -113,7 +114,7 @@ footer {
 }
 
 .video_asset:hover {
-  transform: scale(1.05); /* Expand the element slightly on hover */
+  transform: scale(1.05); /* Expand element on hover */
 }
 
 .video-stream {
@@ -121,7 +122,6 @@ footer {
   margin-bottom: 0;
   padding-bottom: 0;
 }
-
 
 .video_asset .asset_info {
   position: absolute;
@@ -140,21 +140,6 @@ footer {
 }
 
 
-#dark-mode-toggle {
-  position: fixed;
-  top: 20px; /* Adjust top position as needed */
-  right: 20px; /* Adjust right position as needed */
-  z-index: 9999; /* Ensure it's above other content */
-  background-color: var(--button-colour);
-  font-family: var(--font-family);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
 .admin-nav a {
   background-color: var(--brand-colour);
   color: white;
@@ -165,15 +150,6 @@ footer {
 
 a {
   color: var(--brand-colour);
-}
-
-.admin-nav a:hover {
-  background-color: darkblue;
-}
-
-.admin-nav a{
-  text-shadow: 0 0 0 white;
-
 }
 
 #submit-button {

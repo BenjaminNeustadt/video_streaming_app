@@ -1,0 +1,24 @@
+/* button for switching between light and dark mode */
+
+#dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: var(--button-colour);
+  font-family: var(--font-family);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.admin-nav a:hover {
+  background-color: darkblue;
+}
+
+.admin-nav a{
+  text-shadow: 0 0 0 white;
+}
