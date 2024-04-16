@@ -49,28 +49,6 @@
   <% end %>
 </div>
 
-<script>
-
-document.addEventListener('DOMContentLoaded', function () {
-  const video = document.querySelector('mux-player');
-  const overlayTextPre = document.querySelector('.overlay-text-pre');
-  
-  video.addEventListener('play', function () {
-    overlayTextPre.style.display = 'none';
-    console.log('Video is playing');
-    console.log('Overlay text is hidden');
-    video.removeAttribute('style');
-  });
-
-  video.addEventListener('pause', function () {
-    overlayTextPre.style.display = 'block';
-    console.log('Video is paused');
-    console.log('Overlay text is visible');
-    video.style.setProperty('--controls', 'none');
-  });
-});
-</script>
-
 <script src="/javascript/enter-full-screen.js"></script>
 <script src="/javascript/dark-overlay.js"></script>
 <script src="/javascript/show_asset_actions.js"></script>
