@@ -3,6 +3,7 @@
 @import url('asset-detail-elements.css');
 @import url('admin-edit.css');
 @import url('new-track.css');
+@import url('video-fullscreen-mode.css');
 
 :root {
   --base-colour: #eaeaea;
@@ -104,11 +105,15 @@ footer {
 
 .video_asset:hover .asset_info {
   display: block;
-  z-index: 1; /* Bring the asset-info to the foreground */
+  z-index: 2; /* Bring the asset-info to the foreground */
   transform: translateY(100%); /* Move it down by its own height */
   transform-origin: bottom; /* Anchor it to the bottom of the video */
   width: 100%;
   height: auto;
+}
+
+.video_asset:hover {
+  transform: scale(1.05); /* Expand the element slightly on hover */
 }
 
 .video-stream {
@@ -123,7 +128,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  /* z-index: 1; */
   background-color: white;
   border: 2px solid black;
   padding: 0px;
@@ -134,130 +139,6 @@ footer {
   margin-top: 20px;
 }
 
-/* FULL SCREEN STUFF */
-
-.fullscreen-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 1;
-  background-color: var(--button-colour);
-  color: var(--base-colour);
-  border: none;
-  padding: 10px 20px;
-  box-shadow: 0 4px 8px rgb(82, 79, 80);
-  cursor: pointer;
-  font-family: var(--font-family);
-}
-
-/* Enlarge the video to cover the entire screen */
-.video-fullscreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-}
-
-.full-screen-overlay {
-  position: absolute;
-  display: none;
-  color: white;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 0;
-  z-index: 9999;
-  transition: opacity 0.5s;
-}
-
-#back-button {
-  color: white;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-family: var(--font-family);
-  font-size: 36px;
-  position: fixed;
-  top: 10px; /* Adjust top position as needed */
-  right: 10px; /* Adjust right position as needed */
-  /* Styles for back button */
-}
-
-.overlay-text {
-  position: fixed;
-  bottom: 100px; /* Adjust the bottom position as needed */
-  left: 70px; 
-}
-
-#video-title {
-  color: white;
-  font-family: var(--font-family);
-  font-size: 46px;
-  /* position: fixed; */
-  /* bottom: 160px; */
-  /* left: 70px;  */
-  margin-top: 10px; 
-  text-shadow: 0 0 2px black;
-  /* Styles for video title */
-}
-
-#video-director {
-  color: white;
-  font-family: var(--font-family);
-  font-size: 30px;
-  /* position: fixed; */
-  /* bottom: 110px; */
-  /* left: 70px;  */
-  margin-top: 30px; 
-  text-shadow: 0 0 2px black;
-  /* Styles for video title */
-}
-
-#video-description {
-  color: grey;
-  font-family: var(--font-family);
-  font-weight: 100;
-  font-size: 26px;
-  /* position: fixed; */
-  /* bottom: 60px; */
-  /* left: 70px;  */
-  margin-top: 20px; 
-  line-height: 1.4;
-  text-shadow: 0 0 2px black;
-  /* Styles for video title */
-}
-
-.overlay-text-pre {
-  position: absolute;
-  width: auto;
-  height: auto;
-  background-color: transparent;
-  display: block;
-  color: white;
-  text-shadow: 0 0 2px black;
-  font-family: var(--font-family);
-  font-size: 24px;
-  text-align: left;
-  padding: 10px; 
-  box-sizing: border-box;
-  left: 20px; 
-  bottom: 20px; 
-}
-
-.overlay-text-pre .video-title {
-  font-weight: bold;
-}
-
-.overlay-text-pre .video-director {
-  margin-top: 10px;
-}
 
 #dark-mode-toggle {
   position: fixed;
