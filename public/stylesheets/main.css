@@ -113,10 +113,9 @@ footer {
   height: auto;
 }
 
-.video_asset:hover {
+/* .video_asset:hover {
   transform: scale(1.05); /* Expand element on hover */
-  z-index: 3;
-}
+  /* z-index: 3; */
 
 .video-stream {
   width: 100%;
