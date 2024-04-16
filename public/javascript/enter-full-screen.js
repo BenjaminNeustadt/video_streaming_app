@@ -1,17 +1,34 @@
 let overlayTimeout;
 
+
+//   const muxPlayer = document.querySelector('mux-player');
+
+//   // Override the --controls CSS variable with a different value
+//   muxPlayer.style.setProperty('--controls', 'unset');
+// });
+
+
+document.addEventListener('DOMContentLoaded', function () {
 document.querySelectorAll('.fullscreen-button').forEach(button => {
   button.addEventListener('click', () => {
     const videoAsset = findParentByClass(button, 'video_asset');
     if (videoAsset) {
+      console.log("Parent element with class 'video_asset' found");
       const muxplayer = videoAsset.querySelector('.video-stream mux-player');
       const overlay = videoAsset.querySelector('.full-screen-overlay');
       
+      // if (muxplayer) {
+      //   console.log("Found mux-player");
+      // } else {
+      //   console.log("Mux-player not found"); // Log if mux-player is not found
+      // }
+      muxplayer.style.setProperty('--controls', 'unset');
       AddFullScreen(muxplayer);
       showOverlay(overlay);
       addMouseActivityListener(overlay);
     }
   });
+});
 });
 
 function AddFullScreen(element) {
@@ -28,6 +45,9 @@ document.querySelectorAll('.full-screen-overlay button#back-button').forEach(but
       const muxplayer = videoAsset.querySelector('.video-stream mux-player');
       const overlay = videoAsset.querySelector('.full-screen-overlay');
       
+       // Add back the --controls property to the mux-player style
+      muxplayer.style.setProperty('--controls', 'none');
+
       // Remove fullscreen class from the video player
       muxplayer.classList.remove('video-fullscreen');
       
@@ -154,3 +174,17 @@ function findParentByClass(element, className) {
 // // });
 
 // // I think it is something above this section //
+
+document.querySelectorAll('.fullscreen-button').forEach(button => {
+  button.addEventListener('click', () => {
+    console.log("Fullscreen button clicked");
+    // Rest of the code
+  });
+});
+
+document.querySelectorAll('.full-screen-overlay button#back-button').forEach(button => {
+  button.addEventListener('click', () => {
+    console.log("Back button clicked");
+    // Rest of the code
+  });
+});
