@@ -15,6 +15,14 @@
   font-size: 16px;
 }
 
+.admin-nav a {
+  background-color: var(--brand-colour);
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: var(--font-family);
+}
+
 .admin-nav a:hover {
   background-color: darkblue;
 }
