@@ -115,6 +115,7 @@ footer {
 
 .video_asset:hover {
   transform: scale(1.05); /* Expand element on hover */
+  z-index: 3;
 }
 
 .video-stream {

@@ -1,13 +1,6 @@
 let overlayTimeout;
 
 
-//   const muxPlayer = document.querySelector('mux-player');
-
-//   // Override the --controls CSS variable with a different value
-//   muxPlayer.style.setProperty('--controls', 'unset');
-// });
-
-
 document.addEventListener('DOMContentLoaded', function () {
 document.querySelectorAll('.fullscreen-button').forEach(button => {
   button.addEventListener('click', () => {
@@ -17,11 +10,6 @@ document.querySelectorAll('.fullscreen-button').forEach(button => {
       const muxplayer = videoAsset.querySelector('.video-stream mux-player');
       const overlay = videoAsset.querySelector('.full-screen-overlay');
       
-      // if (muxplayer) {
-      //   console.log("Found mux-player");
-      // } else {
-      //   console.log("Mux-player not found"); // Log if mux-player is not found
-      // }
       muxplayer.style.setProperty('--controls', 'unset');
       AddFullScreen(muxplayer);
       showOverlay(overlay);
