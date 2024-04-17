@@ -363,3 +363,11 @@ Used this source: https://www.twilio.com/en-us/blog/5-ways-make-http-requests-ru
 #### Connecting an EC2 instance with Postgresql
 
 https://medium.com/@pantaanish/setting-up-postgresql-on-an-ec2-instance-a-step-by-step-guide-9be2e3348fdb
+
+
+#### Research on search functionality
+
+https://www.algolia.com/blog/ux/mobile-search-ux-best-practices/
+
+
+https://www.youtube.com/watch?v=L0Pk3OVbxRU&ab_channel=DesignSpo
