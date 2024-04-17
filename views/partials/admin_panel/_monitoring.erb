@@ -34,27 +34,27 @@
 <table class="monitoring-table">
   <tr>
     <td><b class="monitoring-segment">WATCH TIME</b></td>
-    <td><%= @watch_time %></td>
+    <td id="monitoring-value"><%= @watch_time %></td>
   </tr>
   <tr>
     <td><b class="monitoring-segment">VIEW COUNT</b></td>
-    <td><%= @view_count %></td>
+    <td id="monitoring-value"><%= @view_count %></td>
   </tr>
   <tr>
     <td><b class="monitoring-segment">STARTED VIEWS</b></td>
-    <td><%= @started_views %></td>
+    <td id="monitoring-value"><%= @started_views %></td>
   </tr>
   <tr>
     <td><b class="monitoring-segment">ENDED VIEWS</b></td>
-    <td><%= @ended_views %></td>
+    <td id="monitoring-value"><%= @ended_views %></td>
   </tr>
   <tr>
     <td><b class="monitoring-segment">UNIQUE VIEWS</b></td>
-    <td><%= @unique_viewers %></td>
+    <td id="monitoring-value"><%= @unique_viewers %></td>
   </tr>
   <tr>
-    <td><b class="monitoring-segment">TOTAL PLAYING TIME</b></td>
-    <td><a id="important-info"><%= @total_playing_time %></a></td>
+    <td><b class="monitoring-segment" style="color:blue">TOTAL PLAYING TIME</b></td>
+    <td id="monitoring-value"><a id="important-info"><%= @total_playing_time %></a></td>
   </tr>
 </table>
 
