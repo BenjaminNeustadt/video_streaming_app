@@ -30,8 +30,11 @@
 
         <div class="asset_info">
           <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">WATCH</button>
+          <div class="divider"></div>
           <%= partial :"partials/index_panel/asset-info-display", locals: { asset: asset }%>
-          <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
+          <div class="edit-button-container">
+            <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
+          </div>
         </div>
 
         <div class="asset-actions">

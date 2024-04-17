@@ -24,7 +24,12 @@
 /* ADMINISTRATOR EDIT FORMS */
 /* ************************ */
 
+.edit-button-container {
+  position: relative;
+  float: right;
+}
 .edit-button {
+  position: relative;
   background-color: var(--button-colour);
   color: var(--base-colour);
   border: none;
@@ -33,6 +38,9 @@
   cursor: pointer;
   font-family: var(--font-family);
   font-size: 16px;
+  bottom: 10px; 
+  right: 10px;
+  padding-left: 10px;
 }
 
 .edit-button:hover {
