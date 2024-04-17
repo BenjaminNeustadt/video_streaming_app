@@ -19,13 +19,13 @@ a {
 
 .monitoring-table {
   border-collapse: collapse;
-  width: 50%; /* Set a fixed width for the table */
-  margin-right: auto; /* Center the table horizontally */
+  width: 50%; 
+  margin-right: auto; 
 }
 
 .monitoring-table td {
-  border: 1px solid #000; /* Add borders to all table cells */
-  padding: 8px; /* Add padding for better spacing */
+  border: 1px solid #000; 
+  padding: 8px; 
 }
 
 .monitoring-table b {
@@ -33,11 +33,11 @@ a {
 }
 
 .monitoring-table td:nth-child(2) {
-  padding-left: 20px; /* Adjust the left padding for the second column */
+  padding-left: 20px; 
 }
 
 .monitoring-table td:first-child {
-  width: 30%; /* Set a fixed width for the first column */
+  width: 30%;
 }
 
 .monitoring {
@@ -48,19 +48,18 @@ a {
 /* .monitoring-count {
 } */
 
-
 .monitoring-table td {
-  text-align: right; /* Align the text inside table cells to the right */
+  text-align: right;
 }
 
 .monitoring-table #monitoring-value {
-  text-align: center; /* Align the text inside table cells to the right */
+  background-color: var(--base-colour);
+  text-align: center;
 }
 
 .monitoring-data {
   padding: 5px;
   font-weight: 400;
-  color: white;
   background-color: rgb(184, 183, 183);
   margin-left: 20px;
   margin-right: 20px;
@@ -76,6 +75,8 @@ a {
 
 .monitoring-count-ok {
   color: var(--valid-colour);
+  text-shadow: -1px 1px 0px var(--valid-colour-b);
+  font-size: 16px;
 }
 
 .admin-external-resources-section {
@@ -92,7 +93,7 @@ a {
 }
 
 .upload_asset_metadata {
-  margin: 50px;
+  
   border: 2px solid black;
 }
 

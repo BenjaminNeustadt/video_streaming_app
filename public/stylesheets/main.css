@@ -12,7 +12,8 @@
   --backup-colour:;
   --alert-colour: rgb(107, 23, 23);
   --alert-color-hover: rgb(134, 19, 19);
-  --valid-colour: lightgreen;
+  --valid-colour: rgb(32, 168, 32);
+  --valid-colour-b: rgb(20, 98, 20);
   --button-colour:  #333;
   --font-family: "Press Start 2P", monospace;
   --button-hover: rgba(65, 23, 63, 0.939);
