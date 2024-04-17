@@ -16,7 +16,8 @@
 }
 
 .admin-nav {
-  padding-left: 10px;
+  /* padding-left: 10px; */
+  margin-left: 30px;
 }
 
 .admin-nav a {
@@ -30,4 +31,14 @@
 
 .admin-nav a:hover {
   background-color: darkblue;
+}
+
+.brand-title {
+  margin: 30px;
+}
+
+.brand-title {
+  margin: 30px;
+  font-family: var(--font-family) ;
+  font-size: 15px ;
 }
