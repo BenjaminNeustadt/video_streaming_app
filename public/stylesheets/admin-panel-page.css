@@ -17,6 +17,29 @@ a {
 /*            MONITORING             */
 /* ================================= */
 
+.monitoring-table {
+  border-collapse: collapse;
+  width: 50%; /* Set a fixed width for the table */
+  margin-right: auto; /* Center the table horizontally */
+}
+
+.monitoring-table td {
+  border: 1px solid #000; /* Add borders to all table cells */
+  padding: 8px; /* Add padding for better spacing */
+}
+
+.monitoring-table b {
+  font-weight: bold;
+}
+
+.monitoring-table td:nth-child(2) {
+  padding-left: 20px; /* Adjust the left padding for the second column */
+}
+
+.monitoring-table td:first-child {
+  width: 30%; /* Set a fixed width for the first column */
+}
+
 .monitoring {
   border: 2px solid black;
   margin: 50px;

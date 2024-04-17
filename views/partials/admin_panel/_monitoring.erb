@@ -24,12 +24,33 @@
 
       <div class="divider"></div>
 
-      <ul><b class="monitoring-segment"> WATCH TIME ....................................</b> <%=@watch_time%> </ul>
-      <ul><b class="monitoring-segment"> VIEW COUNT ....................................</b> <%=@view_count%> </ul>
-      <ul><b class="monitoring-segment"> STARTED VIEWS .................................</b> <%=@started_views%> </ul>
-      <ul><b class="monitoring-segment"> ENDED VIEWS ...................................</b> <%=@ended_views%> </ul>
-      <ul><b class="monitoring-segment"> UNIQUE VIEWS...................................</b> <%=@unique_viewers%></ul>
-      <ul><b class="monitoring-segment"> TOTAL PLAYING TIME ............................ </b> <a id="important-info"><%=@total_playing_time%></a></ul>
+<table class="monitoring-table">
+  <tr>
+    <td><b class="monitoring-segment">WATCH TIME</b></td>
+    <td><%= @watch_time %></td>
+  </tr>
+  <tr>
+    <td><b class="monitoring-segment">VIEW COUNT</b></td>
+    <td><%= @view_count %></td>
+  </tr>
+  <tr>
+    <td><b class="monitoring-segment">STARTED VIEWS</b></td>
+    <td><%= @started_views %></td>
+  </tr>
+  <tr>
+    <td><b class="monitoring-segment">ENDED VIEWS</b></td>
+    <td><%= @ended_views %></td>
+  </tr>
+  <tr>
+    <td><b class="monitoring-segment">UNIQUE VIEWS</b></td>
+    <td><%= @unique_viewers %></td>
+  </tr>
+  <tr>
+    <td><b class="monitoring-segment">TOTAL PLAYING TIME</b></td>
+    <td><a id="important-info"><%= @total_playing_time %></a></td>
+  </tr>
+</table>
+
       </div> 
 
       <div class="divider"></div>
