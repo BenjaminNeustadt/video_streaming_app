@@ -17,6 +17,7 @@
   --font-family: "Press Start 2P", monospace;
   --button-hover: rgba(65, 23, 63, 0.939);
   --brand-colour:  rgb(104, 37, 104);
+  --asset-upload-container-colour: rgb(184, 183, 183);
 }
 
 body, html {

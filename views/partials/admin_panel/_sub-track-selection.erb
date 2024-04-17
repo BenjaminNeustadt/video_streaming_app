@@ -1,14 +1,15 @@
 
-      <label for="subtitle_track">Subtitle Track File:</label>
-        <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt"><br><br>
+<div class="subtitle-track-container">
+  <label for="subtitle_track">Subtitle Track File:</label>
+    <input type="file" id="subtitle_track" name="subtitle_track" accept=".srt"><br><br>
 
-      <label for="subtitle_name">Subtitle Name:</label>
-        <input type="text" id="subtitle_name" name="subtitle_name"><br><br>
+  <label for="subtitle_name">Subtitle Name:</label>
+    <input type="text" id="subtitle_name" name="subtitle_name"><br><br>
 
-      <label for="language_code">Language Code:</label>
-        <select id="language_code" name="language_code">
-          <% @language_options.each do |language| %>
-            <option value="<%= language[:code] %>"><%= language[:name] %></option>
-          <% end %>
-        </select><br><br>
-
+  <label for="language_code">Language Code:</label>
+    <select id="language_code" name="language_code">
+      <% @language_options.each do |language| %>
+        <option value="<%= language[:code] %>"><%= language[:name] %></option>
+      <% end %>
+  </select>
+</div>

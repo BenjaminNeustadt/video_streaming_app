@@ -1,5 +1,5 @@
-<h4>Thumbnail Position</h4>
 <div class="thumbnail-position">
+<h4> Thumbnail Image Position</h4>
   <label for="hour">Hour:</label>
   <select id="hour" name="hour">
     <option value="">-</option>
@@ -7,7 +7,7 @@
     <% (0..23).each do |hour| %>
       <option value="<%= hour %>"><%= hour %></option>
     <% end %>
-  </select><br>
+  </select>
 
   <label for="minute">Minute:</label>
   <select id="minute" name="minute">
@@ -16,7 +16,7 @@
     <% (0..59).each do |minute| %>
       <option value="<%= minute %>"><%= minute %></option>
     <% end %>
-  </select><br>
+  </select>
 
   <label for="second">Second:</label>
   <select id="second" name="second">
@@ -25,5 +25,5 @@
     <% (0..59).each do |second| %>
       <option value="<%= second %>"><%= second %></option>
     <% end %>
-  </select><br><br>
+  </select>
 </div>

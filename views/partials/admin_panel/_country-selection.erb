@@ -1,8 +1,9 @@
-
-      <label for="countries">Country:</label>
-      <input list="countryList" id="countries" name="countries">
-      <datalist id="countryList">
-        <% @country_options.each do |country| %>
-          <option value="<%= country %>">
-        <% end %>
-      </datalist><br><br>
+<div class="country-container">
+  <label for="countries">Country:</label>
+  <input list="countryList" id="countries" name="countries">
+  <datalist id="countryList">
+    <% @country_options.each do |country| %>
+      <option value="<%= country %>">
+    <% end %>
+  </datalist>
+</div>

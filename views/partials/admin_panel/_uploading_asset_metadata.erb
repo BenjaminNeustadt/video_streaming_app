@@ -11,14 +11,7 @@
   <h3>Asset metadata</h3>
     <form action="/upload_asset_metadata#" method="post" enctype="multipart/form-data">
 
-      <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title"><br><br>
-
-      <label for="director">Director:</label><br>
-        <input type="text" id="director" name="director"><br><br>
-
-      <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+        <%= partial :"partials/admin_panel/basic-info"%>
 
         <%= partial :"partials/admin_panel/year-selection"%>
 
@@ -40,7 +33,7 @@
 
         <div class="divider"></div>
 
-      <label for="notes">Notes:</label><br>
+      <label for="notes">Admin Notes:</label><br>
       <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
 
       <input id="submit-button" class="button-vis" type="submit" value="Submit" disabled>
