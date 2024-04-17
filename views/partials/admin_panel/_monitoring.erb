@@ -9,18 +9,25 @@
 
   <div class="monitoring-data">
 
-        <% if @sum_mux_assets == @sum_db_assets %>
-          <ul class="monitoring-count-ok">
-          Identical asset count
-          </ul>
-        <%else%>
-          <ul class="monitoring-count-error">
-          <b>Error: asset count invalid</b>
-          </ul>
-        <%end%>
-
-      <ul><b class="monitoring-segment">MUX ASSET COUNT ...............................</b> <%=@sum_mux_assets%></ul>
-      <ul><b class="monitoring-segment">DATABASE ASSET COUNT ..........................</b> <%=@sum_db_assets%></ul>
+  <div class="monitoring-count">
+    <% if @sum_mux_assets == @sum_db_assets %>
+      <ul class="monitoring-count-ok">
+      Identical asset count
+      </ul>
+    <%else%>
+      <ul class="monitoring-count-error">
+      <b>Error: asset count invalid</b>
+      </ul>
+    <%end%>
+  <table class="monitoring-table">
+    <tr>
+      <td><b class="monitoring-segment">MUX ASSET COUNT</b></td>
+      <td id="monitoring-value"><%=@sum_mux_assets%></ul></td>
+    </tr>
+      <td><b class="monitoring-segment">DATABASE ASSET COUNT</b></td>
+      <td id="monitoring-value"><%=@sum_db_assets%></td>
+  </table>
+  </div>
 
       <div class="divider"></div>
 
@@ -59,6 +66,9 @@
       <ul><b class="monitoring-user-data"> GEOLOCATION OF USER ....................................</b> <%=@ip_data%> </ul>
       <div class="divider"></div>
 
-      <a href="https://docs.mux.com/api-reference#data/operation/list-all-metric-values"> Mux docs on metrics</a><br>
-      <a href="https://docs.mux.com/api-reference#data/operation/list-monitoring-metrics"> Mux docs on monitoring</a>
+      <div class="admin-external-resources-section">
+      <h4>External Resources</h4>
+        <a href="https://docs.mux.com/api-reference#data/operation/list-all-metric-values"> Mux docs on metrics</a><br>
+        <a href="https://docs.mux.com/api-reference#data/operation/list-monitoring-metrics"> Mux docs on monitoring</a>
+      </div>
   </div>

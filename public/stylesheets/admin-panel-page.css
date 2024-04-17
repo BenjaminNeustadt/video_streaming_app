@@ -45,6 +45,18 @@ a {
   margin: 50px;
 }
 
+/* .monitoring-count {
+} */
+
+
+.monitoring-table td {
+  text-align: right; /* Align the text inside table cells to the right */
+}
+
+.monitoring-table #monitoring-value {
+  text-align: center; /* Align the text inside table cells to the right */
+}
+
 .monitoring-data {
   padding: 5px;
   font-weight: 400;
@@ -64,6 +76,11 @@ a {
 
 .monitoring-count-ok {
   color: var(--valid-colour);
+}
+
+.admin-external-resources-section {
+  padding-left: 20px;
+  margin-bottom: 20px;
 }
 
 /* ================================= */
