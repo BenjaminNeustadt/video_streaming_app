@@ -25,14 +25,16 @@
 
         <div class="divider"></div>
 
+        <div class="admin-notes-entry">
+          <label for="notes">Admin Notes:</label><br>
+          <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
+        </div>
+
         <div class="upload_asset">
           <mux-uploader
             endpoint='<%= special_endpoint %>'
             ></mux-uploader>
         </div>
-
-      <label for="notes">Admin Notes:</label><br>
-      <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
 
       <input id="submit-button" class="button-vis" type="submit" value="Submit" disabled>
 

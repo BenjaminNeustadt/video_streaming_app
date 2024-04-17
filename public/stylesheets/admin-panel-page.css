@@ -68,6 +68,10 @@ a {
 /* UPLOADING FORMS LAYOUT AND STYLES */
 /* ================================= */
 
+.upload_asset {
+  padding-bottom: 40px;
+}
+
 .upload_asset_metadata {
   margin: 50px;
   border: 2px solid black;
@@ -101,10 +105,31 @@ a {
 /*         UPLOADING ELEMENTS        */
 /* ================================= */
 
+#notes {
+  width: 50%;
+  height: 150px;
+}
+
+.upload-entry-forms {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.admin-notes-entry {
+  background-color: var(--asset-upload-container-colour);
+  right: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
 
 .basic-asset-info {
   background-color: var(--asset-upload-container-colour);
   padding-top: 10px;
+}
+
+#description {
+  width: 50%;
+  height: 150px;
 }
 
 .thumbnail-title {
