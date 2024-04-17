@@ -50,6 +50,8 @@ a {
   font-weight: 400;
   color: white;
   background-color: rgb(184, 183, 183);
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .monitoring-segment {
