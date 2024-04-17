@@ -15,6 +15,10 @@
   font-size: 16px;
 }
 
+.admin-nav {
+  padding-left: 10px;
+}
+
 .admin-nav a {
   background-color: var(--brand-colour);
   color: white;
