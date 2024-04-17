@@ -1,13 +1,5 @@
 <div class="upload-entry-forms">
 
-  <h2>Add New Asset</h3>
-
-  <div class="upload_asset">
-    <mux-uploader
-      endpoint='<%= special_endpoint%>'
-      ></mux-uploader>
-  </div>
-
   <h3>Asset metadata</h3>
     <form action="/upload_asset_metadata#" method="post" enctype="multipart/form-data">
 
@@ -32,6 +24,12 @@
         <%= partial :"partials/admin_panel/thumbnail-position"%>
 
         <div class="divider"></div>
+
+        <div class="upload_asset">
+          <mux-uploader
+            endpoint='<%= special_endpoint %>'
+            ></mux-uploader>
+        </div>
 
       <label for="notes">Admin Notes:</label><br>
       <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
