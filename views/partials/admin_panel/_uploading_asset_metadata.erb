@@ -1,6 +1,6 @@
-  <h2>Add New Asset</h3>
+<div class="upload-entry-forms">
 
-  <h3>Upload Video</h2>
+  <h2>Add New Asset</h3>
 
   <div class="upload_asset">
     <mux-uploader
@@ -22,13 +22,23 @@
 
         <%= partial :"partials/admin_panel/year-selection"%>
 
+        <div class="divider"></div>
+
         <%= partial :"partials/admin_panel/country-selection"%>
+
+        <div class="divider"></div>
 
         <%= partial :"partials/admin_panel/sub-track-selection"%>
 
+        <div class="divider"></div>
+
         <%= partial :"partials/admin_panel/genre-selection"%>
 
+        <div class="divider"></div>
+
         <%= partial :"partials/admin_panel/thumbnail-position"%>
+
+        <div class="divider"></div>
 
       <label for="notes">Notes:</label><br>
       <textarea id="notes" name="notes" rows="4" cols="50"></textarea><br><br>
@@ -36,6 +46,8 @@
       <input id="submit-button" class="button-vis" type="submit" value="Submit" disabled>
 
     </form>
+
+</div>
 
 <script src="/javascript/enable_submit-button.js"></script>
 

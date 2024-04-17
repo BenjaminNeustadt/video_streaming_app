@@ -1,5 +1,7 @@
 /* ************************************ */
-/* ADMIN PAGE                           */
+/* ************************************ */
+/*            ADMIN PAGE                */
+/* ************************************ */
 /* ************************************ */
 
 /* The anchor tag is for links that may be useful */
@@ -11,14 +13,13 @@ a {
   color: yellow;
 }
 
+/* ================================= */
+/*            MONITORING             */
+/* ================================= */
+
 .monitoring {
   border: 2px solid black;
   margin: 50px;
-}
-
-.upload_asset_metadata {
-  margin: 50px;
-  border: 2px solid black;
 }
 
 .monitoring-data {
@@ -34,11 +35,25 @@ a {
 
 .monitoring-count-error {
   color: var(--alert-colour);
-
 }
 
 .monitoring-count-ok {
   color: var(--valid-colour);
+}
+
+/* ================================= */
+/* UPLOADING FORMS LAYOUT AND STYLES */
+/* ================================= */
+
+.upload_asset_metadata {
+  margin: 50px;
+  border: 2px solid black;
+}
+
+.upload_asset_metadata .upload-entry-forms {
+  left: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 #submit-button {
@@ -53,12 +68,15 @@ a {
   font-size: 16px;
 }
 
-
 #submit-button:disabled {
-  background-color: #ccc; /* Grey background */
-  color: #666; /* Dark grey text */
-  cursor: not-allowed; /* Cursor */
+  background-color: #ccc; 
+  color: #666;
+  cursor: not-allowed;
 }
+
+/* ================================= */
+/*         UPLOADING ELEMENTS        */
+/* ================================= */
 
 .thumbnail-position {
   display: flex;
