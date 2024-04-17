@@ -161,6 +161,7 @@ a {
 }
 
 .thumbnail-position {
+  display: flex;
   align-items: center;
   background-color: var(--asset-upload-container-colour);
   padding-bottom: 10px;
