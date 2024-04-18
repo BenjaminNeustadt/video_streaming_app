@@ -63,14 +63,14 @@ class Application < Sinatra::Base
 
   get '/' do
 
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES" 
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES"
     # p request.cookies
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES" 
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES"
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"  
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     p @assets
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"  
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
