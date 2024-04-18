@@ -1,4 +1,4 @@
-module ViewHelpers
+module AssetEntryHelpers
 
   LANGUAGE_CODES = [
     { code: 'ja', name: 'Japanese' },

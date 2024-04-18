@@ -10,7 +10,7 @@ require 'sinatra/partial'
 
 require './helpers/monitoring_helpers.rb'
 require './helpers/mux_helpers.rb'
-require './helpers/view_helpers.rb'
+require './helpers/asset_entry_helpers.rb'
 require './helpers/aws_helpers.rb'
 require './models/asset.rb'
 
@@ -19,7 +19,7 @@ require 'aws-sdk-s3'
 class Application < Sinatra::Base
   include MonitoringHelpers
   include MuxHelpers
-  include ViewHelpers
+  include AssetEntryHelpers
   include AWSHelpers
 
   before do
