@@ -21,11 +21,14 @@ module ViewHelpers
     "French",
     "Japan",
     "China",
-    "English",
+    "England",
+    "Ireland",
+    "Scotland",
     "German",
     "Italy",
     "US",
-    "Thailand"
+    "Thailand",
+    "Wales"
   ]
 
 end
