@@ -371,3 +371,9 @@ https://www.algolia.com/blog/ux/mobile-search-ux-best-practices/
 
 
 https://www.youtube.com/watch?v=L0Pk3OVbxRU&ab_channel=DesignSpo
+
+
+
+# Glitch the title:
+
+https://www.youtube.com/watch?v=W5oawMJaXbU&ab_channel=Hyperplexed
