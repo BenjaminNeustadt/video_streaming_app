@@ -377,3 +377,9 @@ https://www.youtube.com/watch?v=L0Pk3OVbxRU&ab_channel=DesignSpo
 # Glitch the title:
 
 https://www.youtube.com/watch?v=W5oawMJaXbU&ab_channel=Hyperplexed
+
+# UX/UI wireframes
+
+Considerations for user experience and usage specifically relating to search and navigation functionality regarding assets available for viewing...
+
+![wireframes](assets/wireframes_vidoe_streamer.png)
