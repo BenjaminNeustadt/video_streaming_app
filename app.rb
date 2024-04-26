@@ -72,21 +72,27 @@ class Application < Sinatra::Base
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
     # p assets.data.first.methods.sort
     p assets.data.first.methods.sort
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETTRACKS"
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+APIASSETTRACKS"
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+APIASSETTRACKS"
     p assets.data.first.tracks
     # p assets.data.first.tracks.first.type
-    tracks = assets.data.first.tracks
-    tracks.each do |track|
-      p track.type
-      if track.type == "text"
-        p track.language_code
-        p track.name
-      end
-    end
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETTRACKS"
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
+    # tracks = assets.data.first.tracks
+    # tracks.each do |track|
+    #   p track.type
+    #   if track.type == "text"
+    #     p track.language_code
+    #     p track.name
+    #   end
+    # end
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+APIASSETTRACKS"
+
+    p @assets.last.subtitle_language_codes
+    p @assets.last.subtitle_names
+
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETTRACKSDATA"
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
     # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
     # p @assets.last.country
     # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
@@ -203,6 +209,8 @@ class Application < Sinatra::Base
       assets_api.create_asset_track(asset_id, create_track_request_for_subtitle(@subtitle_track_url, language_code, subtitle_name))
     end
 
+    subtitle_track_info
+
     Asset.create(
       title: title,
       directors: director,
@@ -214,7 +222,9 @@ class Application < Sinatra::Base
       notes: notes,
       thumbnail_time: time_to_seconds(hour, minute, second),
       playback_id: playback_id_for_latest_asset,
-      asset_id: asset_id_for_latest_asset
+      asset_id: asset_id_for_latest_asset,
+      subtitle_language_codes: @subtitle_language_codes,
+      subtitle_names: @subtitle_names
     )
 
     p "Successfully added metadata to uploaded asset"

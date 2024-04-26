@@ -66,19 +66,21 @@ module MuxHelpers
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets
     if assets && assets.data && !assets.data.empty?
-
-      tracks = assets.data.first.tracks
-      tracks.each do |track|
         @subtitle_language_codes = []
         @subtitle_names = []
 
+      tracks = assets.data.first.tracks
+      p tracks
+
+      tracks.each do |track|
+
         if track.type == "text"
-          @subtitle_language_codes.append(track.language)
+          @subtitle_language_codes.append(track.language_code)
           @subtitle_names.append(track.name)
         end
       end
-        @subtitle_language_codes.join(", ")
-        @subtitle_names.join(", ")
+        @subtitle_language_codes = @subtitle_language_codes.join(", ")
+        @subtitle_names = @subtitle_names.join(", ")
     else
       p "There are no assets currently in the Mux storage..."
     end
