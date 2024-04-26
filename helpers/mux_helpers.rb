@@ -70,7 +70,6 @@ module MuxHelpers
         @subtitle_names = []
 
       tracks = assets.data.first.tracks
-      p tracks
 
       tracks.each do |track|
 
@@ -84,6 +83,32 @@ module MuxHelpers
     else
       p "There are no assets currently in the Mux storage..."
     end
+  end
+
+  def update_subtitle_track_info_for(asset_id)
+    database_asset = Asset.find_by(asset_id: asset_id)
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+UPDATESUBSSS"
+    assets_api = MuxRuby::AssetsApi.new
+    # p assets_api.get_asset(asset_id)
+    # p asset
+    mux_asset = assets_api.get_asset(asset_id).data
+    tracks = mux_asset.tracks
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+UPDATESUBSSS"
+    @subtitle_language_codes = []
+    @subtitle_names = []
+    tracks.each do |track|
+      if track.type == "text"
+        @subtitle_language_codes.append(track.language_code)
+        @subtitle_names.append(track.name)
+      end
+    end
+    subtitle_language_codes = @subtitle_language_codes.join(", ")
+    subtitle_names = @subtitle_names.join(", ")
+
+    database_asset.update(
+      subtitle_language_codes: subtitle_language_codes,
+      subtitle_names: subtitle_names
+    )
   end
 
 

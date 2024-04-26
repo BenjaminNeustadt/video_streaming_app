@@ -165,9 +165,10 @@ class Application < Sinatra::Base
       closed_captions: false
     )
 
+
     assets_api = MuxRuby::AssetsApi.new
     create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
-
+    update_subtitle_track_info_for(asset_id)
     redirect '/'
   end
 
