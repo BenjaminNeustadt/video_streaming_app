@@ -62,6 +62,29 @@ module MuxHelpers
     end
   end
 
+  def subtitle_track_info
+    assets_api = MuxRuby::AssetsApi.new
+    assets = assets_api.list_assets
+    if assets && assets.data && !assets.data.empty?
+
+      tracks = assets.data.first.tracks
+      tracks.each do |track|
+        @subtitle_language_codes = []
+        @subtitle_names = []
+
+        if track.type == "text"
+          @subtitle_language_codes.append(track.language)
+          @subtitle_names.append(track.name)
+        end
+      end
+        @subtitle_language_codes.join(", ")
+        @subtitle_names.join(", ")
+    else
+      p "There are no assets currently in the Mux storage..."
+    end
+  end
+
+
   def create_track_request_for_subtitle(subtitle_track_url, language_code, subtitle_name)
     MuxRuby::CreateTrackRequest.new(
       url: subtitle_track_url,

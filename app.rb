@@ -69,10 +69,22 @@ class Application < Sinatra::Base
     # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES"
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
-    # # p assets.data.first.methods.sort
-    # p assets.data.first.duration
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
+    # p assets.data.first.methods.sort
+    p assets.data.first.methods.sort
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETTRACKS"
+    p assets.data.first.tracks
+    # p assets.data.first.tracks.first.type
+    tracks = assets.data.first.tracks
+    tracks.each do |track|
+      p track.type
+      if track.type == "text"
+        p track.language_code
+        p track.name
+      end
+    end
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETTRACKS"
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
     # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
