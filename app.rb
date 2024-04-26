@@ -1,10 +1,10 @@
+require 'dotenv/load'
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'mux_ruby'
 require 'net/http'
 require 'uri'
 require 'json'
-require 'dotenv/load'
 require 'sinatra/activerecord'
 require 'sinatra/partial'
 
