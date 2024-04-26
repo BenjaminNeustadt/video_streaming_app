@@ -62,7 +62,7 @@ module MuxHelpers
     end
   end
 
-  def subtitle_track_info
+  def subtitle_track_info_for_last_upload
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets
     if assets && assets.data && !assets.data.empty?

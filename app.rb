@@ -209,7 +209,7 @@ class Application < Sinatra::Base
       assets_api.create_asset_track(asset_id, create_track_request_for_subtitle(@subtitle_track_url, language_code, subtitle_name))
     end
 
-    subtitle_track_info
+    subtitle_track_info_for_last_upload
 
     Asset.create(
       title: title,
