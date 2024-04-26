@@ -24,8 +24,6 @@ class Application < Sinatra::Base
 
   before do
     @user_ip = request.ip
-    @aws_s3_access_key = ENV['S3_ACCESS_KEY']
-    @aws_s3_secret_key = ENV['S3_SECRET_KEY']
   end
 
   configure :developmment, :test do
@@ -33,6 +31,9 @@ class Application < Sinatra::Base
   end
 
   configure do
+    @aws_s3_access_key = ENV['S3_ACCESS_KEY']
+    @aws_s3_secret_key = ENV['S3_SECRET_KEY']
+
     register Sinatra::ActiveRecordExtension
     set :method_override, true
     register Sinatra::Partial
@@ -176,7 +177,7 @@ class Application < Sinatra::Base
 
       asset_id = asset_id_for_latest_asset
       assets_api = MuxRuby::AssetsApi.new
-      assets_api.create_asset_track(asset_id, create_track_request_for_subtitle)
+      assets_api.create_asset_track(asset_id, create_track_request_for_subtitle(@subtitle_track_url, language_code, subtitle_name))
     end
 
     Asset.create(
