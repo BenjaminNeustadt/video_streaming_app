@@ -5,6 +5,7 @@
   <div class="asset_description"><b>Description:</b> <%= asset.description%> </div>
   <div class="asset_year"><b>Year:</b> <%= asset.year%> </div>
   <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
+  <div class="asset_genre"> <b>Genre:</b> <%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%> </div>
 </div> 
 
 <div class="divider"></div>
