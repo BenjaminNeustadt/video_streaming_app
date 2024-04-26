@@ -18,17 +18,31 @@ module AssetEntryHelpers
   ]
 
   COUNTRY_OPTIONS = [
-    "French",
+    "France",
     "Japan",
     "China",
     "England",
     "Ireland",
     "Scotland",
-    "German",
+    "Germany",
     "Italy",
     "US",
     "Thailand",
-    "Wales"
+    "Taiwan",
+    "Russia",
+    "Palestine",
+    "Lebanon",
+    "Egypt",
+    "Turkey",
+    "Belgium",
+    "Greece",
+    "South Korea",
+    "South Africa",
+    "Gambia",
+    "Morocco",
+    "Algeria",
+    "Argentina"
+    ""
   ]
 
 end
