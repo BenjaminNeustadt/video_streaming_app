@@ -192,6 +192,8 @@ class Application < Sinatra::Base
       description: description,
       year: year,
       genre: genre,
+      duration: duration_for_last_asset_uploaded,
+      country: country,
       notes: notes,
       thumbnail_time: time_to_seconds(hour, minute, second),
       playback_id: playback_id_for_latest_asset,

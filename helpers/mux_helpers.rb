@@ -52,6 +52,16 @@ module MuxHelpers
     # assets.data.first.id
   end
 
+  def duration_for_last_asset_uploaded
+    assets_api = MuxRuby::AssetsApi.new
+    assets = assets_api.list_assets
+    if assets && assets.data && !assets.data.empty?
+      assets.data.first.duration
+    else
+      p "There are no assets currently in the Mux storage..."
+    end
+  end
+
   def create_track_request_for_subtitle(subtitle_track_url, language_code, subtitle_name)
     MuxRuby::CreateTrackRequest.new(
       url: subtitle_track_url,
