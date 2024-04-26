@@ -1,17 +1,8 @@
 
-      <div class="genre-container">
-      <label for="genre">Genre/Tags:</label><br>
-      <input type="checkbox" id="action" name="genre[]" value="Action">
-      <label for="action">Action</label><br>
-      <input type="checkbox" id="comedy" name="genre[]" value="Comedy">
-      <label for="comedy">Comedy</label><br>
-      <input type="checkbox" id="drama" name="genre[]" value="Drama">
-      <label for="drama">Drama</label><br>
-      <input type="checkbox" id="romance" name="genre[]" value="Romance">
-      <label for="romance">Romance</label><br>
-      <input type="checkbox" id="documentary" name="genre[]" value="Documentary">
-      <label for="documentary">Documentary</label><br>
-      <input type="checkbox" id="other" name="genre[]" value="Other">
-      <label for="other">Other</label><br>
-      <br>
-      </div>
+<div class="genre-container">
+      <label for="genre" style="font-size: 22px">Genre:</label><br>
+      <% @genre_options.each do |genre| %>
+            <input type="checkbox" id="<%= genre.downcase %>" name="genre[]" value="<%= genre %>">
+            <label for="<%= genre.downcase %>"><%= genre %></label><br>
+      <% end %>
+</div>

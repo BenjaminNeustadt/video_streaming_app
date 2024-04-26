@@ -81,6 +81,7 @@ class Application < Sinatra::Base
     @ip_data = @user_ip.to_s
     @language_options = LANGUAGE_CODES
     @country_options = COUNTRY_OPTIONS
+    @genre_options = GENRE_OPTIONS
 
     # This is the endpoint for retrieving metrics data
     url = URI('https://api.mux.com/data/v1/metrics/comparison')

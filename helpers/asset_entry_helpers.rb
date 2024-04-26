@@ -42,7 +42,29 @@ module AssetEntryHelpers
     "Morocco",
     "Algeria",
     "Argentina"
-    ""
+  ]
+
+  GENRE_OPTIONS = [
+    "Action",
+    "Adventure",
+    "Animation",
+    "Anime",
+    "Art House",
+    "Comedy",
+    "Crime",
+    "Documentary",
+    "Drama",
+    "Family",
+    "Fantasy",
+    "History",
+    "Horror",
+    "Musical",
+    "Mystery",
+    "Psychological Thriller",
+    "Romance",
+    "Sci-Fi",
+    "Surrealism",
+    "Thriller",
   ]
 
 end

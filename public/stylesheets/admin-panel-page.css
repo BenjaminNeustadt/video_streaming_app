@@ -179,11 +179,13 @@ a {
 .genre-container {
   background-color: var(--asset-upload-container-colour);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
 .genre-container input[type="checkbox"] {
   margin-right: 5px;
+  margin-bottom: 20px;
 }
 
 .genre-container label {
