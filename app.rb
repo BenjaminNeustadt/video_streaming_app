@@ -75,6 +75,9 @@ class Application < Sinatra::Base
     # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
+    # p @assets.last.country
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
@@ -159,7 +162,12 @@ class Application < Sinatra::Base
     director            = params[:director]
     description         = params[:description]
     year                = params[:year]
-    country             = params[:country]
+    countries           = params[:countries]
+
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETCOUNTRY"
+    p countries
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETCOUNTRY"
+
     genre               = params[:genre]
     notes               = params[:notes]
 
@@ -190,7 +198,7 @@ class Application < Sinatra::Base
       year: year,
       genre: genre,
       duration: duration_for_last_asset_uploaded,
-      country: country,
+      country: countries,
       notes: notes,
       thumbnail_time: time_to_seconds(hour, minute, second),
       playback_id: playback_id_for_latest_asset,
