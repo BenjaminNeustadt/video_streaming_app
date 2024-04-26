@@ -69,15 +69,12 @@ class Application < Sinatra::Base
     # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES"
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
-    # p assets.data.first.methods.sort
-    p assets.data.first.duration
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
+    # # p assets.data.first.methods.sort
+    # p assets.data.first.duration
+    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-    p @assets
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
