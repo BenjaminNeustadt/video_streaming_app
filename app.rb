@@ -75,10 +75,17 @@ class Application < Sinatra::Base
     genre = params[:genre]
     @assets = Asset.where('genre LIKE ?', "%#{genre}%")
     @language_options = LANGUAGE_CODES
-    @genre = genre
+    @filter = genre
     erb :filtered_assets
   end
 
+  get '/director/:director' do
+    director = params[:director]
+    @assets = Asset.where('directors LIKE ?', "%#{director}%")
+    @language_options = LANGUAGE_CODES
+    @filter = director
+    erb :filtered_assets
+  end
 
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
