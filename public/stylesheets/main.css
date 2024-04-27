@@ -1,11 +1,11 @@
-@import url('admin-panel-page.css');
-@import url('dividers.css');
-@import url('asset-detail-elements.css');
-@import url('admin-edit.css');
-@import url('new-track.css');
-@import url('video-fullscreen-mode.css');
-@import url('ui-ux-functionality.css');
-@import url('navigation_tool.css');
+@import url('style-elements/admin-panel-page.css');
+@import url('style-elements/dividers.css');
+@import url('style-elements/asset-detail-elements.css');
+@import url('style-elements/admin-edit.css');
+@import url('style-elements/new-track.css');
+@import url('style-elements/video-fullscreen-mode.css');
+@import url('style-elements/ui-ux-functionality.css');
+@import url('style-elements/navigation_tool.css');
 
 :root {
   --base-colour: #eaeaea;
