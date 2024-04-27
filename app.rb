@@ -183,6 +183,7 @@ class Application < Sinatra::Base
     description         = params[:description]
     year                = params[:year]
     countries           = params[:countries]
+    top_pick            = params[:top_picks].present?
 
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETCOUNTRY"
     p countries
@@ -222,6 +223,7 @@ class Application < Sinatra::Base
       duration: duration_for_last_asset_uploaded,
       country: countries,
       notes: notes,
+      top_picks: top_pick,
       thumbnail_time: time_to_seconds(hour, minute, second),
       playback_id: playback_id_for_latest_asset,
       asset_id: asset_id_for_latest_asset,
