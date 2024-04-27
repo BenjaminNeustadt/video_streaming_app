@@ -5,19 +5,17 @@
     <li class="dropdown_nav">
       <a href="#">GENRE</a>
       <div class="dropdown-content_nav">
-        <!-- Populate with genres dynamically -->
-          <% genres = Asset.pluck(:genre).map { |genre| genre.is_a?(Array) ? genre : genre.to_s.split(',') }.flatten.compact.uniq %>
-            <% genres.each do |genre| %>
-                <% if genre.present? %>
-                    <a href="/genre/<%= genre.strip %>"><%= genre.strip %></a>
-                <% end %>
-            <% end %>
+        <% genres = Asset.pluck(:genre).map { |genre| genre.is_a?(Array) ? genre : JSON.parse(genre || '[]') }.flatten.uniq.reject(&:empty?) %>
+        <% genres.each do |genre| %>
+          <% if genre.present? %>
+            <a href="/genre/<%= genre.strip %>"><%= genre.strip %></a>
+          <% end %>
+        <% end %>
       </div>
     </li>
     <li class="dropdown_nav">
       <a href="#">DIRECTOR</a>
       <div class="dropdown-content_nav">
-        <!-- Populate with directors dynamically -->
         <% Asset.distinct.pluck(:directors).each do |director| %>
           <a href="/director/<%= director %>"><%= director %></a>
         <% end %>
@@ -26,7 +24,6 @@
     <li class="dropdown_nav">
       <a href="#">COUNTRY</a>
       <div class="dropdown-content_nav">
-        <!-- Populate with countries dynamically -->
         <% Asset.distinct.pluck(:country).each do |country| %>
           <a href="/country/<%= country %>"><%= country %></a>
         <% end %>
