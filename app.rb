@@ -50,8 +50,22 @@ class Application < Sinatra::Base
     @user_ip = request.ip
   end
 
-  configure :developmment, :test do
+  configure :development do
+    MESSAGES[:sucessful_dev_config].call
+    set :development_ip_address, ENV['TEST_IP_ADDRESS']
     register Sinatra::Reloader
+  end
+
+  configure :production do
+    MESSAGES[:sucessful_prod_config].call
+    # set :production_ip_address, request.ip
+  end
+
+  configure do
+    ENV_NOTICE.call(settings)
+    set :server, 'puma'
+    set :session_secret, SecureRandom.hex(64)
+    register Sinatra::ActiveRecordExtension
   end
 
   configure do
