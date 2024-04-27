@@ -3,6 +3,14 @@ h1 {
   width: 190px;
 }
 
+.dark-mode h1 {
+  color: var(--base-colour);
+}
+
+.dark-mode h1:hover {
+  color: var(--base-colour);
+}
+
 h1:hover {
   color: rgb(43, 43, 43);
 }
