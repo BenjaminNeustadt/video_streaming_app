@@ -6,9 +6,12 @@
       <a href="#">GENRE</a>
       <div class="dropdown-content_nav">
         <!-- Populate with genres dynamically -->
-        <% Asset.distinct.pluck(:genre).each do |genre| %>
-          <a href="/genre/<%= genre %>"><%= genre %></a>
-        <% end %>
+          <% genres = Asset.pluck(:genre).map { |genre| genre.is_a?(Array) ? genre : genre.to_s.split(',') }.flatten.compact.uniq %>
+            <% genres.each do |genre| %>
+                <% if genre.present? %>
+                    <a href="/genre/<%= genre.strip %>"><%= genre.strip %></a>
+                <% end %>
+            <% end %>
       </div>
     </li>
     <li class="dropdown_nav">
