@@ -100,6 +100,12 @@ class Application < Sinatra::Base
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
 
+  get '/genre/:genre' do
+    genre = params[:genre]
+    @assets = Asset.where('genre LIKE ?', "%#{genre}%")
+    erb :filtered_assets
+  end
+
 
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
