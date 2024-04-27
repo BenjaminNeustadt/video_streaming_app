@@ -38,7 +38,8 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: var(--brand-colour);
+  /* color: var(--brand-colour); */
+  font-size: 20px;
 }
 
 .dropdown_nav .dropdown-content_nav {
