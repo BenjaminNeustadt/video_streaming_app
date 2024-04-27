@@ -63,16 +63,10 @@ class Application < Sinatra::Base
   set :partial_template_engine, :erb
 
   get '/' do
-
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+APIASSETTRACKS"
-    p @assets
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETTRACKSDATA"
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
-
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
@@ -81,9 +75,7 @@ class Application < Sinatra::Base
     genre = params[:genre]
     @assets = Asset.where('genre LIKE ?', "%#{genre}%")
     @language_options = LANGUAGE_CODES
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+FILTEREDASSETS"
-    p @assets
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+FILTEREDASSETS"
+    @genre = genre
     erb :filtered_assets
   end
 
