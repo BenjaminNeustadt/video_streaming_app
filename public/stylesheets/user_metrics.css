@@ -1,0 +1,33 @@
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  position: relative;
+}
+
+th, td {
+  border: 2px solid black;
+  padding: 8px;
+  text-align: left;
+  background-color: var(--button-colour);
+}
+
+
+th {
+  background-color: var(--button-colour);
+  color: var(--base-colour);
+}
+
+td {
+  background-color: rgb(181, 181, 181);
+}
+
+#total-viewers {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+td:nth-child(9), /* Adjust the index according to the column order */
+th:nth-child(9) {
+  width: 10%; /* Set the width of the session ID column as a percentage */
+}

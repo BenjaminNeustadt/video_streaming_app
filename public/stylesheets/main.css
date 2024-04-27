@@ -7,6 +7,7 @@
 @import url('style-elements/ui-ux-functionality.css');
 @import url('style-elements/navigation_tool.css');
 @import url('branding.css');
+@import url('user_metrics.css');
 
 :root {
   --base-colour: #eaeaea;
