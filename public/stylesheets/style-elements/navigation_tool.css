@@ -35,10 +35,6 @@ nav ul li a {
   color: black;
   text-decoration: none;
   padding: 10px 20px;
-}
-
-nav ul li a:hover {
-  /* color: var(--brand-colour); */
   font-size: 20px;
 }
 
