@@ -95,6 +95,13 @@ class Application < Sinatra::Base
     erb :filtered_assets
   end
 
+  get '/selection' do
+    @assets = Asset.where(top_pick: true).to_a
+    @language_options = LANGUAGE_CODES
+    @filter = "Top Picks"
+    erb :filtered_assets
+  end
+
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
     @ip_data = @user_ip.to_s
