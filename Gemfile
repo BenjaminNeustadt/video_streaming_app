@@ -28,3 +28,9 @@ gem 'aws-sdk-s3', '~> 1.146'
 gem 'pg', '~> 1.5'
 
 gem "sinatra-partial", "~> 1.0"
+
+gem "httparty", "~> 0.21.0"
+
+gem "puma", "~> 6.4"
+
+gem "colorize", "~> 1.1"
