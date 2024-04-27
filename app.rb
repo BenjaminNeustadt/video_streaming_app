@@ -87,6 +87,14 @@ class Application < Sinatra::Base
     erb :filtered_assets
   end
 
+  get '/country/:country' do
+    country = params[:country]
+    @assets = Asset.where('country LIKE ?', "%#{country}%")
+    @language_options = LANGUAGE_CODES
+    @filter = country
+    erb :filtered_assets
+  end
+
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
     @ip_data = @user_ip.to_s
