@@ -13,6 +13,8 @@ require './helpers/mux_helpers.rb'
 require './helpers/asset_entry_helpers.rb'
 require './helpers/aws_helpers.rb'
 require './models/asset.rb'
+require './models/user.rb'
+require './helpers/user_helpers.rb'
 
 require 'aws-sdk-s3'
 
@@ -109,6 +111,7 @@ class Application < Sinatra::Base
 
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
+    @users = User.all
     @ip_data = @user_ip.to_s
     @language_options = LANGUAGE_CODES
     @country_options = COUNTRY_OPTIONS
