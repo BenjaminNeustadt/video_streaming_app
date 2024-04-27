@@ -16,6 +16,10 @@
     <label for="editNotes_<%= asset.asset_id %>">Notes:</label>
     <textarea id="editNotes_<%= asset.asset_id %>" name="notes"><%= asset.notes %></textarea>
 
+    <div class="top_pick_selection">
+      <label for="top_pick_<%= asset.asset_id %>">Top Pick:</label>
+      <input type="checkbox" id="top_pick_<%= asset.asset_id %>" name="top_pick" <% if asset.top_picks %> checked <% end %>>
+    <div>
 
     <div class="divider"></div>
 
