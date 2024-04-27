@@ -10,7 +10,7 @@
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   cursor: pointer;
   font-size: 16px;
 }
@@ -21,7 +21,7 @@
 }
 
 .admin-nav a {
-  background-color: var(--brand-colour);
+  background-color: var(--button-colour);
   color: white;
   padding: 10px 20px;
   text-decoration: none;
