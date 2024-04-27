@@ -63,12 +63,23 @@ class Application < Sinatra::Base
   set :partial_template_engine, :erb
 
   get '/' do
+    redirect '/all'
+  end
+
+  get '/all' do
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
+  end
+
+  get '/selection' do
+    @assets = Asset.where(top_picks: true).to_a
+    @language_options = LANGUAGE_CODES
+    @filter = "Top Picks"
+    erb :filtered_assets
   end
 
   get '/genre/:genre' do
@@ -95,12 +106,6 @@ class Application < Sinatra::Base
     erb :filtered_assets
   end
 
-  get '/selection' do
-    @assets = Asset.where(top_pick: true).to_a
-    @language_options = LANGUAGE_CODES
-    @filter = "Top Picks"
-    erb :filtered_assets
-  end
 
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
