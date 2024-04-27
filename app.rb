@@ -64,38 +64,15 @@ class Application < Sinatra::Base
 
   get '/' do
 
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES"
-    # p request.cookies
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+COOKIES"
     assets_api = MuxRuby::AssetsApi.new
     assets = assets_api.list_assets
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
-    # p assets.data.first.methods.sort
-    p assets.data.first.methods.sort
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+APIASSETTRACKS"
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+APIASSETTRACKS"
-    p assets.data.first.tracks
-    # p assets.data.first.tracks.first.type
-    # tracks = assets.data.first.tracks
-    # tracks.each do |track|
-    #   p track.type
-    #   if track.type == "text"
-    #     p track.language_code
-    #     p track.name
-    #   end
-    # end
     @language_options = LANGUAGE_CODES
     @assets = Asset.all
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+APIASSETTRACKS"
-
-    p @assets.last.subtitle_language_codes
-    p @assets.last.subtitle_names
-
+    p @assets
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETTRACKSDATA"
     puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
-    # p @assets.last.country
-    # puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETDATA"
+
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
@@ -103,6 +80,10 @@ class Application < Sinatra::Base
   get '/genre/:genre' do
     genre = params[:genre]
     @assets = Asset.where('genre LIKE ?', "%#{genre}%")
+    @language_options = LANGUAGE_CODES
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+FILTEREDASSETS"
+    p @assets
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+FILTEREDASSETS"
     erb :filtered_assets
   end
 

@@ -1,0 +1,52 @@
+  <h1>Filtered Assets</h1>
+  <a href="/">Back to All Assets</a>
+
+  <div class="video-container">
+    <% @assets.each do |asset| %>
+      <div class="video_asset">
+        <div class="video-stream">
+          <%= partial :"partials/index_panel/mux-player", locals: { asset: asset } %>
+          <div class="full-screen-overlay">
+            <button id="back-button" data-video-id="<%= asset.asset_id %>">Back</button>
+            <div class="overlay-text">
+              <div id="video-title"><%= asset.title %></div>
+              <div id="video-director"><%= asset.directors %></div>
+              <div id="video-description"><%= asset.description %></div>
+            </div>
+          </div>
+        </div>
+        <div class="overlay-text-pre">
+          <div class="video-title"><%= asset.title %></div>
+          <div class="video-director"><%= asset.directors %></div>
+        </div>
+        <div class="asset_details_container">
+          <div class="asset_info">
+            <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">WATCH</button>
+            <div class="divider"></div>
+            <%= partial :"partials/index_panel/asset-info-display", locals: { asset: asset } %>
+            <div class="edit-button-container">
+              <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
+            </div>
+          </div>
+          <div class="asset-actions">
+            <button class="close-admin-view" data-asset-id="<%= asset.asset_id %>">Quit admin view</button>
+            <div class="asset-data">
+              <%= partial :"partials/index_panel/asset-data", locals: { asset: asset } %>
+            </div>
+            <%= partial :"partials/index_panel/asset-actions", locals: { asset: asset } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<script src="/javascript/enter-full-screen.js"></script>
+<script src="/javascript/dark-overlay.js"></script>
+<script src="/javascript/show_asset_actions.js"></script>
+<script src="/javascript/show_asset_details_on_hover.js"></script>
+<script src="/javascript/show_asset-data.js"></script>
+<script src="/javascript/confirm_deletion_of_asset.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+
+</body>
+</html>
