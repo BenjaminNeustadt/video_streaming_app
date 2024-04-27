@@ -1,0 +1,38 @@
+<nav>
+  <ul>
+
+    <li><a href="#">Selection</a></li>
+    <li><a href="#">All</a></li>
+
+    <li class="dropdown_nav">
+        <a href="#">Genre</a>
+        <div class="dropdown-content_nav">
+            <!-- Populate with genres dynamically -->
+            <% Asset.distinct.pluck(:genre).each do |genre| %>
+                <a href="/genre/<%= genre %>"><%= genre %></a>
+            <% end %>
+        </div>
+    </li>
+
+    <li class="dropdown_nav">
+        <a href="#">Director</a>
+        <div class="dropdown-content_nav">
+            <!-- Populate with directors dynamically -->
+            <% Asset.distinct.pluck(:directors).each do |director| %>
+                <a href="/director/<%= director %>"><%= director %></a>
+            <% end %>
+        </div>
+    </li>
+
+    <li class="dropdown_nav">
+        <a href="#">Country</a>
+        <div class="dropdown-content_nav">
+            <!-- Populate with countries dynamically -->
+            <% Asset.distinct.pluck(:country).each do |country| %>
+                <a href="/country/<%= country %>"><%= country %></a>
+            <% end %>
+        </div>
+    </li>
+
+  </ul>
+</nav>
