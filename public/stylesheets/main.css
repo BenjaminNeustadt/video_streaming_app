@@ -6,6 +6,7 @@
 @import url('style-elements/video-fullscreen-mode.css');
 @import url('style-elements/ui-ux-functionality.css');
 @import url('style-elements/navigation_tool.css');
+@import url('branding.css');
 
 :root {
   --base-colour: #eaeaea;

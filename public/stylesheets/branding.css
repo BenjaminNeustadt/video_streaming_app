@@ -1,0 +1,9 @@
+h1 {
+  color: black;
+  width: 190px;
+}
+
+h1:hover {
+  color: rgb(43, 43, 43);
+}
+

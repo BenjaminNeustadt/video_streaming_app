@@ -26,7 +26,7 @@ mux-player::part(center play button) {
   <body>
     <header>
       <div class="brand-title">
-        <h1>STATUS 200</h1>
+        <h1 data-value="STATUS 200">STATUS 200</h1>
       </div>
 
       <div class="admin-nav">
@@ -39,6 +39,7 @@ mux-player::part(center play button) {
     </header>
     <button id="dark-mode-toggle">Toggle Dark Mode</button>
     <script src="/javascript/darkmode-toggle.js"></script>
+    <script src="/javascript/branding_glitch.js"></script>
 
     <main>
       <%= yield %>
