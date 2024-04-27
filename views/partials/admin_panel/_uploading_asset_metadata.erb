@@ -10,38 +10,32 @@
 
     <form action="/upload_asset_metadata#" method="post" enctype="multipart/form-data">
 
-        <%= partial :"partials/admin_panel/basic-info"%>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/basic-info"%>
 
-        <%= partial :"partials/admin_panel/year-selection"%>
-
-        <div class="divider"></div>
-
-        <%= partial :"partials/admin_panel/country-selection"%>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/year-selection"%>
 
         <div class="divider"></div>
 
-        <%= partial :"partials/admin_panel/sub-track-selection"%>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/country-selection"%>
 
         <div class="divider"></div>
 
-        <%= partial :"partials/admin_panel/genre-selection"%>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/sub-track-selection"%>
+
+        <div class="divider"></div>
+
+        <%= partial :"partials/admin_panel/asset-metadata-elements/genre-selection"%>
 
         <div class="divider"></div>
 
         <h4> Thumbnail Image Position:</h4>
-        <%= partial :"partials/admin_panel/thumbnail-position"%>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/thumbnail-position"%>
 
         <div class="divider"></div>
 
-        <div class="top-picks-entry">
-          <label for="top_picks">TOP PICK?</label>
-          <input type="checkbox" id="top_picks" name="top_picks" value="1">
-        </div>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/top-picks-entry"%>
 
-        <div class="admin-notes-entry">
-          <label for="notes">Admin Notes:</label><br>
-          <textarea id="notes" name="notes" rows="4" cols="50"></textarea>
-        </div>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/admin-notes-entry"%>
 
         <div class="upload_asset">
           <mux-uploader
