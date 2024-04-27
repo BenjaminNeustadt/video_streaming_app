@@ -1,9 +1,13 @@
-/* Add your custom styles here */
 nav {
   display: flex;
   justify-content: center;
-  background-color: #333;
+  width: 40%;
+  margin: 0 auto;
+  background-color: var(--base-colour);
   padding: 10px 0;
+  border: 2px solid black;
+  box-shadow: 4px 4px 0px black;
+
 }
 
 nav ul {
@@ -18,7 +22,7 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: black;
   text-decoration: none;
   padding: 10px 20px;
 }
