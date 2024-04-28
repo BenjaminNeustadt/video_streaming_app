@@ -39,6 +39,7 @@ GEM
     colorize (1.1.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    csv (3.3.0)
     diff-lcs (1.5.1)
     dotenv (3.1.0)
     drb (2.2.1)
@@ -69,6 +70,7 @@ GEM
     nokogiri (1.16.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    ostruct (0.6.0)
     parallel (1.24.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
@@ -160,12 +162,14 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-s3 (~> 1.146)
   colorize (~> 1.1)
+  csv
   dotenv (~> 3.1.0)
   httparty (~> 0.21.0)
   logger
   mapkick-rb (~> 0.1.4)
   mux_ruby (~> 3.14)
   nokogiri (~> 1.14)
+  ostruct
   pg (~> 1.5)
   puma (~> 6.4)
   rackup (~> 2.1.0)

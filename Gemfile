@@ -34,3 +34,7 @@ gem "httparty", "~> 0.21.0"
 gem "puma", "~> 6.4"
 
 gem "colorize", "~> 1.1"
+
+gem 'csv'
+
+gem 'ostruct'
