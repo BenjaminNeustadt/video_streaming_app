@@ -392,6 +392,18 @@ class Application < Sinatra::Base
     redirect '/'
   end
 
+  def update_current_user_time_on_site(session_id, time)
+    users = User.all
+    user_to_find = users.find_by(session_id: session_id)
+    user_to_find.update(time_on_site: time)
+  end
+
+  def find_user_for_that_session_id(session_id)
+    user = User.all
+    @current_user = user.find_by(session_id: session_id)
+    # @current_user = User.all.find_by(session_id: session_id)
+  end
+
   post '/log_time_on_site' do
     @time_on_site = params['timeOnSite'].to_i
     @inspection = params.inspect
