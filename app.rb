@@ -135,10 +135,6 @@ class Application < Sinatra::Base
     @client_network      = @ip_network["network"]
 
     @sesh = session[:session_id]
-    # puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
-    # p "This is the session ID on entry: #{@sesh}"
-    # p @current_user
-    # puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
 
     @current_user = User.create(
       ip_address: @ip_address,
@@ -213,9 +209,6 @@ class Application < Sinatra::Base
 
     if response.code == '200'
       data = JSON.parse(response.body)
-      # p 'The metrics retrieved from the Mux api are:'
-      # p data['data'].first
-      # p '=+' * 70
       @watch_time         = data['data'].first['watch_time']
       @view_count         = data['data'].first['view_count']
       @started_views      = data['data'].first['started_views']
