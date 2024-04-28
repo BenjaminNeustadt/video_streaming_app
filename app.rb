@@ -1,35 +1,37 @@
 require 'dotenv/load'
+
+require 'aws-sdk-s3'
+require 'colorize'
+require 'httparty'
+require 'json'
+require 'net/http'
+require 'mux_ruby'
+require 'puma'
 require 'sinatra'
 require 'sinatra/reloader' if development?
-require 'mux_ruby'
-require 'net/http'
-require 'uri'
-require 'json'
 require 'sinatra/activerecord'
 require 'sinatra/partial'
+require 'uri'
+
+require './models/asset.rb'
+require './models/user.rb'
 
 require './helpers/monitoring_helpers.rb'
 require './helpers/mux_helpers.rb'
 require './helpers/asset_entry_helpers.rb'
 require './helpers/aws_helpers.rb'
-require './models/asset.rb'
-require './models/user.rb'
 require './helpers/user_helpers.rb'
 require './helpers/environment_helpers.rb'
 
-require 'colorize'
-require 'httparty'
-require 'puma'
 
-require 'aws-sdk-s3'
 
 
 class Application < Sinatra::Base
+  include AWSHelpers
+  include AssetEntryHelpers
+  include EnvironmentHelpers
   include MonitoringHelpers
   include MuxHelpers
-  include AssetEntryHelpers
-  include AWSHelpers
-  include EnvironmentHelpers
   include UserHelpers
 
   before do
