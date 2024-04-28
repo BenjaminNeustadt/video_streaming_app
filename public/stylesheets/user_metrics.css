@@ -19,7 +19,7 @@ th {
 }
 
 td {
-  background-color: rgb(181, 181, 181);
+  background-color: var(--asset-upload-container-colour);
 }
 
 #total-viewers {
@@ -27,7 +27,7 @@ td {
   font-weight: bold;
 }
 
-td:nth-child(9), /* Adjust the index according to the column order */
+td:nth-child(9),
 th:nth-child(9) {
-  width: 10%; /* Set the width of the session ID column as a percentage */
+  width: 10%;
 }
