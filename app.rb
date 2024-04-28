@@ -135,10 +135,10 @@ class Application < Sinatra::Base
     @client_network      = @ip_network["network"]
 
     @sesh = session[:session_id]
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
-    p "This is the session ID on entry: #{@sesh}"
-    p @current_user
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
+    # puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
+    # p "This is the session ID on entry: #{@sesh}"
+    # p @current_user
+    # puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
 
     @current_user = User.create(
       ip_address: @ip_address,
@@ -153,7 +153,7 @@ class Application < Sinatra::Base
     )
 
 
-    time_on_site = Time.now - session[:start_time]
+    # time_on_site = Time.now - session[:start_time]
     session[:start_time] = Time.now
 
     @language_options = LANGUAGE_CODES
@@ -194,7 +194,7 @@ class Application < Sinatra::Base
   end
 
   get '/admin' do
-    p 'WE ARE IN THE ADMIN PANEL'
+    # p 'WE ARE IN THE ADMIN PANEL'
     @users            = User.all
     @ip_data          = @user_ip.to_s
     @language_options = LANGUAGE_CODES
@@ -202,9 +202,8 @@ class Application < Sinatra::Base
     @genre_options    = GENRE_OPTIONS
 
     # This is the endpoint for retrieving metrics data
-    url               = URI('https://api.mux.com/data/v1/metrics/comparison')
-
-    request           = Net::HTTP::Get.new(url.to_s)
+    url          = URI('https://api.mux.com/data/v1/metrics/comparison')
+    request      = Net::HTTP::Get.new(url.to_s)
     request.basic_auth("#{@mux_token_id}", "#{@mux_secret_id}")
     request.content_type = 'application/json'
 
@@ -214,9 +213,9 @@ class Application < Sinatra::Base
 
     if response.code == '200'
       data = JSON.parse(response.body)
-      p 'The metrics retrieved from the Mux api are:'
-      p data['data'].first
-      p '=+' * 70
+      # p 'The metrics retrieved from the Mux api are:'
+      # p data['data'].first
+      # p '=+' * 70
       @watch_time         = data['data'].first['watch_time']
       @view_count         = data['data'].first['view_count']
       @started_views      = data['data'].first['started_views']
@@ -224,7 +223,7 @@ class Application < Sinatra::Base
       @unique_viewers     = data['data'].first['unique_viewers']
       @total_playing_time = data['data'].first['total_playing_time']
     else
-      p status response.code.to_i
+      # p status response.code.to_i
       body response.body
     end
 
@@ -257,7 +256,6 @@ class Application < Sinatra::Base
       name: subtitle_name,
       closed_captions: false
     )
-
 
     assets_api = MuxRuby::AssetsApi.new
     create_track_response = assets_api.create_asset_track(asset_id, create_track_request)
@@ -320,7 +318,9 @@ class Application < Sinatra::Base
     redirect '/admin'
   end
 
-  # Route for updating an asset
+  #### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+  ####   Route for updating an asset    ####
+  #### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
 
   put '/update_asset_metadata/:id' do
     # Thumbnail_time values
@@ -373,27 +373,14 @@ class Application < Sinatra::Base
   def find_user_for_that_session_id(session_id)
     user = User.all
     @current_user = user.find_by(session_id: session_id)
-    # @current_user = User.all.find_by(session_id: session_id)
   end
 
   post '/log_time_on_site' do
-
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+TIMEEEEEEEE"
     @time_on_site = params['timeOnSite'].to_i
     @inspection   = params.inspect
     @sesh         =  params["sessionID"]
-    p "This is the inspection: #{@inspection}"
-    p "This is the session ID at log time : #{@sesh}"
-    p "This is the time on site: #{@time_on_site}"
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+TIMEEEEEEEE"
-
-
     find_user_for_that_session_id(@sesh)
     update_current_user_time_on_site(@sesh, @time_on_site)
-
-    # puts "current user ip address: #{@current_user.ip_address}" if @current_user
-    # puts "This is the current user ip address: #{request.ip}"
-    # puts "This is current users created at: #{Time.now}"
 
     # Perhaps will need to update the current_user's time on site on the object itself
     begin
