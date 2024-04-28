@@ -4,7 +4,7 @@
     <% @assets.each do |asset| %>
       <div class="video_asset">
         <div class="video-stream">
-          <%= partial :"partials/index_panel/mux-player", locals: { asset: asset } %>
+          <%= partial :"partials/index_panel/asset-elements/mux-player", locals: { asset: asset } %>
           <div class="full-screen-overlay">
             <button id="back-button" data-video-id="<%= asset.asset_id %>">Back</button>
             <div class="overlay-text">
@@ -22,7 +22,7 @@
           <div class="asset_info">
             <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">WATCH</button>
             <div class="divider"></div>
-            <%= partial :"partials/index_panel/asset-info-display", locals: { asset: asset } %>
+            <%= partial :"partials/index_panel/asset-elements/asset-info-display", locals: { asset: asset } %>
             <div class="edit-button-container">
               <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
             </div>
@@ -30,9 +30,9 @@
           <div class="asset-actions">
             <button class="close-admin-view" data-asset-id="<%= asset.asset_id %>">Quit admin view</button>
             <div class="asset-data">
-              <%= partial :"partials/index_panel/asset-data", locals: { asset: asset } %>
+              <%= partial :"partials/index_panel/asset-elements/asset-data", locals: { asset: asset } %>
             </div>
-            <%= partial :"partials/index_panel/asset-actions", locals: { asset: asset } %>
+            <%= partial :"partials/index_panel/asset-elements/asset-actions", locals: { asset: asset } %>
           </div>
         </div>
       </div>
