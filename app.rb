@@ -15,6 +15,7 @@ require './helpers/aws_helpers.rb'
 require './models/asset.rb'
 require './models/user.rb'
 require './helpers/user_helpers.rb'
+require './helpers/environment_helpers.rb'
 
 require 'colorize'
 require 'httparty'
@@ -22,25 +23,6 @@ require 'puma'
 
 require 'aws-sdk-s3'
 
-module EnvironmentHelpers
-
-  MESSAGES = {
-    sucessful_dev_config: -> {puts "successfully configured for dev env".colorize(:light_green)},
-    sucessful_prod_config: -> {puts "successfully configured for dev env".colorize(:light_green)}
-  }
-
-  ENV_NOTICE = ->(settings) do
-
-    if settings.environment == :development
-      puts "Running in development environment".colorize(:purple)
-    elsif settings.environment == :production
-      puts "Running in production environment".colorize(:blue)
-    else
-      puts "Unknown environment".colorize(:red)
-    end
-
-  end
-end
 
 class Application < Sinatra::Base
   include MonitoringHelpers
