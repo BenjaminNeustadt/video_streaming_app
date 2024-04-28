@@ -24,10 +24,13 @@ mux-player::part(center play button) {
     </style>
   </head>
   <body>
+
     <header>
       <div class="brand-title">
         <h1 data-value="STATUS 200">STATUS 200</h1>
       </div>
+
+      <%# TODO: Should only visible for admin %>
 
       <div class="admin-nav">
         <a href="/admin"> Admin page</a>
@@ -37,13 +40,16 @@ mux-player::part(center play button) {
       <%= partial :"partials/index_panel/navigation_tool"%>
 
     </header>
+
     <button id="dark-mode-toggle">Toggle Dark Mode</button>
     <script src="/javascript/darkmode-toggle.js"></script>
     <script src="/javascript/branding_glitch.js"></script>
+    <script src="/javascript/user_experience.js"></script>
 
     <main>
       <%= yield %>
     </main>
+
   </body>
   <footer>
   </footer>
