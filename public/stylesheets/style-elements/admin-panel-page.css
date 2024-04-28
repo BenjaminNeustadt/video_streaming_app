@@ -19,17 +19,26 @@ a {
 
 .tab-buttons {
   display: flex;
+  margin-left: 50px;
+  padding-top: 50px;
 }
 .tab-button {
   padding: 10px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   cursor: pointer;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
   border-radius: 5px 5px 0 0;
 }
 .tab-button.active {
   background-color: var(--button-colour);
   color: var(--base-colour);
+}
+
+.dark-mode .tab-button.active {
+  background-color: darkblue;
 }
 .tab-content {
   display: none;
@@ -46,7 +55,12 @@ a {
 .monitoring {
   border: 2px solid black;
   margin: 50px;
+  margin-top: 0;
   display: block;
+}
+
+.dark-mode .monitoring {
+  border: 2px solid var(--base-colour);
 }
 
 .upload_asset_metadata {
@@ -55,7 +69,12 @@ a {
   padding-left: 30px;
   padding-right: 30px;
   margin: 50px;
+  margin-top: 0;
   display: none;
+}
+
+.dark-mode .upload_asset_metadata {
+  border: 2px solid var(--base-colour);
 }
 
 .user_monitoring {
@@ -64,9 +83,14 @@ a {
   padding-left: 30px;
   padding-right: 30px;
   margin: 50px;
+  margin-top: 0;
   position: relative;
   margin-bottom: 30px;
   display: none;
+}
+
+.dark-mode .user_monitoring {
+  border: 2px solid var(--base-colour);
 }
 
 
