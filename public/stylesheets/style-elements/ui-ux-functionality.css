@@ -8,7 +8,7 @@
   background-color: var(--button-colour);
   font-family: var(--font-family);
   color: white;
-  border: none;
+  border: 1px solid var(--base-colour);
   padding: 10px 20px;
   /* border-radius: 5px; */
   cursor: pointer;
