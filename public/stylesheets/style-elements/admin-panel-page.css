@@ -14,7 +14,33 @@ a {
 }
 
 /* ================================= */
-/*            MONITORING             */
+/*            Admin Tabs Toggle      */
+/* ================================= */
+
+.tab-buttons {
+  display: flex;
+}
+.tab-button {
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px 5px 0 0;
+}
+.tab-button.active {
+  background-color: var(--button-colour);
+  color: var(--base-colour);
+}
+.tab-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
+/* ================================= */
+/*      ADMIN SECTION CONTAINERS     */
 /* ================================= */
 
 .monitoring {
@@ -42,6 +68,11 @@ a {
   margin-bottom: 30px;
   display: none;
 }
+
+
+/* ================================= */
+/*            MONITORING             */
+/* ================================= */
 
 
 .monitoring-table {
