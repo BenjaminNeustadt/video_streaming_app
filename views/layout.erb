@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PirateHub</title>
@@ -41,9 +42,12 @@ mux-player::part(center play button) {
 
     </header>
 
+    <div class="client-data" data-session-id="<%= @sesh %>"></div>
+
     <button id="dark-mode-toggle">Toggle Dark Mode</button>
     <script src="/javascript/darkmode-toggle.js"></script>
     <script src="/javascript/branding_glitch.js"></script>
+    <%# TODO: move this script to selected pages only %>
     <script src="/javascript/user_experience.js"></script>
 
     <main>

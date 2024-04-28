@@ -35,19 +35,15 @@ class Application < Sinatra::Base
   before do
     session[:start_time] ||= Time.now
     # @ip_address = settings.development_ip_address || settings.production_ip_address 
-    # @ip_address = request.ip
     @user_ip             = request.ip
+    # @ip_address = request.ip
     @ip_address          = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
     response             = HTTParty.get(@url)
-    p                    response
     @ip_data             = JSON.parse(response.body)
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
-    p                    @ip_data
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
 
     @ip_present_security = @ip_data["security"]
     @client_proxy_status = @ip_data["security"]["proxy"]
@@ -72,7 +68,6 @@ class Application < Sinatra::Base
 
   configure :production do
     MESSAGES[:sucessful_prod_config].call
-    # set :production_ip_address, request.ip
   end
 
   configure do
@@ -114,46 +109,37 @@ class Application < Sinatra::Base
   set :partial_template_engine, :erb
 
   get '/' do
+
     response             = HTTParty.get(@url)
-    p                    response
     @ip_data             = JSON.parse(response.body)
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
     @ip_address          = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
+
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
 
     response             = HTTParty.get(@url)
-    p                    response
     @ip_data             = JSON.parse(response.body)
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
-    p                    @ip_data
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
 
     @ip_present_security = @ip_data["security"]
     @client_proxy_status = @ip_data["security"]["proxy"]
     @ip_geolocation      = @ip_data["location"]
 
     @client_isp          = @ip_data['network']["autonomous_system_organization"]
-
     @client_city         = @ip_data["location"]["city"]
     @client_country      = @ip_data["location"]["country"]
     @client_region       = @ip_data["location"]["region"]
     @client_location     = @ip_geolocation["city"]
-
     @ip_network          = @ip_data["network"]
     @client_network      = @ip_network["network"]
-    puts                 @ip_data
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
-    puts                 @client_proxy_status
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
-    p                    @client_vpn_presence
-    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
 
     @sesh = session[:session_id]
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
+    p "This is the session ID on entry: #{@sesh}"
+    p @current_user
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ONENTRY"
+
     @current_user = User.create(
       ip_address: @ip_address,
       ip_city_location: @client_city,
@@ -166,14 +152,10 @@ class Application < Sinatra::Base
       time_on_site: ''
     )
 
+
     time_on_site = Time.now - session[:start_time]
     session[:start_time] = Time.now
-    redirect '/all'
-  end
 
-  get '/all' do
-    assets_api        = MuxRuby::AssetsApi.new
-    assets            = assets_api.list_assets
     @language_options = LANGUAGE_CODES
     @assets           = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
@@ -210,7 +192,6 @@ class Application < Sinatra::Base
     @filter           = country
     erb :filtered_assets
   end
-
 
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
@@ -252,7 +233,7 @@ class Application < Sinatra::Base
     erb :admin
   end
 
-  # This is a logging button
+  # TODO: This is a logging button
   post '/metadata_for_last_asset' do
     playback_id_for_latest_asset
     asset_id_for_latest_asset
@@ -295,19 +276,13 @@ class Application < Sinatra::Base
     year                = params[:year]
     countries           = params[:countries]
     top_pick            = params[:top_picks].present?
-
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETCOUNTRY"
-    p countries
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ASSETCOUNTRY"
-
     genre               = params[:genre]
     notes               = params[:notes]
-
     # Thumbnail_time values
     hour                = params[:hour].to_i
     minute              = params[:minute].to_i
     second              = params[:second].to_i
-
+    # Subtitiles
     subtitle_name       = params[:subtitle_name]
     language_code       = params[:language_code]
     file_given          = params.dig(:subtitle_track, :tempfile)
@@ -341,16 +316,13 @@ class Application < Sinatra::Base
       subtitle_language_codes: @subtitle_language_codes,
       subtitle_names: @subtitle_names
     )
-
-    p "Successfully added metadata to uploaded asset"
-
+    # p "Successfully added metadata to uploaded asset"
     redirect '/admin'
   end
 
   # Route for updating an asset
 
   put '/update_asset_metadata/:id' do
-
     # Thumbnail_time values
     hour                = params[:hour]
     minute              = params[:minute]
@@ -377,18 +349,18 @@ class Application < Sinatra::Base
     status 204 # No content
     asset_to_remove = Asset.find_by(asset_id: asset_id)
     asset_to_remove.destroy
-    p "ASSET DELETED"
+    # p "ASSET DELETED"
     begin
       mux_assets_api.get_asset(asset_id)
       # :TODO: Remove logging
-      p 'Asset still exists after deletion. Error!'
+      # p 'Asset still exists after deletion. Error!'
       exit 255
     rescue MuxRuby::NotFoundError => e
       # :TODO: Remove logging
-      p 'Asset deleted successfully!'
+      # p 'Asset deleted successfully!'
     end
     # :TODO: Remove logging
-    puts "delete-asset OK"
+    # puts "delete-asset OK"
     redirect '/'
   end
 
@@ -405,17 +377,23 @@ class Application < Sinatra::Base
   end
 
   post '/log_time_on_site' do
+
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+TIMEEEEEEEE"
     @time_on_site = params['timeOnSite'].to_i
-    @inspection = params.inspect
-    @sesh =  params["sessionID"]
+    @inspection   = params.inspect
+    @sesh         =  params["sessionID"]
+    p "This is the inspection: #{@inspection}"
+    p "This is the session ID at log time : #{@sesh}"
+    p "This is the time on site: #{@time_on_site}"
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+TIMEEEEEEEE"
+
+
     find_user_for_that_session_id(@sesh)
     update_current_user_time_on_site(@sesh, @time_on_site)
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-    puts "current user ip address: #{@current_user.ip_address}" if @current_user
-    puts "This is the current user ip address: #{request.ip}"
-    puts "This is current users created at: #{Time.now}"
-    puts ""
-    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+
+    # puts "current user ip address: #{@current_user.ip_address}" if @current_user
+    # puts "This is the current user ip address: #{request.ip}"
+    # puts "This is current users created at: #{Time.now}"
 
     # Perhaps will need to update the current_user's time on site on the object itself
     begin
