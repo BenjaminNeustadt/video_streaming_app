@@ -24,8 +24,6 @@ require './helpers/user_helpers.rb'
 require './helpers/environment_helpers.rb'
 
 
-
-
 class Application < Sinatra::Base
   include AWSHelpers
   include AssetEntryHelpers
