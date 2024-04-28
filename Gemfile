@@ -1,12 +1,20 @@
 source 'https://rubygems.org'
+
 ruby '>=3.0.0'
 
+gem 'aws-sdk-s3', '~> 1.146'
+gem "colorize", "~> 1.1"
+gem 'csv'
+gem "httparty", "~> 0.21.0"
 gem 'logger'
 gem 'mux_ruby', '~> 3.14'
+gem 'ostruct'
+gem 'pg', '~> 1.5'
+gem "puma", "~> 6.4"
 gem 'rackup', '~> 2.1.0'
+gem "sinatra-partial", "~> 1.0"
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'solid_assert', '~> 1.1'
 
 group :development, :test do
   #  gem 'bcrypt',               '~> 3.1'
@@ -17,24 +25,7 @@ group :development, :test do
   gem 'rspec',                '~> 3.12'
   gem 'rubocop'
   gem 'sinatra-activerecord', '~> 2.0'
-  #  gem "sinatra-partial",      "~> 1.0"
   gem 'sinatra-reloader', '~> 1.0'
   gem 'sqlite3', '~> 1.6'
   gem 'webrick', '~> 1.8'
 end
-
-gem 'aws-sdk-s3', '~> 1.146'
-
-gem 'pg', '~> 1.5'
-
-gem "sinatra-partial", "~> 1.0"
-
-gem "httparty", "~> 0.21.0"
-
-gem "puma", "~> 6.4"
-
-gem "colorize", "~> 1.1"
-
-gem 'csv'
-
-gem 'ostruct'
