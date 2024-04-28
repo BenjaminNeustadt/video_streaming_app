@@ -38,32 +38,32 @@ class Application < Sinatra::Base
     session[:start_time] ||= Time.now
     # @ip_address = settings.development_ip_address || settings.production_ip_address 
     # @ip_address = request.ip
-    @user_ip = request.ip
-    @ip_address = "82.33.149.50"
-    @api_key = ENV['VPNAPI_ACCESS_KEY']
-    @admin_password = ENV['ADMIN_PASSWORD']
-    url_format = ENV['API_FOR_GETTING_DATA']
-    @url = url_format % { ip_address: @ip_address, api_key: @api_key }
-    response = HTTParty.get(@url)
-    p response
-    @ip_data = JSON.parse(response.body)
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
-    p @ip_data
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
+    @user_ip             = request.ip
+    @ip_address          = "82.33.149.50"
+    @api_key             = ENV['VPNAPI_ACCESS_KEY']
+    @admin_password      = ENV['ADMIN_PASSWORD']
+    url_format           = ENV['API_FOR_GETTING_DATA']
+    @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
+    response             = HTTParty.get(@url)
+    p                    response
+    @ip_data             = JSON.parse(response.body)
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
+    p                    @ip_data
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
 
     @ip_present_security = @ip_data["security"]
     @client_proxy_status = @ip_data["security"]["proxy"]
-    @ip_geolocation = @ip_data["location"]
+    @ip_geolocation      = @ip_data["location"]
 
-    @client_isp = @ip_data['network']["autonomous_system_organization"]
+    @client_isp          = @ip_data['network']["autonomous_system_organization"]
 
-    @client_city = @ip_data["location"]["city"]
-    @client_country = @ip_data["location"]["country"]
-    @client_region = @ip_data["location"]["region"]
-    @client_location = @ip_geolocation["city"]
+    @client_city         = @ip_data["location"]["city"]
+    @client_country      = @ip_data["location"]["country"]
+    @client_region       = @ip_data["location"]["region"]
+    @client_location     = @ip_geolocation["city"]
 
-    @ip_network = @ip_data["network"]
-    @client_network = @ip_network["network"]
+    @ip_network          = @ip_data["network"]
+    @client_network      = @ip_network["network"]
   end
 
   configure :development do
@@ -107,54 +107,53 @@ class Application < Sinatra::Base
   end
 
   assets_api = MuxRuby::AssetsApi.new
-  assets = assets_api.list_assets
+  assets     = assets_api.list_assets
 
   enable :sessions
+  enable :partial_underscores
   set :bind, '0.0.0.0'
   set :port, 8080
-
-  enable :partial_underscores
   set :partial_template_engine, :erb
 
   get '/' do
-    response = HTTParty.get(@url)
-    p response
-    @ip_data = JSON.parse(response.body)
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
-    @ip_address = "82.33.149.50"
-    @api_key = ENV['VPNAPI_ACCESS_KEY']
-    @admin_password = ENV['ADMIN_PASSWORD']
-    url_format = ENV['API_FOR_GETTING_DATA']
-    @url = url_format % { ip_address: @ip_address, api_key: @api_key }
+    response             = HTTParty.get(@url)
+    p                    response
+    @ip_data             = JSON.parse(response.body)
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
+    @ip_address          = "82.33.149.50"
+    @api_key             = ENV['VPNAPI_ACCESS_KEY']
+    @admin_password      = ENV['ADMIN_PASSWORD']
+    url_format           = ENV['API_FOR_GETTING_DATA']
+    @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
 
-    response = HTTParty.get(@url)
-    p response
-    @ip_data = JSON.parse(response.body)
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
-    p @ip_data
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
+    response             = HTTParty.get(@url)
+    p                    response
+    @ip_data             = JSON.parse(response.body)
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
+    p                    @ip_data
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
 
     @ip_present_security = @ip_data["security"]
     @client_proxy_status = @ip_data["security"]["proxy"]
-    @ip_geolocation = @ip_data["location"]
+    @ip_geolocation      = @ip_data["location"]
 
-    @client_isp = @ip_data['network']["autonomous_system_organization"]
+    @client_isp          = @ip_data['network']["autonomous_system_organization"]
 
-    @client_city = @ip_data["location"]["city"]
-    @client_country = @ip_data["location"]["country"]
-    @client_region = @ip_data["location"]["region"]
-    @client_location = @ip_geolocation["city"]
+    @client_city         = @ip_data["location"]["city"]
+    @client_country      = @ip_data["location"]["country"]
+    @client_region       = @ip_data["location"]["region"]
+    @client_location     = @ip_geolocation["city"]
 
-    @ip_network = @ip_data["network"]
-    @client_network = @ip_network["network"]
-    puts @ip_data
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
-    puts @client_proxy_status
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
-    p @client_vpn_presence
-    puts "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
+    @ip_network          = @ip_data["network"]
+    @client_network      = @ip_network["network"]
+    puts                 @ip_data
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+YES"
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
+    puts                 @client_proxy_status
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
+    p                    @client_vpn_presence
+    puts                 "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+HERE"
 
     @sesh = session[:session_id]
     @current_user = User.create(
@@ -171,15 +170,14 @@ class Application < Sinatra::Base
 
     time_on_site = Time.now - session[:start_time]
     session[:start_time] = Time.now
-    # erb :index
     redirect '/all'
   end
 
   get '/all' do
-    assets_api = MuxRuby::AssetsApi.new
-    assets = assets_api.list_assets
+    assets_api        = MuxRuby::AssetsApi.new
+    assets            = assets_api.list_assets
     @language_options = LANGUAGE_CODES
-    @assets = Asset.all
+    @assets           = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
@@ -192,48 +190,48 @@ class Application < Sinatra::Base
   end
 
   get '/genre/:genre' do
-    genre = params[:genre]
-    @assets = Asset.where('genre LIKE ?', "%#{genre}%")
+    genre             = params[:genre]
+    @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
     @language_options = LANGUAGE_CODES
-    @filter = genre
+    @filter           = genre
     erb :filtered_assets
   end
 
   get '/director/:director' do
-    director = params[:director]
-    @assets = Asset.where('directors LIKE ?', "%#{director}%")
+    director          = params[:director]
+    @assets           = Asset.where('directors LIKE ?', "%#{director}%")
     @language_options = LANGUAGE_CODES
-    @filter = director
+    @filter           = director
     erb :filtered_assets
   end
 
   get '/country/:country' do
-    country = params[:country]
-    @assets = Asset.where('country LIKE ?', "%#{country}%")
+    country           = params[:country]
+    @assets           = Asset.where('country LIKE ?', "%#{country}%")
     @language_options = LANGUAGE_CODES
-    @filter = country
+    @filter           = country
     erb :filtered_assets
   end
 
 
   get '/admin' do
     p 'WE ARE IN THE ADMIN PANEL'
-    @users = User.all
-    @ip_data = @user_ip.to_s
+    @users            = User.all
+    @ip_data          = @user_ip.to_s
     @language_options = LANGUAGE_CODES
-    @country_options = COUNTRY_OPTIONS
-    @genre_options = GENRE_OPTIONS
+    @country_options  = COUNTRY_OPTIONS
+    @genre_options    = GENRE_OPTIONS
 
     # This is the endpoint for retrieving metrics data
-    url = URI('https://api.mux.com/data/v1/metrics/comparison')
+    url               = URI('https://api.mux.com/data/v1/metrics/comparison')
 
-    request = Net::HTTP::Get.new(url.to_s)
+    request           = Net::HTTP::Get.new(url.to_s)
     request.basic_auth("#{@mux_token_id}", "#{@mux_secret_id}")
     request.content_type = 'application/json'
 
-    http = Net::HTTP.new(url.host, url.port)
+    http         = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true
-    response = http.request(request)
+    response     = http.request(request)
 
     if response.code == '200'
       data = JSON.parse(response.body)
@@ -251,7 +249,7 @@ class Application < Sinatra::Base
       body response.body
     end
 
-    @sum_db_assets = amount_database_assets
+    @sum_db_assets  = amount_database_assets
     @sum_mux_assets = amount_of_mux_assets
     erb :admin
   end
