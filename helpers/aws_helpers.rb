@@ -1,5 +1,8 @@
 module AWSHelpers
 
+  def load_aws_configurations
+  end
+
   def upload_to_aws_s3_storage(file, file_name)
     # Upload file to AWS S3: these methods belond to the aws sdk
     object = settings.bucket.object(file_name)

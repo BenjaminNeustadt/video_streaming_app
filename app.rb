@@ -85,13 +85,20 @@ class Application < Sinatra::Base
     set :method_override, true
     register Sinatra::Partial
 
+    enable :sessions
+    enable :partial_underscores
+    set :bind, '0.0.0.0'
+    set :port, 8080
+    set :partial_template_engine, :erb
+
+    # load_aws_configurations
     Aws.config.update({
       region: 'eu-north-1',
       credentials: Aws::Credentials.new(@aws_s3_access_key, @aws_s3_secret_key)
       })
-      set :s3, Aws::S3::Resource.new
-      # TODO: THIS BUCKET WILL HAVE TO CHANGE TO SOMETHING ELSE
-      set :bucket, settings.s3.bucket('folio-test-bucket')
+    set :s3, Aws::S3::Resource.new
+    # TODO: CHANGE BUCKET
+    set :bucket, settings.s3.bucket('folio-test-bucket')
   end
 
   MuxRuby.configure do |config|
@@ -102,14 +109,7 @@ class Application < Sinatra::Base
   assets_api = MuxRuby::AssetsApi.new
   assets     = assets_api.list_assets
 
-  enable :sessions
-  enable :partial_underscores
-  set :bind, '0.0.0.0'
-  set :port, 8080
-  set :partial_template_engine, :erb
-
   get '/' do
-
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
     @ip_address          = "82.33.149.50"
