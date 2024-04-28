@@ -58,6 +58,8 @@ class Application < Sinatra::Base
 
     @ip_network          = @ip_data["network"]
     @client_network      = @ip_network["network"]
+
+    @language_options = LANGUAGE_CODES
   end
 
   configure :development do
@@ -148,11 +150,11 @@ class Application < Sinatra::Base
       time_on_site: ''
     )
 
-
     # time_on_site = Time.now - session[:start_time]
     session[:start_time] = Time.now
 
-    @language_options = LANGUAGE_CODES
+    # @language_options = LANGUAGE_CODES
+
     @assets           = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
@@ -160,7 +162,7 @@ class Application < Sinatra::Base
 
   get '/selection' do
     @assets = Asset.where(top_picks: true).to_a
-    @language_options = LANGUAGE_CODES
+    # @language_options = LANGUAGE_CODES
     @filter = "Top Picks"
     erb :filtered_assets
   end
@@ -168,7 +170,7 @@ class Application < Sinatra::Base
   get '/genre/:genre' do
     genre             = params[:genre]
     @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
-    @language_options = LANGUAGE_CODES
+    # @language_options = LANGUAGE_CODES
     @filter           = genre
     erb :filtered_assets
   end
@@ -176,7 +178,7 @@ class Application < Sinatra::Base
   get '/director/:director' do
     director          = params[:director]
     @assets           = Asset.where('directors LIKE ?', "%#{director}%")
-    @language_options = LANGUAGE_CODES
+    # @language_options = LANGUAGE_CODES
     @filter           = director
     erb :filtered_assets
   end
@@ -184,7 +186,7 @@ class Application < Sinatra::Base
   get '/country/:country' do
     country           = params[:country]
     @assets           = Asset.where('country LIKE ?', "%#{country}%")
-    @language_options = LANGUAGE_CODES
+    # @language_options = LANGUAGE_CODES
     @filter           = country
     erb :filtered_assets
   end
@@ -193,7 +195,7 @@ class Application < Sinatra::Base
     # p 'WE ARE IN THE ADMIN PANEL'
     @users            = User.all
     @ip_data          = @user_ip.to_s
-    @language_options = LANGUAGE_CODES
+    # @language_options = LANGUAGE_CODES
     @country_options  = COUNTRY_OPTIONS
     @genre_options    = GENRE_OPTIONS
 
