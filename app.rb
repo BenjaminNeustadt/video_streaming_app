@@ -392,4 +392,27 @@ class Application < Sinatra::Base
     redirect '/'
   end
 
+  post '/log_time_on_site' do
+    @time_on_site = params['timeOnSite'].to_i
+    @inspection = params.inspect
+    @sesh =  params["sessionID"]
+    find_user_for_that_session_id(@sesh)
+    update_current_user_time_on_site(@sesh, @time_on_site)
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+    puts "current user ip address: #{@current_user.ip_address}" if @current_user
+    puts "This is the current user ip address: #{request.ip}"
+    puts "This is current users created at: #{Time.now}"
+    puts ""
+    puts "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+
+    # Perhaps will need to update the current_user's time on site on the object itself
+    begin
+      File.open('time_on_site.log', 'a') do |file|
+        file.puts "User IP: #{@current_user.ip_address} - Time on site: #{@time_on_site} seconds - Date : #{Time.now}"
+      end
+    rescue StandardError => e
+      puts "Error creating or appending to time_on_site.log: #{e.message}"
+    end
+  end
+
 end
