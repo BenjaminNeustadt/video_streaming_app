@@ -383,3 +383,9 @@ https://www.youtube.com/watch?v=W5oawMJaXbU&ab_channel=Hyperplexed
 Considerations for user experience and usage specifically relating to search and navigation functionality regarding assets available for viewing...
 
 ![wireframes](assets/wireframes_vidoe_streamer.png)
+
+
+# Bycrypt
+
+https://utahedu.devcamp.com/sie2017/guide/using-bcrypt-to-implement-encryption-in-ruby
+
