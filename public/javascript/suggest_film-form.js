@@ -3,8 +3,27 @@ window.formbutton =
   function() {
     (formbutton.q = formbutton.q || []).push(arguments);
   };
+
+  function myOnSubmit(data, setStatus) {
+    // set the Formspree email subject field
+    data["_subject"] = "Film suggestion";
+    // setStatus("<img src='assets/envelope.gif' style='width: 250px; height: 300px; margin-right: 5px;'>");
+    setStatus("<div id='formbutton-formStatus' style='visibility: visible; opacity: 1; background-color: #eaeaea'><img src='assets/loading.gif' style='width: 70px; height: 70px; margin-right: 5px;'></div>");
+    return data;
+  };
+
+  function onResponse(ok, setStatus) {
+    if (ok) {
+      setStatus("<div id='formbutton-formStatus' style='visibility: visible; opacity: 1; background-color: #eaeaea'><span style='color:#333333'>Thanks for the request, hang tight...</span></div>");
+    } else {
+      setStatus("<div id='formbutton-formStatus' style='visibility: visible; opacity: 1; background-color: #eaeaea'><span style='background-color:#33333; color:red'>There was a problem. We've been notified.</span></body>");
+    }
+  };
+
 formbutton("create", {
-  action: "https://formspree.io/YOUR_FORM_ID",
+  action: "https://formspree.io/f/mnqewjdj",
+  onSubmit: myOnSubmit,
+  onResponse: onResponse,
   title: "SUGGEST FILM",
   fields: [
     {
@@ -98,5 +117,5 @@ formbutton("create", {
       textShadow: "0 0 0 #2e2a37",
     }
   },
-  initiallyVisible: false
+  initiallyVisible: false,
 });
