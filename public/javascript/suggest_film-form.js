@@ -11,11 +11,13 @@ formbutton("create", {
       type: "text",
       label: "Title:",
       name: "title",
+      required: true,
     },
     {
       type: "text",
       label: "Director:",
       name: "director",
+      required: true,
     },
     {
       type: "text",
