@@ -8,6 +8,7 @@ gem 'csv'
 gem "httparty", "~> 0.21.0"
 gem 'logger'
 gem 'mux_ruby', '~> 3.14'
+gem 'openssl', '~> 3.2'
 gem 'ostruct'
 gem 'pg', '~> 1.5'
 gem "puma", "~> 6.4"
