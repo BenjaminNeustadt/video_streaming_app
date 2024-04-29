@@ -51,6 +51,13 @@ a {
 /* ================================= */
 /*      ADMIN SECTION CONTAINERS     */
 /* ================================= */
+#monitoring-header {
+  margin-left: 20px;
+}
+
+#admin-cli-logs-header {
+  margin-left: 20px;
+}
 
 .monitoring {
   border: 2px solid black;
@@ -156,6 +163,7 @@ a {
   text-shadow: -1px 1px 0px var(--valid-colour-b);
   font-size: 16px;
 }
+
 
 .admin-external-resources-section {
   padding-left: 20px;
