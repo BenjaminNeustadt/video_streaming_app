@@ -1,6 +1,6 @@
   document.addEventListener("DOMContentLoaded", function() {
-    const showAllButton = document.getElementById("show-all");
-    const showLessButton = document.getElementById("show-less");
+    const showAllButton = document.getElementById("show-all-user-metrics");
+    const showLessButton = document.getElementById("show-less-user-metrics");
 
     const firstTenUsers = document.getElementById("first-10-user-metrics");
     const allUsers = document.getElementById("all-user-metrics");
