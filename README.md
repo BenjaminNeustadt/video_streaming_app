@@ -389,3 +389,12 @@ Considerations for user experience and usage specifically relating to search and
 
 https://utahedu.devcamp.com/sie2017/guide/using-bcrypt-to-implement-encryption-in-ruby
 
+
+# formbutton docs used for the suggestion form
+
+https://formspree.io/formbutton/docs/#customizing-formbutton
+
+
+# Comparison
+
+https://www.stumfilm.dk/en/stumfilm/streaming/film/20682
