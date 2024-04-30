@@ -1,3 +1,21 @@
+#show-all-user-metrics {
+  background-color: var(--button-colour);
+  font-family: var(--font-family);
+  color: white;
+  border: 1px solid var(--base-colour);
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+#show-less-user-metrics {
+  background-color: var(--button-colour);
+  font-family: var(--font-family);
+  color: white;
+  border: 1px solid var(--base-colour);
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
 /* button for switching between light and dark mode */
 
 #dark-mode-toggle {
