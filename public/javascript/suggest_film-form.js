@@ -84,7 +84,7 @@ formbutton("create", {
       fontSize: "1.5em",
     },
     body: {
-        padding: "16px 24px 24px",
+      padding: "16px 24px 24px",
       background: "#eaeaea"
     },
     field: {
