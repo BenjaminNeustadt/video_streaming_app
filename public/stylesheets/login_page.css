@@ -1,14 +1,52 @@
-#three-container{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 50%;
-  margin: auto;
-  z-index: -1;
+
+.auth-form {
+  top: 300px;
+  text-align: center;
+  position: relative;
+
+  font-family: "Press Start 2P", monospace;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  z-index: 1;
 }
 
-canvas {
-  width: 100%; /* Make canvas fill the container width */
-  height: 100%; /* Make canvas fill the container height */
+.auth-form input[type="password"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  background-color: transparent;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px; /* Adjust font size as needed */
+  outline: none; /* Remove default input outline */
+  text-align: center;
+}
+
+.auth-form button[type="submit"] {
+  background-color: #333;
+  color: #eaeaea;
+  border: none;
+  padding: 5px 10px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer;
+  border-radius: 0; /* Ensure square corners */
+}
+
+/* {
+  position:absolute;
+  text-align: center;
+  background-color: pink;
+  z-index: 1;
+  margin-bottom: 20px;
+  z-index: 1;
+} */
+
+#three-container {
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  z-index: -1;
 }
