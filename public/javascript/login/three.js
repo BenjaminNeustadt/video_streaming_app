@@ -4,16 +4,16 @@ var camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHei
 var renderer = new THREE.WebGLRenderer();
 renderer.setClearColor(0xffffff);
 renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+document.getElementById('three-container').appendChild(renderer.domElement);
 
 // Create a group to hold all the cubes
 var cubesGroup = new THREE.Group();
 
 // Function to check if a cube is central on a face
 function isCentralCube(x, y, z, size) {
-    return Math.abs(x) === size && Math.abs(y) === 0 && Math.abs(z) <= 0.25 ||
-        Math.abs(y) === size && Math.abs(x) === 0 && Math.abs(z) <= 0.25 ||
-        Math.abs(z) === size && Math.abs(x) === 0 && Math.abs(y) <= 0.25;
+    return Math.abs(x) === size && Math.abs(y) === 0 && Math.abs(z) <= 0.20 ||
+        Math.abs(y) === size && Math.abs(x) === 0 && Math.abs(z) <= 0.20 ||
+        Math.abs(z) === size && Math.abs(x) === 0 && Math.abs(y) <= 0.20;
 }
 
 // Create cubes and add them to the group
@@ -46,6 +46,9 @@ for (var x = -size; x <= size; x += (1 + gap)) {
 
 scene.add(cubesGroup); // Add the group to the scene
 
+// Set initial scale to make the shape smaller
+cubesGroup.scale.set(0.5, 0.5, 0.5);
+
 // Set camera position
 camera.position.set(0, 0, 8);
 
@@ -67,4 +70,27 @@ window.addEventListener("resize", function () {
     camera.updateProjectionMatrix();
 });
 
+// Function to handle animation when the password is entered
+function animateToSingleCube() {
+    // Define animation to tighten cubes together
+    var targetScale = 0.5; // Define the target scale for the single cube
+    var duration = 2; // Duration of the animation in seconds
+
+    // Animate each cube to the target scale
+    cubesGroup.children.forEach(function(cube) {
+        TweenMax.to(cube.scale, duration, { x: targetScale, y: targetScale, z: targetScale });
+    });
+}
+
+// Listen for form submission
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    var password = document.getElementById('password').value;
+
+    // Check if the password is correct
+    if (password === 'hello') {
+        animateToSingleCube(); // Start animation to tighten cubes togethello
+    }
+});
 animate();
