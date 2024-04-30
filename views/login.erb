@@ -1,9 +1,20 @@
-<h2>Login</h2>
-<form action="/login" method="post">
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password">
-  <button type="submit">Login</button>
-</form>
+<!-- views/layout.erb -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/login_page.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+<div class="auth-form">
+  <form action="/login" method="post">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <button type="submit">ENTER</button>
+  </form>
+</div>
 
 <div id="three-container"></div>
 
