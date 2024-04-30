@@ -111,6 +111,10 @@ class Application < Sinatra::Base
   assets_api = MuxRuby::AssetsApi.new
   assets     = assets_api.list_assets
 
+  get '/login' do
+    erb :login, layout: false
+  end
+
   get '/' do
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
