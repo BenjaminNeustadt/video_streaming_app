@@ -1,0 +1,63 @@
+
+
+#three-container {
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  z-index: -1;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  max-width: 80%; /* Set maximum width to 80% of the viewport width */
+  margin: auto; 
+}
+
+.auth-form form {
+  position: relative; /* Ensure the form is positioned relatively */
+  text-align: center;
+}
+
+.auth-form {
+  text-align: center;
+  font-family: "Press Start 2P", monospace;
+  z-index: 1;
+  margin-bottom: 200px; /* Adjust as needed */
+  display: flex;
+  align-items: center;
+}
+
+.auth-form input[type="password"] {
+  border: none;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  background-color: transparent;
+  padding: 5px;
+  margin-bottom: 20px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px; /* Adjust font size as needed */
+  outline: none; /* Remove default input outline */
+  text-align: center;
+}
+
+.auth-form label {
+  color: transparent;
+}
+
+.auth-form button[type="submit"] {
+  background-color: #333;
+  color: #eaeaea;
+  border: none;
+  padding: 5px 10px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer;
+  border-radius: 0; /* Ensure square corners */
+}
