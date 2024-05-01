@@ -28,7 +28,6 @@
   color: white;
   border: 1px solid var(--base-colour);
   padding: 10px 20px;
-  /* border-radius: 5px; */
   cursor: pointer;
   font-size: 16px;
 }
@@ -65,5 +64,12 @@
 @media only screen and (max-width: 600px) {
   .brand-title {
     font-size: 10px;
-  }
+  };
 }
+
+@media only screen and (max-width: 600px) {
+  #dark-mode-toggle {
+    top: 25px;
+    font-size: 10px;
+  }
+};
