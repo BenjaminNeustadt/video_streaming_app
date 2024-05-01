@@ -113,8 +113,9 @@
   height: auto;
   background-color: transparent;
   display: block;
-  color: white;
-  text-shadow: 0 0 2px black;
+  /* color: white; */
+  color: var(--base-colour);
+  /* text-shadow: 0 0 2px black; */
   font-family: var(--font-family);
   font-size: 24px;
   text-align: left;
