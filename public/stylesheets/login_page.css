@@ -27,6 +27,11 @@ body {
 
 
   .form-container {
+
+    /* This to have the cube covered */
+    /* position: absolute; 
+    top: 50%;
+    left: 50%; */
     padding-top: 40px;
     display: flex;
     align-items: center;
