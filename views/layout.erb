@@ -55,9 +55,14 @@ mux-player::part(center play button) {
     <script src="/javascript/suggest_film-form.js"></script>
 
 
-    <main>
-      <%= yield %>
-    </main>
+  <div class="flash-container">
+    <% flash.keys.each do |type| %>
+      <div data-alert class="flash <%= type %> alert-box radius">
+        <%= flash[type] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+  </div>
 
   </body>
   <footer>

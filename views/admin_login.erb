@@ -5,12 +5,63 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+.flash-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px; /* Adjust the width as needed */
+  padding: 10px;
+  text-align: center;
+}
+
+.flash {
+  font-weight: bold;
+  color: black;
+  background-color: grey;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px; /* Add some space between flash messages */
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.flash.fade-out {
+  opacity: 0;
+}
+
+  </style>
   </head>
+
+<body>
+  <div class="flash-container">
+    <% flash.keys.each do |type| %>
+      <div data-alert class="flash <%= type %> alert-box radius">
+        <%= flash[type] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+  </div>
 
 <h2> Admin login </h2>
 <div class="form-container">
   <form action="/admin_login" method="post">
-    <input type="password" class="input-field"  id="password" name="password" placeholder="enter password">
+    <input type="password" class="input-field"  id="password" name="password" placeholder="enter password" required>
     <button type="submit" class="submit-button">enter</button>
   </form>
 </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var flashes = document.querySelectorAll('.flash');
+
+      flashes.forEach(function(flash) {
+        setTimeout(function() {
+          flash.classList.add('fade-out');
+        }, 3000); // Adjust the timeout as needed (in milliseconds)
+      });
+    });
+  </script>
+
+</body>

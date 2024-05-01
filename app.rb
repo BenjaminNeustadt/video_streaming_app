@@ -23,6 +23,8 @@ require './helpers/aws_helpers.rb'
 require './helpers/user_helpers.rb'
 require './helpers/environment_helpers.rb'
 
+require 'sinatra/flash'
+
 
 class Application < Sinatra::Base
   include AWSHelpers
@@ -77,6 +79,7 @@ class Application < Sinatra::Base
     set :server, 'puma'
     set :session_secret, SecureRandom.hex(64)
     register Sinatra::ActiveRecordExtension
+    register Sinatra::Flash
   end
 
   configure do
@@ -125,6 +128,7 @@ class Application < Sinatra::Base
       session[:admin] = true
       redirect '/'
     else
+      flash[:message] = "wrong password..."
       redirect '/admin_login'
     end
   end

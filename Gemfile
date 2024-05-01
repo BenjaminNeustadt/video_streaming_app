@@ -30,3 +30,5 @@ group :development, :test do
   gem 'sqlite3', '~> 1.6'
   gem 'webrick', '~> 1.8'
 end
+
+gem "sinatra-flash", "~> 0.3.0"
