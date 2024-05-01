@@ -115,6 +115,24 @@ class Application < Sinatra::Base
     erb :login, layout: false
   end
 
+  get '/admin_login' do
+    erb :admin_login, layout: false
+  end
+
+  post 'admin_login' do
+    password = params[:password]
+    if password == ENV.fetch('ADMIN_PASSWORD')
+      session[:admin] = true
+      redirect '/'
+    else
+      redirect '/admin_login'
+    end
+  end
+
+  def admin_logged_in?
+    session[:admin] == true
+  end
+
   get '/' do
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)

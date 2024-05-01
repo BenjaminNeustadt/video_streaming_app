@@ -33,10 +33,12 @@ mux-player::part(center play button) {
 
       <%# TODO: Should only visible for admin %>
 
-      <div class="admin-nav">
-        <a href="/admin"> Admin page</a>
-        <a href="/"> Assets listed </a>
-      </div>
+      <% if admin_logged_in? %>
+        <div class="admin-nav">
+          <a href="/admin"> Admin page</a>
+          <a href="/"> Assets listed </a>
+        </div>
+      <% end %>
 
       <%= partial :"partials/index_panel/navigation_tool"%>
 
