@@ -119,7 +119,7 @@ class Application < Sinatra::Base
     erb :admin_login, layout: false
   end
 
-  post 'admin_login' do
+  post '/admin_login' do
     password = params[:password]
     if password == ENV.fetch('ADMIN_PASSWORD')
       session[:admin] = true
@@ -127,6 +127,11 @@ class Application < Sinatra::Base
     else
       redirect '/admin_login'
     end
+  end
+
+  get '/logout' do
+    session[:admin] = false
+    redirect '/'
   end
 
   def admin_logged_in?
