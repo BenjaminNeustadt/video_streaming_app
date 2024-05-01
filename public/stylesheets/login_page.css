@@ -14,7 +14,6 @@ body {
 #three-container {
   width: 50%;
   height: 50%;
-  left: 50%;
   z-index: -1;
 }
 
@@ -25,64 +24,62 @@ body {
 }
 /* ===================== */
 
+.form-container {
+  position: absolute; /* Position the container absolutely */
+  top: 200px; /* Position it vertically at 50% from the top */
+  left: 50%; /* Position it horizontally at 50% from the left */
+  transform: translate(-50%, -50%); /* Center the container */
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  justify-content: center;
+}
 
+.input-field {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  /* border-radius: 4px; */
+  flex-grow: 1; /* Allow the input field to grow and shrink */
+  margin-right: 8px; /* Space between input and button */
+  /* background-color: var(--base-colour); */
+  background-color: transparent;
+  text-align: center;
+}
+
+.submit-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: var(--button-colour);
+  color: white;
+  border: none;
+  /* border-radius: 4px; */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: var(--base-colour);
+  color: var(--button-colour);
+}
+
+@media (max-width: 768px) {
   .form-container {
-
-    /* This to have the cube covered */
-    /* position: absolute; 
-    top: 50%;
-    left: 50%; */
-    padding-top: 40px;
-    display: flex;
-    align-items: center;
-    z-index: 1;
+    flex-direction: column; /* Stack items vertically on smaller screens */
     justify-content: center;
   }
 
   .input-field {
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    /* border-radius: 4px; */
-    flex-grow: 1; /* Allow the input field to grow and shrink */
-    margin-right: 8px; /* Space between input and button */
-    /* background-color: var(--base-colour); */
-    background-color: transparent;
-    text-align: center;
+    width: 100%; /* Make input field full width on smaller screens */
+    margin-right: 0; /* Remove margin on smaller screens */
+    margin-bottom: 8px; /* Space between input and button */
   }
 
   .submit-button {
-    padding: 8px 16px;
-    font-size: 16px;
-    background-color: var(--button-colour);
-    color: white;
-    border: none;
-    /* border-radius: 4px; */
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .submit-button:hover {
-    background-color: var(--base-colour);
-    color: var(--button-colour);
-  }
-
-  @media (max-width: 768px) {
-    .form-container {
-      flex-direction: column; /* Stack items vertically on smaller screens */
-      justify-content: center;
-    }
-
-    .input-field {
-      width: 100%; /* Make input field full width on smaller screens */
-      margin-right: 0; /* Remove margin on smaller screens */
-      margin-bottom: 8px; /* Space between input and button */
-    }
-
-    .submit-button {
-      width: 100%; /* Make button full width on smaller screens */
-      width: calc(100% + 20px );
-      margin-left: auto; /* Center horizontally on smaller screens */
-      margin-right: auto; 
-    } 
-
+    width: 100%; /* Make button full width on smaller screens */
+    width: calc(100% + 20px );
+    margin-left: auto; /* Center horizontally on smaller screens */
+    margin-right: auto; 
+  } 
+}
