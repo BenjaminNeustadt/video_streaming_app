@@ -28,7 +28,6 @@ body {
   text-shadow: 2px 2px black;
 }
 
-
 #three-container {
   width: 50%;
   height: 50%;
@@ -40,7 +39,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-/* ===================== */
 
 .form-container {
   position: absolute; 
@@ -62,7 +60,7 @@ body {
   margin-right: 8px; 
   background-color: transparent;
   text-align: center;
-  color: red;
+  color: white;
 }
 
 .submit-button {
