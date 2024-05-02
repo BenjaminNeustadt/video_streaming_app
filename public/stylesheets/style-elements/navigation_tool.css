@@ -1,7 +1,7 @@
 nav {
   display: flex;
   justify-content: center;
-  width: 40%;
+  width: 600px;
   margin: 0 auto;
   background-color: var(--base-colour);
   padding: 10px 0;
@@ -68,3 +68,21 @@ nav ul li a {
   background-color: #afaeae;
   color: var(--button-colour);
 }
+
+/* @media (max-width: 768px) {
+  nav ul li {
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 10px 0;
+  }
+
+  .dropdown_nav .dropdown-content_nav {
+    top: 0;
+    left: 100%;
+  }
+} */
