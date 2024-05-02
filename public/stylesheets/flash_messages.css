@@ -17,7 +17,7 @@
 .flash {
   font-weight: bold;
   color: black;
-  background-color: grey;
+  background-color: transparent;
   border: 2px solid black;
   padding: 10px;
   margin-bottom: 10px;
