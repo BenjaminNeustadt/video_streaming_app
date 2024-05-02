@@ -11,11 +11,12 @@
     <style>
 
 mux-player::part(center play button) {
-    display: none;
+    /* display: none; */
   }
     mux-player {
       aspect-ratio: 16 / 9;
-      --controls: none;
+      var(--center-controls: block);
+      /* --controls-bottom: none; */
 
     }
       /* --media-object-fit: cover;
