@@ -1,3 +1,5 @@
+@import url('flash_messages.css');
+
 :root {
   --base-colour: #eaeaea;
   --primary-colour:;
@@ -7,9 +9,26 @@
 }
 
 body {
-  background-color: var(--base-colour);
+  background-color: var(--button-colour);
 }
 /* ======================= */
+
+.title-box {
+  text-align: left;
+  padding: 20px;
+  margin-bottom: 50px;
+  background-color: grey;
+  font-family: var(--font-family);
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.title-box h1 {
+  margin: 0;
+  text-shadow: 2px 2px black;
+}
+
 
 #three-container {
   width: 50%;
@@ -26,7 +45,7 @@ body {
 
 .form-container {
   position: absolute; /* Position the container absolutely */
-  top: 100px; /* Position it vertically at 50% from the top */
+  top: 150px; /* Position it vertically at 50% from the top */
   left: 50%; /* Position it horizontally at 50% from the left */
   transform: translate(-50%, -50%); /* Center the container */
   padding-top: 40px;
@@ -54,19 +73,13 @@ body {
   /* background-color: var(--button-colour); */
   background-color: var(--button-colour);
   color: var(--base-colour);
-  /* color: var(--base-colour); */
-  /* color: var(--button-colour); */
-  /* border: none; */
-  /* border-radius: 4px; */
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: var(--base-colour);
-  color: var(--button-colour);
-  background-color: transparent;
-  border: 2px solid var(--button-colour);
+  border: 1px solid #ccc;
+
 }
 
 @media (max-width: 768px) {
