@@ -56,6 +56,7 @@ mux-player::part(center play button) {
 
 
   <div class="flash-container">
+
     <% flash.keys.each do |type| %>
       <div data-alert class="flash <%= type %> alert-box radius">
         <%= flash[type] %>
@@ -63,6 +64,9 @@ mux-player::part(center play button) {
       </div>
     <% end %>
   </div>
+  <main>
+    <%= yield %>
+  </main>
 
   </body>
   <footer>
