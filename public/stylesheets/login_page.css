@@ -65,6 +65,7 @@ body {
   /* background-color: var(--base-colour); */
   background-color: transparent;
   text-align: center;
+  color: red;
 }
 
 .submit-button {

@@ -17,6 +17,7 @@
     <% flash.keys.each do |type| %>
       <div data-alert class="flash <%= type %> alert-box radius">
         <%= flash[type] %>
+        <img class="flash-icon" src="assets/lock-solid.svg" alt="Lock Icon">
       </div>
     <% end %>
   </div>
