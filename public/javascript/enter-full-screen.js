@@ -10,7 +10,7 @@ document.querySelectorAll('.fullscreen-button').forEach(button => {
       const muxplayer = videoAsset.querySelector('.video-stream mux-player');
       const overlay = videoAsset.querySelector('.full-screen-overlay');
       
-      muxplayer.style.setProperty('--controls', 'unset');
+      // muxplayer.style.setProperty('--controls', 'unset');
       AddFullScreen(muxplayer);
       showOverlay(overlay);
       addMouseActivityListener(overlay);
@@ -22,6 +22,42 @@ document.querySelectorAll('.fullscreen-button').forEach(button => {
 function AddFullScreen(element) {
   console.log('AddFullScreen function called');
   element.classList.add('video-fullscreen');
+  
+
+  // Get the mux-player element
+const muxPlayer = document.querySelector("body > main > div > div:nth-child(2) > div.video-stream > mux-player");
+
+// Check if the mux-player element is found
+if (muxPlayer) {
+    // Get the media-theme element within the mux-player shadow DOM
+    const mediaTheme = muxPlayer.shadowRoot.querySelector("media-theme");
+
+    // Check if the media-theme element is found
+    if (mediaTheme) {
+        // Get the media-controller element within the media-theme shadow DOM
+        const mediaController = mediaTheme.shadowRoot.querySelector("media-controller");
+
+        // Check if the media-controller element is found
+        if (mediaController) {
+            // Get the media-play-button element within the media-controller shadow DOM
+            const playButton = mediaController.querySelector("div > media-play-button");
+
+            // Check if the media-play-button element is found
+            if (playButton) {
+                // Generate the CSS rule
+                const cssRule = `mux-player::part(center play button) { display: block; }`;
+
+                // Create a <style> element
+                const styleElement = document.createElement('style');
+                styleElement.innerHTML = cssRule;
+
+                // Append the <style> element to the document's <head>
+                document.head.appendChild(styleElement);
+            }
+        }
+    }
+}
+
   console.log("One video entered full screen");
 }
 
