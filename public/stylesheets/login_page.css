@@ -20,6 +20,14 @@ body {
   padding: 0;
 }
 
+.dark-mode .star-icon {
+  filter: invert(100%) sepia(0%) saturate(1283%) hue-rotate(314deg) brightness(119%) contrast(84%);
+}
+
+.star-icon:hover {
+  transform: scale(1.1); /* Increase size on hover */
+}
+
 .title-box {
   text-align: left;
   padding: 20px;
