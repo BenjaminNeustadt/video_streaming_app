@@ -74,6 +74,13 @@ document.querySelectorAll('.full-screen-overlay button#back-button').forEach(but
         console.log('Video paused');
       }
 
+      const cssRule = `mux-player::part(center play button) { display: none; }`;
+      const styleElement = document.createElement('style');
+      styleElement.innerHTML = cssRule;
+
+      // Append the <style> element to the document's <head>
+      document.head.appendChild(styleElement);
+
        // Add back the --controls property to the mux-player style
       muxplayer.style.setProperty('--controls', 'none');
 
