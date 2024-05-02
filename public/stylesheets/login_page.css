@@ -12,6 +12,7 @@ body {
   background-color: var(--button-colour);
 }
 
+/* # TODO: center the star icon */
 .star-icon {
   width: 20px; 
   height: 20px; 
