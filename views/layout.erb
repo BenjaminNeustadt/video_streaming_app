@@ -5,7 +5,9 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%# <meta name="viewport" content="width=device-width, initial-scale=1.0"> %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>PirateHub</title>
 
     <style>
@@ -55,6 +57,7 @@
     <div class="client-data" data-session-id="<%= @sesh %>"></div>
 
     <button id="dark-mode-toggle"> Dark Mode</button>
+
     <script src="/javascript/darkmode-toggle.js"></script>
     <script src="/javascript/branding_glitch.js"></script>
     <%# TODO: move this script to selected pages only %>
