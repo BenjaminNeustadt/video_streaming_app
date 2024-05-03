@@ -98,6 +98,7 @@
 .overlay-text-pre {
   position: absolute;
   width: auto;
+  width: 100%;
   height: auto;
   background-color: transparent;
   display: block;
@@ -121,11 +122,25 @@
   margin-top: 10px;
 }
 
+.overlay-text-pre .video-year {
+  position: absolute; /* Position the country absolutely */
+  font-family: var(--font-family);
+  font-size: 20px;
+  padding-bottom: 10px;
+  right: 30px; /* Position to the far right */
+  bottom: 0; /* Align to the bottom */
+
+}
+
 @media (max-width: 600px) {
   .overlay-text-pre {
     font-size: 14px;
     left: 5px; 
     bottom: 5px; 
+  }
+
+  .overlay-text-pre .video-year {
+    font-size: 14px;
   }
 }
 
