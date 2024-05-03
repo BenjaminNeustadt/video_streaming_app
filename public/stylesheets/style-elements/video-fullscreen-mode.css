@@ -132,3 +132,10 @@
 .overlay-text-pre .video-director {
   margin-top: 10px;
 }
+
+@media (max-width: 600px) {
+  .overlay-text-pre {
+    font-size: 14px;
+  }
+}
+
