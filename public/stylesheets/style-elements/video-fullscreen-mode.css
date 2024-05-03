@@ -64,8 +64,8 @@
 
 .overlay-text {
   position: fixed;
-  bottom: 100px;
-  left: 70px; 
+  bottom: 50px;
+  left: 50px; 
   color: var(--base-colour);
 }
 
@@ -90,6 +90,34 @@
 }
 
 @media (max-width: 600px) {
+
+  .overlay-text {
+    bottom: 20px;
+    left: 10px; 
+  }
+  
+  #video-title {
+    font-size: 20px;
+  }
+  
+  #video-director {
+  font-size: 15px;
+  margin-top: 10px; 
+  }
+  
+  #video-description {
+  font-size: 10px;
+  margin-top: 0px; 
+  }
+
+  #back-button {
+    padding: 10px 10px;
+    font-size: 20px;
+    right: 5px;
+  }
+}
+
+@media (max-height: 1000px) {
 
   .overlay-text {
     bottom: 20px;
