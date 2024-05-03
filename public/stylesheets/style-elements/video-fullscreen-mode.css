@@ -49,7 +49,7 @@
 }
 
 #back-button {
-  color: white;
+  color: var(--base-colour);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -58,53 +58,63 @@
   font-family: var(--font-family);
   font-size: 36px;
   position: fixed;
-  top: 10px; /* Adjust top position as needed */
-  right: 10px; /* Adjust right position as needed */
-  /* Styles for back button */
+  top: 10px;
+  right: 10px;
 }
 
 .overlay-text {
   position: fixed;
-  bottom: 100px; /* Adjust the bottom position as needed */
+  bottom: 100px;
   left: 70px; 
+  color: var(--base-colour);
 }
 
 #video-title {
-  color: white;
   font-family: var(--font-family);
   font-size: 46px;
-  /* position: fixed; */
-  /* bottom: 160px; */
-  /* left: 70px;  */
   margin-top: 10px; 
-  text-shadow: 0 0 2px black;
-  /* Styles for video title */
 }
 
 #video-director {
-  color: white;
   font-family: var(--font-family);
   font-size: 30px;
-  /* position: fixed; */
-  /* bottom: 110px; */
-  /* left: 70px;  */
   margin-top: 30px; 
-  text-shadow: 0 0 2px black;
-  /* Styles for video title */
 }
 
 #video-description {
-  color: grey;
   font-family: var(--font-family);
   font-weight: 100;
   font-size: 26px;
-  /* position: fixed; */
-  /* bottom: 60px; */
-  /* left: 70px;  */
   margin-top: 20px; 
   line-height: 1.4;
-  text-shadow: 0 0 2px black;
-  /* Styles for video title */
+}
+
+@media (max-width: 600px) {
+
+  .overlay-text {
+    bottom: 20px;
+    left: 10px; 
+  }
+  
+  #video-title {
+    font-size: 20px;
+  }
+  
+  #video-director {
+  font-size: 15px;
+  margin-top: 10px; 
+  }
+  
+  #video-description {
+  font-size: 10px;
+  margin-top: 0px; 
+  }
+
+  #back-button {
+    padding: 10px 10px;
+    font-size: 20px;
+    right: 5px;
+  }
 }
 
 .overlay-text-pre {
