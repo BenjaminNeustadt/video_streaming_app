@@ -10,7 +10,6 @@ document.querySelectorAll('.fullscreen-button').forEach(button => {
       const muxplayer = videoAsset.querySelector('.video-stream mux-player');
       const overlay = videoAsset.querySelector('.full-screen-overlay');
       
-      // muxplayer.style.setProperty('--controls', 'unset');
       AddFullScreen(muxplayer);
       showOverlay(overlay);
       addMouseActivityListener(overlay);
