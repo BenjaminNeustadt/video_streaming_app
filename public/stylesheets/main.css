@@ -36,6 +36,7 @@ body {
   font-size: 14px;
   font-weight: 700;
   line-height: 17.148px;
+  overflow-x: hidden;
 }
 
 body.dark-mode {

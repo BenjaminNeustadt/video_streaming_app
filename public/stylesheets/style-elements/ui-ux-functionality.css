@@ -16,21 +16,7 @@
   cursor: pointer;
 }
 
-/* button for switching between light and dark mode */
 
-#dark-mode-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-  background-color: var(--button-colour);
-  font-family: var(--font-family);
-  color: white;
-  border: 1px solid var(--base-colour);
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-}
 
 .admin-nav {
   margin: 50px;
@@ -49,6 +35,28 @@
 
 .admin-nav a:hover {
   background-color: darkblue;
+}
+
+/* button for switching between light and dark mode */
+
+
+#dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  z-index: 9999;
+  background-color: var(--button-colour);
+  font-family: var(--font-family);
+  color: white;
+  border: 1px solid var(--base-colour);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button #dark-mode-toggle {
+  padding: 0;
+
 }
 
 .brand-title {
@@ -71,5 +79,7 @@
   #dark-mode-toggle {
     top: 25px;
     font-size: 10px;
+    display: flex;
+    position: absolute;
   }
 };
