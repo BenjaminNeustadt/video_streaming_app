@@ -28,6 +28,15 @@ body {
   transform: scale(1.1); /* Increase size on hover */
 }
 
+@media (max-width: 600px) {
+  nav ul li a .star-icon {
+    width: 10px; 
+    height: 10px; 
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .title-box {
   text-align: left;
   padding: 20px;

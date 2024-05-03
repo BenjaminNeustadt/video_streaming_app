@@ -86,3 +86,26 @@ nav ul li a {
     left: 100%;
   }
 } */
+
+@media (max-width: 600px) {
+  nav ul li a {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding-left: 0;
+    width: auto;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding-left: 0;
+    width: auto;
+    margin: 10px;
+  }
+}
+
