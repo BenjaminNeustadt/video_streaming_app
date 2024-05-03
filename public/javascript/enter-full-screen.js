@@ -2,26 +2,39 @@ let overlayTimeout;
 
 
 document.addEventListener('DOMContentLoaded', function () {
+
 document.querySelectorAll('.fullscreen-button').forEach(button => {
-  button.addEventListener('click', () => {
-    const videoAsset = findParentByClass(button, 'video_asset');
-    if (videoAsset) {
-      console.log("Parent element with class 'video_asset' found");
-      const muxplayer = videoAsset.querySelector('.video-stream mux-player');
-      const overlay = videoAsset.querySelector('.full-screen-overlay');
-      
-      AddFullScreen(muxplayer);
-      showOverlay(overlay);
-      addMouseActivityListener(overlay);
-    }
+
+    button.addEventListener('click', () => {
+      const videoAsset = findParentByClass(button, 'video_asset');
+      if (videoAsset) {
+        console.log("Parent element with class 'video_asset' found");
+        const muxplayer = videoAsset.querySelector('.video-stream mux-player');
+        const overlay = videoAsset.querySelector('.full-screen-overlay');
+        const formspree =document.getElementById("formbutton-container");
+        
+        AddFullScreen(muxplayer);
+        showOverlay(overlay);
+        addMouseActivityListener(overlay);
+
+
+        console.log(document.getElementById("formbutton-container")); 
+        console.log("found it...")
+        console.log("there ya go")
+        console.log("working")
+        console.log("yolo migo")
+
+        formspree.setAttribute("hidden", true);
+
+      }
+    });
   });
 });
-});
+
 
 function AddFullScreen(element) {
   console.log('AddFullScreen function called');
   element.classList.add('video-fullscreen');
-  
 
   // Get the mux-player element
 const muxPlayer = document.querySelector("body > main > div > div:nth-child(2) > div.video-stream > mux-player");
@@ -55,18 +68,21 @@ if (muxPlayer) {
             }
         }
     }
-}
-
+  }
   console.log("One video entered full screen");
 }
 
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 // Event listener for the back button
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
 document.querySelectorAll('.full-screen-overlay button#back-button').forEach(button => {
   button.addEventListener('click', () => {
     const videoAsset = findParentByClass(button, 'video_asset');
     if (videoAsset) {
       const muxplayer = videoAsset.querySelector('.video-stream mux-player');
       const overlay = videoAsset.querySelector('.full-screen-overlay');
+      const formspree =document.getElementById("formbutton-container");
       
       if (!muxplayer.paused) {
         muxplayer.pause();
@@ -88,11 +104,16 @@ document.querySelectorAll('.full-screen-overlay button#back-button').forEach(but
       
       // Hide overlay
       hideOverlay(overlay);
+      formspree.removeAttribute("hidden", false);
       
       console.log("Attempted to exit full screen");
     }
   });
 });
+
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+// Oberlay stuff
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
 function showOverlay(overlay) {
   overlay.style.display = 'block';
@@ -103,6 +124,10 @@ function hideOverlay(overlay) {
   overlay.style.display = 'none';
   overlay.style.opacity = '0';
 }
+
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+// Mouse movement
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
 function addMouseActivityListener(overlay) {
   document.addEventListener('mousemove', () => {
@@ -126,6 +151,10 @@ function findParentByClass(element, className) {
   }
   return null;
 }
+
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+// Logging
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
 document.querySelectorAll('.fullscreen-button').forEach(button => {
   button.addEventListener('click', () => {
