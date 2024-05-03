@@ -35,31 +35,31 @@ class Application < Sinatra::Base
   include UserHelpers
 
   before do
-    session[:start_time] ||= Time.now
-    # @ip_address = settings.development_ip_address || settings.production_ip_address 
-    @user_ip             = request.ip
-    # @ip_address = request.ip
-    @ip_address          = "82.33.149.50"
-    @api_key             = ENV['VPNAPI_ACCESS_KEY']
-    @admin_password      = ENV['ADMIN_PASSWORD']
-    url_format           = ENV['API_FOR_GETTING_DATA']
-    @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
-    response             = HTTParty.get(@url)
-    @ip_data             = JSON.parse(response.body)
+    # session[:start_time] ||= Time.now
+    # # @ip_address = settings.development_ip_address || settings.production_ip_address 
+    # @user_ip             = request.ip
+    # # @ip_address = request.ip
+    # @ip_address          = "82.33.149.50"
+    # @api_key             = ENV['VPNAPI_ACCESS_KEY']
+    # @admin_password      = ENV['ADMIN_PASSWORD']
+    # url_format           = ENV['API_FOR_GETTING_DATA']
+    # @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
+    # response             = HTTParty.get(@url)
+    # @ip_data             = JSON.parse(response.body)
 
-    @ip_present_security = @ip_data["security"]
-    @client_proxy_status = @ip_data["security"]["proxy"]
-    @ip_geolocation      = @ip_data["location"]
+    # @ip_present_security = @ip_data["security"]
+    # @client_proxy_status = @ip_data["security"]["proxy"]
+    # @ip_geolocation      = @ip_data["location"]
 
-    @client_isp          = @ip_data['network']["autonomous_system_organization"]
+    # @client_isp          = @ip_data['network']["autonomous_system_organization"]
 
-    @client_city         = @ip_data["location"]["city"]
-    @client_country      = @ip_data["location"]["country"]
-    @client_region       = @ip_data["location"]["region"]
-    @client_location     = @ip_geolocation["city"]
+    # @client_city         = @ip_data["location"]["city"]
+    # @client_country      = @ip_data["location"]["country"]
+    # @client_region       = @ip_data["location"]["region"]
+    # @client_location     = @ip_geolocation["city"]
 
-    @ip_network          = @ip_data["network"]
-    @client_network      = @ip_network["network"]
+    # @ip_network          = @ip_data["network"]
+    # @client_network      = @ip_network["network"]
 
     @language_options = LANGUAGE_CODES
   end
@@ -143,43 +143,43 @@ class Application < Sinatra::Base
   end
 
   get '/' do
-    response             = HTTParty.get(@url)
-    @ip_data             = JSON.parse(response.body)
-    @ip_address          = "82.33.149.50"
-    @api_key             = ENV['VPNAPI_ACCESS_KEY']
+    # response             = HTTParty.get(@url)
+    # @ip_data             = JSON.parse(response.body)
+    # @ip_address          = "82.33.149.50"
+    # @api_key             = ENV['VPNAPI_ACCESS_KEY']
 
-    @admin_password      = ENV['ADMIN_PASSWORD']
-    url_format           = ENV['API_FOR_GETTING_DATA']
-    @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
+    # @admin_password      = ENV['ADMIN_PASSWORD']
+    # url_format           = ENV['API_FOR_GETTING_DATA']
+    # @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
 
-    response             = HTTParty.get(@url)
-    @ip_data             = JSON.parse(response.body)
+    # response             = HTTParty.get(@url)
+    # @ip_data             = JSON.parse(response.body)
 
-    @ip_present_security = @ip_data["security"]
-    @client_proxy_status = @ip_data["security"]["proxy"]
-    @ip_geolocation      = @ip_data["location"]
+    # @ip_present_security = @ip_data["security"]
+    # @client_proxy_status = @ip_data["security"]["proxy"]
+    # @ip_geolocation      = @ip_data["location"]
 
-    @client_isp          = @ip_data['network']["autonomous_system_organization"]
-    @client_city         = @ip_data["location"]["city"]
-    @client_country      = @ip_data["location"]["country"]
-    @client_region       = @ip_data["location"]["region"]
-    @client_location     = @ip_geolocation["city"]
-    @ip_network          = @ip_data["network"]
-    @client_network      = @ip_network["network"]
+    # @client_isp          = @ip_data['network']["autonomous_system_organization"]
+    # @client_city         = @ip_data["location"]["city"]
+    # @client_country      = @ip_data["location"]["country"]
+    # @client_region       = @ip_data["location"]["region"]
+    # @client_location     = @ip_geolocation["city"]
+    # @ip_network          = @ip_data["network"]
+    # @client_network      = @ip_network["network"]
 
     @sesh = session[:session_id]
 
-    @current_user = User.create(
-      ip_address: @ip_address,
-      ip_city_location: @client_city,
-      ip_country_location: @client_country,
-      ip_region_location: @client_region,
-      ip_vpn_status: @client_vpn_presence,
-      ip_proxy_status: @client_proxy_status,
-      session_id: @sesh,
-      isp: @client_isp,
-      time_on_site: ''
-    )
+    # @current_user = User.create(
+    #   ip_address: @ip_address,
+    #   ip_city_location: @client_city,
+    #   ip_country_location: @client_country,
+    #   ip_region_location: @client_region,
+    #   ip_vpn_status: @client_vpn_presence,
+    #   ip_proxy_status: @client_proxy_status,
+    #   session_id: @sesh,
+    #   isp: @client_isp,
+    #   time_on_site: ''
+    # )
 
     # time_on_site = Time.now - session[:start_time]
     session[:start_time] = Time.now
