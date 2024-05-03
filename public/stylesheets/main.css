@@ -107,23 +107,19 @@ footer {
 .video_asset {
   position: relative;
   margin: 10px;
-  width: 600px; /* Set a fixed width for each video asset */
-  max-width: calc(100% - 20px); /* Set a maximum width with some margin */
-  height: auto; /* Allow the height to adjust based on aspect ratio */
+  width: 600px;
+  max-width: calc(100% - 20px);
+  height: auto;
 }
 
 .video_asset:hover .asset_info {
   display: block;
-  z-index: 2; /* Bring the asset-info to the foreground */
-  transform: translateY(100%); /* Move it down by its own height */
-  transform-origin: bottom; /* Anchor it to the bottom of the video */
+  z-index: 2;
+  transform: translateY(100%);
+  transform-origin: bottom;
   width: 100%;
   height: auto;
 }
-
-/* .video_asset:hover {
-  transform: scale(1.05); /* Expand element on hover */
-  /* z-index: 3; */
 
 .video-stream {
   width: 100%;
@@ -142,7 +138,6 @@ footer {
   padding: 0px;
   box-sizing: border-box;
   transition-delay: 0.3s;
-  /* transition: transform 0.3s ease; */
   transform: translateY(100%);
   margin-top: 20px;
 }
