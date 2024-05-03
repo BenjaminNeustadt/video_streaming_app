@@ -9,6 +9,7 @@
 @import url('branding.css');
 @import url('user_metrics.css');
 @import url('login_page.css');
+@import url('style-elements/overlay-text.css');
 
 :root {
   --base-colour: #eaeaea;
