@@ -4,8 +4,7 @@
   <div class="asset_director"></div> %>
 
   <div class="asset_genre">
-    <b>Genre:</b>
-    <%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%>
+    <i><%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%></i>
   </div>
 
   <div class="asset_description">
