@@ -3,7 +3,7 @@ let overlayTimeout;
 
 document.addEventListener('DOMContentLoaded', function () {
 
-document.querySelectorAll('.fullscreen-button').forEach(button => {
+  document.querySelectorAll('.fullscreen-button').forEach(button => {
 
     button.addEventListener('click', () => {
       const videoAsset = findParentByClass(button, 'video_asset');
@@ -17,15 +17,7 @@ document.querySelectorAll('.fullscreen-button').forEach(button => {
         showOverlay(overlay);
         addMouseActivityListener(overlay);
 
-
-        console.log(document.getElementById("formbutton-container")); 
-        console.log("found it...")
-        console.log("there ya go")
-        console.log("working")
-        console.log("yolo migo")
-
         formspree.setAttribute("hidden", true);
-
       }
     });
   });
@@ -36,39 +28,22 @@ function AddFullScreen(element) {
   console.log('AddFullScreen function called');
   element.classList.add('video-fullscreen');
 
-  // Get the mux-player element
-const muxPlayer = document.querySelector("body > main > div > div:nth-child(2) > div.video-stream > mux-player");
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+// Adding play button when full screen
+// =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
-// Check if the mux-player element is found
-if (muxPlayer) {
-    // Get the media-theme element within the mux-player shadow DOM
-    const mediaTheme = muxPlayer.shadowRoot.querySelector("media-theme");
-
-    // Check if the media-theme element is found
-    if (mediaTheme) {
-        // Get the media-controller element within the media-theme shadow DOM
-        const mediaController = mediaTheme.shadowRoot.querySelector("media-controller");
-
-        // Check if the media-controller element is found
-        if (mediaController) {
-            // Get the media-play-button element within the media-controller shadow DOM
-            const playButton = mediaController.querySelector("div > media-play-button");
-
-            // Check if the media-play-button element is found
-            if (playButton) {
-                // Generate the CSS rule
-                const cssRule = `mux-player::part(center play button) { display: block; }`;
-
-                // Create a <style> element
-                const styleElement = document.createElement('style');
-                styleElement.innerHTML = cssRule;
-
-                // Append the <style> element to the document's <head>
-                document.head.appendChild(styleElement);
-            }
-        }
-    }
+  const muxPlayer = document.querySelector("body > main > div > div:nth-child(2) > div.video-stream > mux-player");
+  const mediaTheme = muxPlayer.shadowRoot.querySelector("media-theme");
+  const mediaController = mediaTheme.shadowRoot.querySelector("media-controller");
+  const playButton = mediaController.querySelector("div > media-play-button");
+              // Check if the media-play-button element is found
+  if (playButton) {
+    const cssRule = `mux-player::part(center play button) { display: block; }`;
+    const styleElement = document.createElement('style');
+    styleElement.innerHTML = cssRule;
+    document.head.appendChild(styleElement);
   }
+
   console.log("One video entered full screen");
 }
 
