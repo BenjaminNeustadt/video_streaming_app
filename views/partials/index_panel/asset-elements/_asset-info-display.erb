@@ -1,23 +1,62 @@
 
 <div class="asset-info-display">
-  <div class="asset_description"><b>Description:</b> <%= asset.description%> </div>
+  <%# <div class="asset_title"></div>
+  <div class="asset_director"></div> %>
+
+  <div class="asset_genre">
+    <b>Genre:</b>
+    <%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%>
+  </div>
+
+  <div class="asset_description">
+    <%= asset.description%>
+  </div>
+
   <div class="asset_year"><b>Year:</b> <%= asset.year%> </div>
-  <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
-  <div class="asset_genre"> <b>Genre:</b> <%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%> </div>
 
-  <div class="asset_duration">
-    <img id="time-icon" src="/assets/time-icon.png" alt="duration" width="15" height="15">
-  <%= asset.duration %>
-  </div>
+  <%if admin_logged_in?%>
+    <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
+  <%end%>
 
-  <div class="asset_country"> <b>Country:</b> <%= asset.country %> </div>
 
-  <div class="asset_subtitle_names">
-    <img id="time-icon" src="/assets/captions-icon-1.png" alt="subs" width="15" height="15">
-    <%= asset.subtitle_names %>
-  </div>
+  <div class="asset_country"> <b>Country:</b> France<%= asset.country %> </div>
 
-  <div class="asset_subtitle_language_codes"> <b>Subtitle language codes:</b> <%= asset.subtitle_language_codes %> </div>
+  <div class="asset-icon-section">
+  
+    <div class="asset_duration">
+      <img id="time-icon" src="/assets/time-icon.png" alt="duration" width="15" height="15">
+      23
+      <%= asset.duration %>
+    </div>
+
+    <div class="asset_language">
+      <img src="/assets/speaker-icon.png" alt="language" width="15" height="15">
+      French
+      <%= asset.duration %>
+    </div>
+
+
+    <div class="asset_subtitle_names">
+      <img src="/assets/captions-icon-1.png" alt="subs" width="15" height="15">
+      <%= asset.subtitle_names %>
+    </div>
+
+  </div> 
+
 </div> 
 
 <div class="divider"></div>
+
+<style>
+
+  .asset-icon-section {
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Align items vertically */
+  }
+
+  .asset-icon-section > div {
+    margin-right: 10px; /* Add some space between icon and text */
+    white-space: nowrap; /* Prevent text wrapping */
+  }
+
+</style>
