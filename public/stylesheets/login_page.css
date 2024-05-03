@@ -32,6 +32,18 @@ body {
   nav ul li a .star-icon {
     width: 10px; 
     height: 10px; 
+    /* margin: 0;
+    padding: 0; */
+  }
+}
+
+#star-icon {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  #star-icon {
     margin: 0;
     padding: 0;
   }
