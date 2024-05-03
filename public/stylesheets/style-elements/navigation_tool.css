@@ -109,3 +109,15 @@ nav ul li a {
   }
 }
 
+@media (max-width: 600px) {
+  .brand-title {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand-title h1 {
+    margin-left: 10px;
+  }
+}
+
