@@ -29,6 +29,8 @@
 
         <div class="asset_info">
           <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">WATCH</button>
+          <div class="asset_year"><%= asset.year%> </div>
+
           <div class="divider"></div>
           <%= partial :"partials/index_panel/asset-elements/asset-info-display", locals: { asset: asset }%>
 
