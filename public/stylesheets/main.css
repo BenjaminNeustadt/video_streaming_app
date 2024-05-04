@@ -170,6 +170,7 @@ footer {
 
   .asset_description {
     margin-top: 0px !important;
+    line-height: 1.2em;
   }
 
   .asset_year {
@@ -193,7 +194,7 @@ footer {
     margin-top: 1px;
     font-size: 12px;
     box-shadow: -2px 4px 2px black;
-    background-color: rgb(58, 58, 167);
+    background-color: var(--button-colour);
     /* background-color: var(--base-colour); */
     color: var(--button-colour);
     color: var(--base-colour);
