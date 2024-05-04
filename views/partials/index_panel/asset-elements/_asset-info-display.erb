@@ -11,24 +11,24 @@
     <%= asset.description%>
   </div>
 
-  <div class="asset_year"><b>Year:</b> <%= asset.year%> </div>
 
   <%if admin_logged_in?%>
     <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
   <%end%>
 
+  <div class="divider"></div>
+
   <div class="asset-icon-section">
   
     <div class="asset_duration">
-      <img id="time-icon" src="/assets/time-icon.png" alt="duration" width="15" height="15">
-      23
+      <img id="time-icon" src="/assets/time-icon.png" alt="duration">
       <%= asset.duration %>
     </div>
 
     <div class="asset_language">
       <img src="/assets/speaker-icon.png" alt="language" width="15" height="15">
       French
-      <%= asset.duration %>
+      <%= asset.country %>
     </div>
 
 
@@ -41,18 +41,4 @@
 
 </div> 
 
-<div class="divider"></div>
-
-<style>
-
-  .asset-icon-section {
-    display: flex;
-    align-items: center;
-  }
-
-  .asset-icon-section > div {
-    margin-right: 10px;
-    margin-bottom: 5px;
-  }
-
-</style>
+<%# <div class="divider"></div> %>
