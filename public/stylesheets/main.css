@@ -131,6 +131,10 @@ footer {
 @media only screen and (max-width: 768px) {
 
   .asset_info {
+    display: none;
+  }
+
+  .video_asset:hover .asset_info {
     background-color: var(--base-colour);
     position: absolute;
     top: 0;
@@ -144,6 +148,7 @@ footer {
     /* height: 100%; */
     overflow: auto;
     bottom: 0;
+    display: block;
   }
 
   .asset_duration img,
