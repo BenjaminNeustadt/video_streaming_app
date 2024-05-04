@@ -70,33 +70,137 @@ footer {
   display: block;
 }
 
+/* ************************************ */
+/* ASSET INFO                           */
+/* ************************************ */
+
 .asset_info {
-  display: none;
+  display: block;
   position: absolute;
   margin: 0;
   background-color: white;
   border: 2px solid black;
+
   font-weight: 400;
-  word-wrap: break-word; /* Wrap long words */
-  overflow-wrap: break-word; /* Break words at any character */
-  transition: display 0.3s ease, transform 0.2s ease, z-index 0.2s ease;
+  /* word-wrap: break-word; */
+  /* overflow-wrap: break-word; */
+  /* transition: display 0.3s ease, transform 0.2s ease, z-index 0.2s ease; */
+  /* transform: translateY(100%); */
+
   bottom: 0;
-  left: 0;
+  /* left: 0; */
+  /* height: 100%; */
+  height: 360px;
   width: 100%;
-  height: 100%;
-  /* z-index: 0; */
-  width: 100%;
-  padding: 10px;
+
+  padding: 10px; 
+  padding: 0px; 
+  margin-top: 20px; 
   box-sizing: border-box;
-  color: black !important;
+  color: black !important; 
+  z-index: 999;
 }
 
-
-.asset_info.show {
+.video_asset:hover .asset_info {
   display: block;
-  z-index: 1; /* Bring the asset-info to the foreground */
-  transform: scale(1.05); /* Expand it slightly */
+  z-index: 2;
+  /* transform: translateY(100%); */
+  /* transform-origin: bottom; */
+  width: 100%;
+  height: 360px;
+  overflow-y: auto;
 }
+
+.asset_duration img,
+.asset_language img,
+.asset_subtitle_names img {
+  width: 10px;
+  height: 10px;
+}
+
+.asset-icon-section {
+  display: flex;
+  align-items: center;
+}
+
+.asset-icon-section > div {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .asset_info {
+    background-color: var(--base-colour);
+    position: absolute;
+    top: 0;
+    right:0;
+    width: 50%;
+    font-size: 8px;
+    margin-top: 0px !important;
+    height: calc(100% - 5px);
+    border: 1px solid black;
+    z-index: 2;
+    /* height: 100%; */
+    overflow: auto;
+    bottom: 0;
+  }
+
+  .asset_duration img,
+  .asset_language img,
+  .asset_subtitle_names img {
+    width: 10px;
+    height: 10px;
+  }
+
+  .asset-icon-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .asset-icon-section > div {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .asset_description {
+    margin-top: 0px !important;
+  }
+
+  .asset_year {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0 10px;
+    right: 3px;
+    top: 3px;
+    white-space: nowrap;
+  }
+  
+
+  .divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .fullscreen-button {
+    padding: 3px 5px;
+    font-size: 12px;
+    box-shadow: -2px 4px 2px black;
+    background-color: var(--base-colour);
+    color: var(--button-colour);
+    cursor: pointer;
+    font-family: var(--font-family);
+    margin-bottom: 0px;
+    top: 0px;
+  }
+}
+
+/* .asset_info.show {
+  display: block;
+  z-index: 1;
+  transform: scale(1.05);
+} */
 
 .video-container {
   display: flex;
@@ -113,15 +217,6 @@ footer {
   height: auto;
 }
 
-.video_asset:hover .asset_info {
-  display: block;
-  z-index: 2;
-  transform: translateY(100%);
-  transform-origin: bottom;
-  width: 100%;
-  height: 360px;
-  overflow-y: auto;
-}
 
 .video-stream {
   width: 100%;
@@ -129,22 +224,7 @@ footer {
   padding-bottom: 0;
 }
 
-.video_asset .asset_info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  background-color: white;
-  border: 2px solid black;
-  padding: 0px;
-  box-sizing: border-box;
-  transition-delay: 0.3s;
-  transform: translateY(100%);
-  margin-top: 20px;
-}
 
 .overlay-text-pre.hide-overlay {
   display: none;
 }
-
