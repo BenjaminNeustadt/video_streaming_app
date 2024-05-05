@@ -211,7 +211,7 @@ class Application < Sinatra::Base
 
     @assets           = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
-    if session[:logged_in]
+    if session[:logged_in] | session[:admin]
       erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
     else
       redirect '/login'
