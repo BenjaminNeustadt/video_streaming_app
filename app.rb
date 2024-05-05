@@ -56,6 +56,8 @@ class Application < Sinatra::Base
     @client_city         = @ip_data["location"]["city"]
     @client_country      = @ip_data["location"]["country"]
     @client_region       = @ip_data["location"]["region"]
+    @client_latitude     = @ip_data["location"]["latitude"]
+    @client_longitude    = @ip_data["location"]["longitude"]
     @client_location     = @ip_geolocation["city"]
 
     @ip_network          = @ip_data["network"]
@@ -203,6 +205,8 @@ class Application < Sinatra::Base
     @client_location     = @ip_geolocation["city"]
     @ip_network          = @ip_data["network"]
     @client_network      = @ip_network["network"]
+    @client_latitude     = @ip_data["location"]["latitude"]
+    @client_longitude    = @ip_data["location"]["longitude"]
 
     @sesh = session[:session_id]
 
@@ -215,6 +219,8 @@ class Application < Sinatra::Base
       ip_proxy_status: @client_proxy_status,
       session_id: @sesh,
       isp: @client_isp,
+      latitude: @client_latitude,
+      longitude: @client_longitude,
       time_on_site: ''
     )
 
