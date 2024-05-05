@@ -1,16 +1,3 @@
-// const darkModeToggle = document.getElementById('dark-mode-toggle');
-// darkModeToggle.addEventListener('click', function() {
-//     const darkModeEnabled = document.body.classList.toggle('dark-mode');
-//     // document.body.classList.toggle('dark-mode');
-//     document.querySelector('nav').classList.toggle('dark-mode-nav'); // Add or remove 'dark-mode-nav' class to <nav>
-//     document.querySelector('h1').classList.toggle('dark-mode-h1'); // Add or remove 'dark-mode-nav' class to <nav>
-
-//     darkModeToggle.textContent = darkModeEnabled ? 'Light Mode' : 'Dark Mode';
-
-//     // const darkModeEnabled = document.body.classList.contains('dark-mode');
-//     document.cookie = `darkModeEnabled=${darkModeEnabled}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-// });
-
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 
 // Function to check if it's a mobile screen
@@ -34,6 +21,10 @@ function updateButtonContent() {
 // Initial update when the page loads
 updateButtonContent();
 
+function logCookie() {
+    console.log(document.cookie);
+}
+
 // Event listener for toggling dark mode
 darkModeToggle.addEventListener('click', function() {
     const darkModeEnabled = document.body.classList.toggle('dark-mode');
@@ -44,7 +35,9 @@ darkModeToggle.addEventListener('click', function() {
     updateButtonContent();
 
     // Store dark mode status in a cookie
-    document.cookie = `darkModeEnabled=${darkModeEnabled}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    // document.cookie = `darkModeEnabled=${darkModeEnabled}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    document.cookie = `darkModeEnabled=${darkModeEnabled}; SameSite=Strict`;
+    logCookie();
 });
 
 // Event listener for window resize to update button content
