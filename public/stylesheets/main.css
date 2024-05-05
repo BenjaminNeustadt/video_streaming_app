@@ -204,12 +204,17 @@ footer {
     box-shadow: -2px 4px 2px black;
     background-color: var(--button-colour);
     /* background-color: var(--base-colour); */
-    color: var(--button-colour);
     color: var(--base-colour);
     cursor: pointer;
     font-family: var(--font-family);
     margin-bottom: 0px;
     top: 0px;
+  }
+
+  .fullscreen-button:hover {
+    transform: scale(1.1);
+    background-color: darkblue;
+    cursor: pointer;
   }
 }
 
