@@ -164,7 +164,7 @@ class Application < Sinatra::Base
     password = params[:password]
     if password == ENV.fetch('ADMIN_PASSWORD')
       session[:admin] = true
-      redirect '/'
+      redirect '/admin'
     else
       flash[:message] = "wrong password..."
       redirect '/admin_login'
