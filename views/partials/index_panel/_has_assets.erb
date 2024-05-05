@@ -22,10 +22,11 @@
       <div class="overlay-text-pre">
         <div class="video-title"><%= asset.title %></div>
         <div class="video-director"><%= asset.directors %></div>
-        <%# #TODO: fix star icon %>
+        <% if asset.top_picks then%>
         <div class="top-film">
           <img class="star-icon-overlay" src="/assets/star-solid.svg" alt="Top film">
         </div>
+        <%end%>
       </div>
 
       <div class="asset_details_container">
