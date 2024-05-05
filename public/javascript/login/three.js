@@ -117,6 +117,7 @@ document.querySelector('form').addEventListener('submit', function(event) {
           window.location.href = '/'; // Redirect to the homepage on successful login
         }, 2000); // Wait for 2 seconds before redirecting
       } else {
+        location.reload();
         // Display error message to the user
         // For example, show the error message in a div with id "flash-error"
         document.getElementById('flash-error').innerText = data.error;
