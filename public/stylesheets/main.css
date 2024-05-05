@@ -201,7 +201,8 @@ footer {
     margin-top: 8px;
     margin-bottom: 8px !important;
     font-size: 12px;
-    box-shadow: -2px 4px 2px black;
+    /* box-shadow: -2px 4px 1px black; */
+    box-shadow: -2px 2px 1px gray;
     background-color: var(--button-colour);
     /* background-color: var(--base-colour); */
     color: var(--base-colour);
