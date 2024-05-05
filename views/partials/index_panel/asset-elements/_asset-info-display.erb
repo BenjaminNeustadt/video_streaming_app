@@ -1,46 +1,104 @@
-<div class="asset-icon-section">
+<%# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ %>
+<%# DESKTOP VIEW +=+=+=+=+=+=+=+=+ %>
+<%# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ %>
 
-  <div class="asset_duration">
-    <img id="time-icon" src="/assets/time-icon.png" alt="duration">
-    <%= asset.duration %>
-  </div>
+<div id="desktopView">
 
-  <div class="asset_language">
-    <img src="/assets/speaker-icon.png" alt="language" width="15" height="15">
-    French
-    <%= asset.country %>
-  </div>
+  <div class="divider"></div>
 
+  <div class="asset-info-display">
+    <%# <div class="asset_title"></div>
+    <div class="asset_director"></div> %>
 
-  <div class="asset_subtitle_names">
-    <img src="/assets/captions-icon-1.png" alt="subs" width="15" height="15">
-    <%= asset.subtitle_names %>
-  </div>
+    <div class="asset_genre">
+      <i><%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%></i>
+    </div>
 
-</div> 
-
-<div class="divider"></div>
-
-<div class="asset-info-display">
-  <%# <div class="asset_title"></div>
-  <div class="asset_director"></div> %>
-
-  <div class="asset_genre">
-    <i><%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%></i>
-  </div>
-
-  <div class="asset_description">
-    <%= asset.description%>
-  </div>
+    <div class="asset_description">
+      <%= asset.description%>
+    </div>
 
 
-  <%if admin_logged_in?%>
-    <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
-  <%end%>
+    <%if admin_logged_in?%>
+      <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
+    <%end%>
 
-</div> 
+  </div> 
 
-<div class="divider"></div>
+  <div class="divider"></div>
+
+  <div class="asset-icon-section">
+
+    <div class="asset_duration">
+      <img id="time-icon" src="/assets/time-icon.png" alt="duration">
+      <%= asset.duration %>
+    </div>
+
+    <div class="asset_language">
+      <img src="/assets/speaker-icon.png" alt="language" width="15" height="15">
+      French
+      <%= asset.country %>
+    </div>
 
 
-<%# <div class="divider"></div> %>
+    <div class="asset_subtitle_names">
+      <img src="/assets/captions-icon-1.png" alt="subs" width="15" height="15">
+      <%= asset.subtitle_names %>
+    </div>
+
+  </div> 
+
+</div>
+
+<%# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ %>
+<%# MOBILE VIEW  +=+=+=+=+=+=+=+=+ %>
+<%# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ %>
+
+<div id="mobileView">
+
+  <div class="asset-icon-section">
+
+    <div class="asset_duration">
+      <img id="time-icon" src="/assets/time-icon.png" alt="duration">
+      <%= asset.duration %>
+    </div>
+
+    <div class="asset_language">
+      <img src="/assets/speaker-icon.png" alt="language" width="15" height="15">
+      French
+      <%= asset.country %>
+    </div>
+
+
+    <div class="asset_subtitle_names">
+      <img src="/assets/captions-icon-1.png" alt="subs" width="15" height="15">
+      <%= asset.subtitle_names %>
+    </div>
+
+  </div> 
+
+  <div class="divider"></div>
+
+  <div class="asset-info-display">
+    <%# <div class="asset_title"></div>
+    <div class="asset_director"></div> %>
+
+    <div class="asset_genre">
+      <i><%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%></i>
+    </div>
+
+    <div class="asset_description">
+      <%= asset.description%>
+    </div>
+
+
+    <%if admin_logged_in?%>
+      <div class="asset_notes"> <b>Notes:</b> <%= asset.notes%> </div>
+    <%end%>
+
+  </div> 
+
+  <div class="divider"></div>
+
+
+</div>
