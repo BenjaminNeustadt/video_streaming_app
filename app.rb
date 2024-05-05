@@ -219,34 +219,54 @@ class Application < Sinatra::Base
   end
 
   get '/selection' do
-    @assets = Asset.where(top_picks: true).to_a
-    # @language_options = LANGUAGE_CODES
-    @filter = "Top Picks"
-    erb :filtered_assets
+    if session[:logged_in] | session[:admin]
+      @assets = Asset.where(top_picks: true).to_a
+      # @language_options = LANGUAGE_CODES
+      @filter = "Top Picks"
+      erb :filtered_assets
+    else
+      redirect '/login'
+    end
   end
 
   get '/genre/:genre' do
-    genre             = params[:genre]
-    @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
-    # @language_options = LANGUAGE_CODES
-    @filter           = genre
-    erb :filtered_assets
+    if session[:logged_in] | session[:admin]
+      genre             = params[:genre]
+      @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
+      # @language_options = LANGUAGE_CODES
+      @filter           = genre
+      erb :filtered_assets
+    else
+      redirect '/login'
+    end
   end
 
   get '/director/:director' do
-    director          = params[:director]
-    @assets           = Asset.where('directors LIKE ?', "%#{director}%")
-    # @language_options = LANGUAGE_CODES
-    @filter           = director
-    erb :filtered_assets
+    if session[:logged_in] | session[:admin]
+      director          = params[:director]
+      @assets           = Asset.where('directors LIKE ?', "%#{director}%")
+      # @language_options = LANGUAGE_CODES
+      @filter           = director
+      erb :filtered_assets
+    else
+      redirect '/login'
+    end
   end
 
+  # def valid_visit
+  #   session[:logged_in] | session[:admin]
+  # end
+
   get '/country/:country' do
-    country           = params[:country]
-    @assets           = Asset.where('country LIKE ?', "%#{country}%")
-    # @language_options = LANGUAGE_CODES
-    @filter           = country
-    erb :filtered_assets
+    if session[:logged_in] | session[:admin]
+      country           = params[:country]
+      @assets           = Asset.where('country LIKE ?', "%#{country}%")
+      # @language_options = LANGUAGE_CODES
+      @filter           = country
+      erb :filtered_assets
+    else
+      redirect '/login'
+    end
   end
 
   get '/admin' do
