@@ -2,6 +2,7 @@ h1 {
   color: black;
   width: 190px;
   margin: 20px;
+  pointer-events: ;
 }
 
 .dark-mode h1 {
