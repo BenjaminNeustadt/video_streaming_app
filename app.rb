@@ -106,6 +106,8 @@ class Application < Sinatra::Base
     set :bucket, settings.s3.bucket('folio-test-bucket')
   end
 
+  SESSION_EXPIRATION_TIME = 30 * 60
+
   MuxRuby.configure do |config|
     config.username = ENV.fetch('MUX_TOKEN_ID')
     config.password = ENV.fetch('MUX_TOKEN_SECRET')
@@ -114,9 +116,30 @@ class Application < Sinatra::Base
   assets_api = MuxRuby::AssetsApi.new
   assets     = assets_api.list_assets
 
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+# *******    USER LOGIN          *********
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
   get '/login' do
     erb :login, layout: false
   end
+
+  post '/login' do
+    request_body = JSON.parse(request.body.read)
+    password = request_body['password']
+
+    if password == ENV['USER_PASSWORD']
+      session[:logged_in] = true
+      { success: true }.to_json
+    else
+      flash[:error] = "Incorrect password check spelling or contact admin..."
+      { success: false }.to_json
+    end
+  end
+
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+# *******    ADMIN LOGIN         *********
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
   get '/admin_login' do
     erb :admin_login, layout: false
@@ -188,7 +211,11 @@ class Application < Sinatra::Base
 
     @assets           = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
-    erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
+    if session[:logged_in]
+      erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
+    else
+      redirect '/login'
+    end
   end
 
   get '/selection' do

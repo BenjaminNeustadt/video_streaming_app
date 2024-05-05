@@ -7,11 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
+  <body>
+
+<div class="flash-container">
+<% flash.keys.each do |type| %>
+  <div data-alert class="flash <%= type %> alert-box radius">
+    <%= flash[type] %>
+    <img class="flash-icon" src="assets/lock-solid.svg" alt="Lock Icon">
+  </div>
+<% end %>
+</div>
+
 <div class="form-container">
+
   <form action="/login" method="post">
     <input type="password" class="input-field"  id="password" name="password" placeholder="enter password">
     <button type="submit" class="submit-button">enter</button>
   </form>
+
 </div>
 
 <div id="three-container"></div>
@@ -19,3 +32,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
 <script src="/javascript/login/three.js"></script>
+
+
+</body>
+</html>

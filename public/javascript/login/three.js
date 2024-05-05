@@ -94,13 +94,38 @@ function animateToSingleCube() {
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission
 
+    console.log("submit button triggered")
     var password = document.getElementById('password').value;
+    console.log(password)
 
-    // Check if the password is correct
-    if (password === 'hello') {
-        animateToSingleCube(); // Start animation to tighten cubes togethello
-    }
-});
+    // Send a request to the server to verify the password
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Start animation to tighten cubes together
+        animateToSingleCube();
+
+        // Wait for the animation to finish before redirecting
+        setTimeout(() => {
+          window.location.href = '/'; // Redirect to the homepage on successful login
+        }, 2000); // Wait for 2 seconds before redirecting
+      } else {
+        // Display error message to the user
+        // For example, show the error message in a div with id "flash-error"
+        document.getElementById('flash-error').innerText = data.error;
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
 animate();
 
 // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
