@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_27_222921) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_05_222725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_27_222921) do
     t.string "session_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean "has_validated", default: false
   end
 
 end
