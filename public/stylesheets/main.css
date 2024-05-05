@@ -80,7 +80,7 @@ footer {
   display: block;
   position: absolute;
   margin: 0;
-  background-color: white;
+  background-color: var(--base-colour);
   border: 2px solid black;
 
   font-weight: 400;
