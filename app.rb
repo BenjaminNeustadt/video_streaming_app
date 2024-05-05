@@ -132,8 +132,7 @@ class Application < Sinatra::Base
       session[:logged_in] = true
       { success: true }.to_json
     else
-      flash[:error] = "Incorrect password check spelling or contact admin..."
-      # { success: false }.to_json
+      flash[:error] = "Wrong password: check spelling or contact admin..."
       { success: false }.to_json
     end
   end
