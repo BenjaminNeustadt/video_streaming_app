@@ -151,6 +151,7 @@ footer {
     margin-top: 0px !important;
     height: calc(100% - 5px);
     border: 1px solid black;
+    transform: unset;
     z-index: 2;
     /* height: 100%; */
     overflow: auto;

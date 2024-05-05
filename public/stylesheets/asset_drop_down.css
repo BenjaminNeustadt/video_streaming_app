@@ -43,5 +43,6 @@
   align-items: center;
   margin-top: 10px;
   padding-top: 10px;
-  background-color: lightgrey
+  background-color: lightgrey;
+  padding-left: 10px;
 }
