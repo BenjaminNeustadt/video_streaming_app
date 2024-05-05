@@ -227,11 +227,26 @@ class Application < Sinatra::Base
     # time_on_site = Time.now - session[:start_time]
     session[:start_time] = Time.now
 
-    # @language_options = LANGUAGE_CODES
-
     @assets           = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
+  end
+
+  post '/log_time_on_site' do
+    @time_on_site = params['timeOnSite'].to_i
+    @inspection   = params.inspect
+    @sesh         = params["sessionID"]
+    find_user_for_that_session_id(@sesh)
+    update_current_user_time_on_site(@sesh, @time_on_site)
+
+    # Perhaps will need to update the current_user's time on site on the object itself
+    begin
+      File.open('time_on_site.log', 'a') do |file|
+        file.puts "User IP: #{@current_user.ip_address} - Time on site: #{@time_on_site} seconds - Date : #{Time.now}"
+      end
+    rescue StandardError => e
+      puts "Error creating or appending to time_on_site.log: #{e.message}"
+    end
   end
 
   get '/selection' do
@@ -246,7 +261,6 @@ class Application < Sinatra::Base
     redirect '/login' unless valid_visit
     genre             = params[:genre]
     @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
-    # @language_options = LANGUAGE_CODES
     @filter           = genre
     erb :filtered_assets
   end
@@ -255,7 +269,6 @@ class Application < Sinatra::Base
     redirect '/login' unless valid_visit
     director          = params[:director]
     @assets           = Asset.where('directors LIKE ?', "%#{director}%")
-    # @language_options = LANGUAGE_CODES
     @filter           = director
     erb :filtered_assets
   end
@@ -264,7 +277,6 @@ class Application < Sinatra::Base
     redirect '/login' unless valid_visit
     country           = params[:country]
     @assets           = Asset.where('country LIKE ?', "%#{country}%")
-    # @language_options = LANGUAGE_CODES
     @filter           = country
     erb :filtered_assets
   end
@@ -278,7 +290,6 @@ class Application < Sinatra::Base
     # p 'WE ARE IN THE ADMIN PANEL'
     @users            = User.all
     @ip_data          = @user_ip.to_s
-    # @language_options = LANGUAGE_CODES
     @country_options  = COUNTRY_OPTIONS
     @genre_options    = GENRE_OPTIONS
 
@@ -301,7 +312,6 @@ class Application < Sinatra::Base
       @unique_viewers     = data['data'].first['unique_viewers']
       @total_playing_time = data['data'].first['total_playing_time']
     else
-      # p status response.code.to_i
       body response.body
     end
 
@@ -455,23 +465,6 @@ class Application < Sinatra::Base
   def find_user_for_that_session_id(session_id)
     user = User.all
     @current_user = user.find_by(session_id: session_id)
-  end
-
-  post '/log_time_on_site' do
-    @time_on_site = params['timeOnSite'].to_i
-    @inspection   = params.inspect
-    @sesh         =  params["sessionID"]
-    find_user_for_that_session_id(@sesh)
-    update_current_user_time_on_site(@sesh, @time_on_site)
-
-    # Perhaps will need to update the current_user's time on site on the object itself
-    begin
-      File.open('time_on_site.log', 'a') do |file|
-        file.puts "User IP: #{@current_user.ip_address} - Time on site: #{@time_on_site} seconds - Date : #{Time.now}"
-      end
-    rescue StandardError => e
-      puts "Error creating or appending to time_on_site.log: #{e.message}"
-    end
   end
 
 end
