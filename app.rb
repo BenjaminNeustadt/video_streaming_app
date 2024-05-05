@@ -223,6 +223,7 @@ class Application < Sinatra::Base
   end
 
   get '/admin' do
+    redirect '/admin_login' unless admin_logged_in?
     # p 'WE ARE IN THE ADMIN PANEL'
     @users            = User.all
     @ip_data          = @user_ip.to_s
