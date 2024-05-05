@@ -19,6 +19,8 @@
       <th>City</th>
       <th>Country</th>
       <th>Region</th>
+      <th>Lat</th>
+      <th>Long</th>
       <th>VPN Status</th>
       <th>Proxy Status</th>
       <th>Time on Site</th>
@@ -36,13 +38,15 @@
         <td><%= user.ip_city_location %></td>
         <td><%= user.ip_country_location %></td>
         <td><%= user.ip_region_location %></td>
+        <td><%= user.latitude %></td>
+        <td><%= user.longitude %></td>
         <td><%= user.ip_vpn_status %></td>
         <td><%= user.ip_proxy_status %></td>
         <td><%= user.time_on_site %></td>
         <td><%= user.isp %></td>
         <td><%= user.session_id %></td>
-        <td><%= user.created_at %></td> <!-- Added created_at -->
-        <td><%= user.updated_at %></td> <!-- Added updated_at -->
+        <td><%= user.created_at %></td>
+        <td><%= user.updated_at %></td>
       </tr>
     <% end %>
   </tbody>
@@ -54,13 +58,15 @@
         <td><%= user.ip_city_location %></td>
         <td><%= user.ip_country_location %></td>
         <td><%= user.ip_region_location %></td>
+        <td><%= user.latitude %></td>
+        <td><%= user.longitude %></td>
         <td><%= user.ip_vpn_status %></td>
         <td><%= user.ip_proxy_status %></td>
         <td><%= user.time_on_site %></td>
         <td><%= user.isp %></td>
         <td><%= user.session_id %></td>
-        <td><%= user.created_at %></td> <!-- Added created_at -->
-        <td><%= user.updated_at %></td> <!-- Added updated_at -->
+        <td><%= user.created_at %></td>
+        <td><%= user.updated_at %></td>
       </tr>
     <% end %>
   </tbody>
