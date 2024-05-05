@@ -117,6 +117,19 @@ class Application < Sinatra::Base
   assets     = assets_api.list_assets
 
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+# *******    ROUTE HELPERS       *********
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+  def admin_logged_in?
+    session[:admin] == true
+  end
+
+  def valid_visit
+    session[:logged_in] | session[:admin]
+  end
+
+
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 # *******    USER LOGIN          *********
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
@@ -161,9 +174,9 @@ class Application < Sinatra::Base
     redirect '/'
   end
 
-  def admin_logged_in?
-    session[:admin] == true
-  end
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+# *******    SITE VISIT         *********
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
   get '/' do
     # response             = HTTParty.get(@url)
@@ -219,55 +232,43 @@ class Application < Sinatra::Base
   end
 
   get '/selection' do
-    if session[:logged_in] | session[:admin]
-      @assets = Asset.where(top_picks: true).to_a
-      # @language_options = LANGUAGE_CODES
-      @filter = "Top Picks"
-      erb :filtered_assets
-    else
-      redirect '/login'
-    end
+    redirect '/login' unless valid_visit
+    @assets = Asset.where(top_picks: true).to_a
+    # @language_options = LANGUAGE_CODES
+    @filter = "Top Picks"
+    erb :filtered_assets
   end
 
   get '/genre/:genre' do
-    if session[:logged_in] | session[:admin]
-      genre             = params[:genre]
-      @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
-      # @language_options = LANGUAGE_CODES
-      @filter           = genre
-      erb :filtered_assets
-    else
-      redirect '/login'
-    end
+    redirect '/login' unless valid_visit
+    genre             = params[:genre]
+    @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
+    # @language_options = LANGUAGE_CODES
+    @filter           = genre
+    erb :filtered_assets
   end
 
   get '/director/:director' do
-    if session[:logged_in] | session[:admin]
-      director          = params[:director]
-      @assets           = Asset.where('directors LIKE ?', "%#{director}%")
-      # @language_options = LANGUAGE_CODES
-      @filter           = director
-      erb :filtered_assets
-    else
-      redirect '/login'
-    end
+    redirect '/login' unless valid_visit
+    director          = params[:director]
+    @assets           = Asset.where('directors LIKE ?', "%#{director}%")
+    # @language_options = LANGUAGE_CODES
+    @filter           = director
+    erb :filtered_assets
   end
-
-  # def valid_visit
-  #   session[:logged_in] | session[:admin]
-  # end
 
   get '/country/:country' do
-    if session[:logged_in] | session[:admin]
-      country           = params[:country]
-      @assets           = Asset.where('country LIKE ?', "%#{country}%")
-      # @language_options = LANGUAGE_CODES
-      @filter           = country
-      erb :filtered_assets
-    else
-      redirect '/login'
-    end
+    redirect '/login' unless valid_visit
+    country           = params[:country]
+    @assets           = Asset.where('country LIKE ?', "%#{country}%")
+    # @language_options = LANGUAGE_CODES
+    @filter           = country
+    erb :filtered_assets
   end
+
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+####   ADMIN ROUTES                   ####
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
 
   get '/admin' do
     redirect '/admin_login' unless admin_logged_in?
@@ -392,9 +393,9 @@ class Application < Sinatra::Base
     redirect '/admin'
   end
 
-  #### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
-  ####   Route for updating an asset    ####
-  #### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+####   Route for updating an asset    ####
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
 
   put '/update_asset_metadata/:id' do
     # Thumbnail_time values
@@ -437,6 +438,10 @@ class Application < Sinatra::Base
     # puts "delete-asset OK"
     redirect '/'
   end
+
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+####   ADMIN HELPERS                  ####
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
 
   def update_current_user_time_on_site(session_id, time)
     users = User.all
