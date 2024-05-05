@@ -31,7 +31,11 @@
       <div class="asset_details_container">
 
         <div class="asset_info">
-          <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">WATCH</button>
+
+          <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">
+            <img class="play-icon" src="/assets/play-icon.png" width=8 height=8> 
+            WATCH
+          </button>
           <div class="asset_year"><%= asset.year%> </div>
 
           <%= partial :"partials/index_panel/asset-elements/asset-info-display", locals: { asset: asset }%>

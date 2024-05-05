@@ -49,6 +49,10 @@ footer {
   margin-top:150px;
 }
 
+.play-icon img {
+  width: 5px;
+  height: 5px;
+}
 /* ************************************ */
 /* INDEX PAGE                           */
 /* ************************************ */
@@ -132,6 +136,11 @@ footer {
 
   .asset_info {
     display: none;
+  }
+
+  .play-icon img {
+    width: 5px;
+    height: 5px;
   }
 
   .video_asset:hover .asset_info {
