@@ -1,0 +1,29 @@
+
+.fullscreen-button {
+  position: relative;
+  top: 10px;
+  left: 10px;
+  /* right: 10px; */
+  margin-bottom: 10px;
+  z-index: 1;
+  border: 1px solid black;
+  padding: 10px 20px;
+  box-shadow: -2px 4px 0px rgb(119, 119, 119);
+  cursor: pointer;
+  font-family: var(--font-family);
+  background-color: var(--button-colour);
+  color: var(--base-colour);
+}
+
+.fullscreen-button:hover {
+  /* background-color: var(--button-colour); */
+  background-color: darkblue;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.play-icon {
+  width: 11px;
+  height: 11px;
+}

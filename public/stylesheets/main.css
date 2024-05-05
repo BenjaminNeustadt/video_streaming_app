@@ -10,6 +10,7 @@
 @import url('user_metrics.css');
 @import url('login_page.css');
 @import url('style-elements/overlay-text.css');
+@import url('asset_drop_down.css');
 
 :root {
   --base-colour: #eaeaea;
@@ -49,10 +50,7 @@ footer {
   margin-top:150px;
 }
 
-.play-icon img {
-  width: 5px;
-  height: 5px;
-}
+
 /* ************************************ */
 /* INDEX PAGE                           */
 /* ************************************ */
