@@ -31,7 +31,7 @@
 
     <div class="asset_duration">
       <img id="time-icon" src="/assets/time-icon.png" alt="duration">
-      <%= asset.duration %>
+      <%= convert_to_minutes(asset.duration.to_f) %> mins
     </div>
 
     <div class="asset_language">

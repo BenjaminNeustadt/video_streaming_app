@@ -122,6 +122,14 @@ class Application < Sinatra::Base
   assets     = assets_api.list_assets
 
 #### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+####   ASSET HELPERS                  ####
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+
+def convert_to_minutes(seconds)
+  (seconds / 60).round
+end
+
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
 ####   ADMIN HELPERS                  ####
 #### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
 
