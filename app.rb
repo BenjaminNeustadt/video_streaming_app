@@ -170,7 +170,7 @@ class Application < Sinatra::Base
     url_format           = ENV['API_FOR_GETTING_DATA']
 
     @ip_present_security = @ip_data["security"]
-    @client_vpn_presence, = @ip_data["security"]["vpn"]
+    @client_vpn_presence = @ip_data["security"]["vpn"]
     @client_proxy_status = @ip_data["security"]["proxy"]
     @ip_geolocation      = @ip_data["location"]
 
