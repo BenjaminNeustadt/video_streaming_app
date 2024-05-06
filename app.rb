@@ -37,16 +37,12 @@ class Application < Sinatra::Base
   before do
     session[:start_time] ||= Time.now
     # @ip_address = settings.development_ip_address || settings.production_ip_address 
-    # @user_ip             = request.ip
     @ip_address          = request.ip
-    p @ip_address
     # @ip_address        = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
-    p @url
-    p url_format
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
 
@@ -164,20 +160,26 @@ end
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
   get '/login' do
-    @ip_address          = request.ip
+    # TODO: figure out how we can have this one place only
+    # @ip_address          = request.ip
+    # @ip_address          = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
-    # @ip_address          = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
 
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
 
     @ip_present_security = @ip_data["security"]
+
+    # p"=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" 
+    # p @ip_present_security
+    # p"=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+" 
+
     @client_vpn_presence = @ip_data["security"]["vpn"]
     @client_proxy_status = @ip_data["security"]["proxy"]
     @ip_geolocation      = @ip_data["location"]
