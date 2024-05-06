@@ -204,6 +204,7 @@ class Application < Sinatra::Base
       session[:logged_in] = true
       find_user_for_that_session_id(session[:session_id].to_s)
       @current_user.update(has_validated: true)
+      @sesh = session[:session_id]
       { success: true }.to_json
     else
       flash[:error] = "Wrong password: check spelling or contact admin..."
@@ -241,7 +242,7 @@ class Application < Sinatra::Base
 
   get '/' do
     redirect '/login' unless valid_visit
-
+    @sesh = session[:session_id]
     session[:start_time] = Time.now
 
     @assets           = Asset.all
