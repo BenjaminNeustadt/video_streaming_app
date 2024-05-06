@@ -118,6 +118,21 @@ class Application < Sinatra::Base
   assets_api = MuxRuby::AssetsApi.new
   assets     = assets_api.list_assets
 
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+####   ADMIN HELPERS                  ####
+#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
+
+  def update_current_user_time_on_site(session_id, time)
+    users = User.all
+    user_to_find = users.find_by(session_id: session_id)
+    user_to_find.update(time_on_site: time)
+  end
+
+  def find_user_for_that_session_id(session_id)
+    user = User.all
+    @current_user = user.find_by(session_id: session_id)
+  end
+
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 # *******    ROUTE HELPERS       *********
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
@@ -136,52 +151,6 @@ class Application < Sinatra::Base
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
   get '/login' do
-    erb :login, layout: false
-  end
-
-  post '/login' do
-    request_body = JSON.parse(request.body.read)
-    password = request_body['password']
-
-    if password == ENV['USER_PASSWORD']
-      session[:logged_in] = true
-      { success: true }.to_json
-    else
-      flash[:error] = "Wrong password: check spelling or contact admin..."
-      { success: false }.to_json
-    end
-  end
-
-# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-# *******    ADMIN LOGIN         *********
-# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-
-  get '/admin_login' do
-    erb :admin_login, layout: false
-  end
-
-  post '/admin_login' do
-    password = params[:password]
-    if password == ENV.fetch('ADMIN_PASSWORD')
-      session[:admin] = true
-      redirect '/admin'
-    else
-      flash[:message] = "wrong password..."
-      redirect '/admin_login'
-    end
-  end
-
-  get '/logout' do
-    session[:admin] = false
-    redirect '/'
-  end
-
-# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-# *******    SITE VISIT         *********
-# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
-
-  get '/' do
-    redirect '/login' unless valid_visit
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
     @ip_address          = "82.33.149.50"
@@ -223,8 +192,56 @@ class Application < Sinatra::Base
       longitude: @client_longitude,
       time_on_site: ''
     )
-
     # time_on_site = Time.now - session[:start_time]
+    erb :login, layout: false
+  end
+
+  post '/login' do
+    request_body = JSON.parse(request.body.read)
+    password = request_body['password']
+
+    if password == ENV['USER_PASSWORD']
+      session[:logged_in] = true
+      find_user_for_that_session_id(session[:session_id].to_s)
+      @current_user.update(has_validated: true)
+      { success: true }.to_json
+    else
+      flash[:error] = "Wrong password: check spelling or contact admin..."
+      { success: false }.to_json
+    end
+  end
+
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+# *******    ADMIN LOGIN         *********
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+  get '/admin_login' do
+    erb :admin_login, layout: false
+  end
+
+  post '/admin_login' do
+    password = params[:password]
+    if password == ENV.fetch('ADMIN_PASSWORD')
+      session[:admin] = true
+      redirect '/admin'
+    else
+      flash[:message] = "wrong password..."
+      redirect '/admin_login'
+    end
+  end
+
+  get '/logout' do
+    session[:admin] = false
+    redirect '/'
+  end
+
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+# *******    SITE VISIT         *********
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+  get '/' do
+    redirect '/login' unless valid_visit
+
     session[:start_time] = Time.now
 
     @assets           = Asset.all
@@ -452,19 +469,5 @@ class Application < Sinatra::Base
     redirect '/'
   end
 
-#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
-####   ADMIN HELPERS                  ####
-#### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
-
-  def update_current_user_time_on_site(session_id, time)
-    users = User.all
-    user_to_find = users.find_by(session_id: session_id)
-    user_to_find.update(time_on_site: time)
-  end
-
-  def find_user_for_that_session_id(session_id)
-    user = User.all
-    @current_user = user.find_by(session_id: session_id)
-  end
 
 end
