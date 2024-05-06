@@ -20,11 +20,11 @@ gem 'sinatra-contrib'
 gem 'rake',                 '~> 13.0'
 gem 'dotenv',               '~> 3.1.0'
 gem 'sinatra-activerecord', '~> 2.0'
+gem 'nokogiri',             '~> 1.14'
 
 group :development, :test do
   #  gem 'bcrypt',               '~> 3.1'
   gem 'mapkick-rb',           '~> 0.1.4'
-  gem 'nokogiri',             '~> 1.14'
   gem 'rspec',                '~> 3.12'
   gem 'rubocop'
   gem 'sinatra-reloader', '~> 1.0'
