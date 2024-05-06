@@ -124,8 +124,10 @@ class Application < Sinatra::Base
 
   def update_current_user_time_on_site(session_id, time)
     users = User.all
-    user_to_find = users.find_by(session_id: session_id)
-    user_to_find.update(time_on_site: time)
+    user = users.find_by(session_id: session_id)
+    if user
+      user.update(time_on_site: user.time_on_site.to_i + time)
+    end
   end
 
   def find_user_for_that_session_id(session_id)
