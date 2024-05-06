@@ -39,7 +39,29 @@ function AddFullScreen(element) {
   const playButton = mediaController.querySelector("div > media-play-button");
               // Check if the media-play-button element is found
   if (playButton) {
-    const cssRule = `mux-player::part(center play button) { display: block; }`;
+    const cssRule = `
+      mux-player::part(bottom button) {
+        display: block;
+      }
+      mux-player {
+        --controls: unset;
+        --play-button: block;
+        --seek-backward-button: block;
+        --seek-forward-button: block;
+        --mute-button: block;
+        --captions-button: block;
+        --airplay-button: block;
+        --pip-button: block;
+        --fullscreen-button: block;
+        --cast-button: block;
+        --playback-rate-button: block;
+        --volume-range: block;
+        --time-range: block;
+        --time-display: block;
+        --duration-display: block;
+      }
+      `;
+  console.log("I got five on it");
     const styleElement = document.createElement('style');
     styleElement.innerHTML = cssRule;
     document.head.appendChild(styleElement);
@@ -65,6 +87,7 @@ document.querySelectorAll('.full-screen-overlay button#back-button').forEach(but
         console.log('Video paused');
       }
 
+      // const cssRule = `mux-player::part(center play button) { display: none; }`;
       const cssRule = `mux-player::part(center play button) { display: none; }`;
       const styleElement = document.createElement('style');
       styleElement.innerHTML = cssRule;

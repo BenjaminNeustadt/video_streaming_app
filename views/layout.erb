@@ -13,18 +13,39 @@
     <style>
 
       mux-player::part(center play button) {
-          display: none;
+          /* display: none; */
       }
       mux-player {
         aspect-ratio: 16 / 9;
-        var(--center-controls: block);
+        /* var(--center-controls: none); */
+        --controls: none;
+        /* --play-button: block;
+        --live-button: block;
+        --seek-backward-button: block;
+        --seek-forward-button: block;
+        --mute-button: block;
+        --captions-button: block;
+        --airplay-button: block;
+        --pip-button: block;
+        --fullscreen-button: block;
+        --cast-button: block;
+        --playback-rate-button: block;
+        --volume-range: block;
+        --time-range: block;
+        --time-display: block;
+        --duration-display: block; */
+        /* --center-controls: block; */
         /* --controls-bottom: none; */
       }
 
       @media (max-width: 600px) {
         mux-player {
-          --seek-backward-button: none;
-          --seek-forward-button: none;
+        /* --volume-range: block; */
+        /* --time-range: block; */
+        /* --pip-button: block; */
+        /* --play-button: block; */
+        --seek-backward-button: block;
+        --seek-forward-button: block;
         }
       }
       /* --media-object-fit: cover;
