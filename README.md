@@ -398,3 +398,14 @@ https://formspree.io/formbutton/docs/#customizing-formbutton
 # Comparison
 
 https://www.stumfilm.dk/en/stumfilm/streaming/film/20682
+
+
+# Known bugs or errors
+
+- error on line 173:
+It seems that now that `@ip_address = request.ip` the app controller will fail as the vpn api checks will use an ip address of ::1 which will not be able to return anything...
+
+Something should be done to distinguish between both modes then...
+
+- ajax not working on mobile as in desktop
+the result of this is that we do not get the time spent on site for mobile users
