@@ -3,3 +3,4 @@ logs/
 *.sqlite*
 *.pem
 # time_on_site.log
+SSL-cert/
