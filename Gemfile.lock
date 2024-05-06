@@ -57,7 +57,6 @@ GEM
     logger (1.6.0)
     mapkick-rb (0.1.5)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.5)
     minitest (5.22.3)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -67,8 +66,17 @@ GEM
     mux_ruby (3.14.0)
       typhoeus (~> 1.0, >= 1.0.1)
     nio4r (2.7.1)
-    nokogiri (1.16.4)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.16.4-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.4-arm-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.4-x86-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.4-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
     openssl (3.2.0)
     ostruct (0.6.0)
@@ -142,8 +150,12 @@ GEM
       sinatra (>= 1.4)
     sinatra-reloader (1.0)
       sinatra-contrib
-    sqlite3 (1.7.3)
-      mini_portile2 (~> 2.8.0)
+    sqlite3 (1.7.3-aarch64-linux)
+    sqlite3 (1.7.3-arm-linux)
+    sqlite3 (1.7.3-arm64-darwin)
+    sqlite3 (1.7.3-x86-linux)
+    sqlite3 (1.7.3-x86_64-darwin)
+    sqlite3 (1.7.3-x86_64-linux)
     tilt (2.3.0)
     timeout (0.4.1)
     typhoeus (1.4.1)
@@ -189,7 +201,7 @@ DEPENDENCIES
   webrick (~> 1.8)
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.6
