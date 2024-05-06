@@ -409,3 +409,11 @@ Something should be done to distinguish between both modes then...
 
 - ajax not working on mobile as in desktop
 the result of this is that we do not get the time spent on site for mobile users
+
+DNS target:
+
+mammalian-hawthorn-2iwtc1mfnxad9wuo766yuznm.herokudns.com
+
+# deploying from heroku and Godaddy:
+
+https://successengineer.medium.com/how-to-setup-heroku-with-godaddy-d8e936d10849
