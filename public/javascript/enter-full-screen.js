@@ -32,7 +32,8 @@ function AddFullScreen(element) {
 // Adding play button when full screen
 // =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
-  const muxPlayer = document.querySelector("body > main > div > div:nth-child(2) > div.video-stream > mux-player");
+  // const muxPlayer = document.querySelector("body > main > div > div:nth-child(2) > div.video-stream > mux-player");
+  const muxPlayer = document.querySelector("mux-player");
   const mediaTheme = muxPlayer.shadowRoot.querySelector("media-theme");
   const mediaController = mediaTheme.shadowRoot.querySelector("media-controller");
   const playButton = mediaController.querySelector("div > media-play-button");
