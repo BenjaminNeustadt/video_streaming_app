@@ -42,7 +42,11 @@
 
     <div class="asset_subtitle_names">
       <img src="/assets/captions-icon-1.png" alt="subs" width="15" height="15">
-      <%= asset.subtitle_names %>
+      <% if asset.subtitle_names.present?%>
+        <%= asset.subtitle_names %>
+      <%else%>
+        <i>no subtitles<i>
+      <%end%>
     </div>
 
   </div> 
