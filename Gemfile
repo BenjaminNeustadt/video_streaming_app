@@ -33,3 +33,4 @@ group :development, :test do
 end
 
 gem "sinatra-flash", "~> 0.3.0"
+gem "bundler", "~> 2.5"
