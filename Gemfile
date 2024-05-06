@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '>=3.0.0'
+# ruby '>=3.0.0'
 
 gem 'aws-sdk-s3', '~> 1.146'
 gem "colorize", "~> 1.1"
