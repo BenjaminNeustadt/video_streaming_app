@@ -33,7 +33,7 @@
   </thead>
 
   <tbody id="first-10-user-metrics">
-    <% @users.first(10).each do |user| %>
+    <% @users.reverse.first(10).each do |user| %>
       <tr>
         <td><%= user.ip_address %></td>
         <td><%= user.ip_city_location %></td>
@@ -54,7 +54,7 @@
   </tbody>
 
   <tbody id="all-user-metrics" hidden>
-    <% @users.each do |user| %>
+    <% @users.reverse.each do |user| %>
       <tr>
         <td><%= user.ip_address %></td>
         <td><%= user.ip_city_location %></td>
