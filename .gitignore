@@ -2,5 +2,5 @@
 logs/
 *.sqlite*
 *.pem
-# time_on_site.log
+time_on_site.log
 SSL-cert/
