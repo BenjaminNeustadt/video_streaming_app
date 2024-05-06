@@ -37,31 +37,34 @@ class Application < Sinatra::Base
   before do
     session[:start_time] ||= Time.now
     # @ip_address = settings.development_ip_address || settings.production_ip_address 
-    @user_ip             = request.ip
-    # @ip_address = request.ip
-    @ip_address          = "82.33.149.50"
+    # @user_ip             = request.ip
+    @ip_address          = request.ip
+    p @ip_address
+    # @ip_address        = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
+    p @url
+    p url_format
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
 
-    @ip_present_security = @ip_data["security"]
-    @client_proxy_status = @ip_data["security"]["proxy"]
-    @ip_geolocation      = @ip_data["location"]
+    # @ip_present_security = @ip_data["security"]
+    # @client_proxy_status = @ip_data["security"]["proxy"]
+    # @ip_geolocation      = @ip_data["location"]
 
-    @client_isp          = @ip_data['network']["autonomous_system_organization"]
+    # @client_isp          = @ip_data['network']["autonomous_system_organization"]
 
-    @client_city         = @ip_data["location"]["city"]
-    @client_country      = @ip_data["location"]["country"]
-    @client_region       = @ip_data["location"]["region"]
-    @client_latitude     = @ip_data["location"]["latitude"]
-    @client_longitude    = @ip_data["location"]["longitude"]
-    @client_location     = @ip_geolocation["city"]
+    # @client_city         = @ip_data["location"]["city"]
+    # @client_country      = @ip_data["location"]["country"]
+    # @client_region       = @ip_data["location"]["region"]
+    # @client_latitude     = @ip_data["location"]["latitude"]
+    # @client_longitude    = @ip_data["location"]["longitude"]
+    # @client_location     = @ip_geolocation["city"]
 
-    @ip_network          = @ip_data["network"]
-    @client_network      = @ip_network["network"]
+    # @ip_network          = @ip_data["network"]
+    # @client_network      = @ip_network["network"]
 
     @language_options = LANGUAGE_CODES
   end
@@ -153,19 +156,21 @@ class Application < Sinatra::Base
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
   get '/login' do
+    @ip_address          = request.ip
+    @api_key             = ENV['VPNAPI_ACCESS_KEY']
+    @admin_password      = ENV['ADMIN_PASSWORD']
+    url_format           = ENV['API_FOR_GETTING_DATA']
+    @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
-    @ip_address          = "82.33.149.50"
+    # @ip_address          = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
 
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
-    @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
-
-    response             = HTTParty.get(@url)
-    @ip_data             = JSON.parse(response.body)
 
     @ip_present_security = @ip_data["security"]
+    @client_vpn_presence, = @ip_data["security"]["vpn"]
     @client_proxy_status = @ip_data["security"]["proxy"]
     @ip_geolocation      = @ip_data["location"]
 
