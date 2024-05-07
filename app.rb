@@ -295,6 +295,7 @@ end
 
   get '/selection' do
     redirect '/login' unless valid_visit
+    @genre_options    = GENRE_OPTIONS
     @assets = Asset.where(top_picks: true).to_a
     # @language_options = LANGUAGE_CODES
     @filter = "Top Picks"
@@ -303,6 +304,7 @@ end
 
   get '/genre/:genre' do
     redirect '/login' unless valid_visit
+    @genre_options    = GENRE_OPTIONS
     genre             = params[:genre]
     @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
     @filter           = genre
@@ -311,6 +313,7 @@ end
 
   get '/director/:director' do
     redirect '/login' unless valid_visit
+    @genre_options    = GENRE_OPTIONS
     director          = params[:director]
     @assets           = Asset.where('directors LIKE ?', "%#{director}%")
     @filter           = director
@@ -319,6 +322,7 @@ end
 
   get '/country/:country' do
     redirect '/login' unless valid_visit
+    @genre_options    = GENRE_OPTIONS
     country           = params[:country]
     @assets           = Asset.where('country LIKE ?', "%#{country}%")
     @filter           = country
