@@ -18,30 +18,19 @@ module AssetEntryHelpers
   ]
 
   COUNTRY_OPTIONS = [
-    "France",
-    "Japan",
-    "China",
-    "England",
-    "Ireland",
-    "Scotland",
-    "Germany",
-    "Italy",
-    "US",
-    "Thailand",
-    "Taiwan",
-    "Russia",
-    "Palestine",
-    "Lebanon",
-    "Egypt",
-    "Turkey",
-    "Belgium",
-    "Greece",
-    "South Korea",
-    "South Africa",
-    "Gambia",
-    "Morocco",
-    "Algeria",
-    "Argentina"
+    "French",
+    "Japanese",
+    "Mandarin",
+    "English",
+    "German",
+    "Italian",
+    "Thai",
+    "Russian",
+    "Arabic",
+    "Turkish",
+    "Greek",
+    "Korean",
+    "Spanish"
   ]
 
   GENRE_OPTIONS = [
@@ -65,6 +54,7 @@ module AssetEntryHelpers
     "Sci-Fi",
     "Surrealism",
     "Thriller",
+    "Short"
   ]
 
 end
