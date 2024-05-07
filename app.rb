@@ -265,8 +265,11 @@ end
 
   get '/' do
     redirect '/login' unless valid_visit
+
     @sesh = session[:session_id]
     session[:start_time] = Time.now
+    @country_options  = COUNTRY_OPTIONS
+    @genre_options    = GENRE_OPTIONS
 
     @assets           = Asset.all
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
@@ -456,6 +459,11 @@ end
     hour                = params[:hour]
     minute              = params[:minute]
     second              = params[:second]
+
+    p "========================================SMILES"
+    p params[:top_pick]
+    p "========================================SMILES"
+
     # convert them to integer for operations
     time = hour.to_i, minute.to_i, second.to_i
 
@@ -465,6 +473,8 @@ end
       directors: params[:director],
       description: params[:description],
       year: params[:year],
+      country: params[:country],
+      genre: params[:genre],
       notes: params[:notes],
       thumbnail_time: time_to_seconds(*time)
     )

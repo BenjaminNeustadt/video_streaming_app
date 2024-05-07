@@ -20,7 +20,9 @@
     <label for="top_pick_<%= asset.asset_id %>">Top Pick:</label>
     <input type="checkbox" id="top_pick_<%= asset.asset_id %>" name="top_pick" <% if asset.top_picks %> checked <% end %>>
 
-    <div class="divider"></div>
+      <div class="divider"></div>
+        <%= partial :"partials/admin_panel/asset-metadata-elements/genre-selection"%>
+      <div class="divider"></div>
 
     <h4>Update Thumbnail:</h4>
     <%= partial :"partials/admin_panel/asset-metadata-elements/thumbnail-position"%>
