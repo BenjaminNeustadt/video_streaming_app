@@ -10,8 +10,8 @@
     <%# <div class="asset_title"></div>
     <div class="asset_director"></div> %>
 
-    <div class="asset_genre">
-      <i><%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%></i>
+    <div class="asset_genre" style="font-style: italic;">
+      <%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%>
     </div>
 
     <div class="asset_description">
@@ -45,7 +45,7 @@
       <% if asset.subtitle_names.present?%>
         <%= asset.subtitle_names %>
       <%else%>
-        <i>no subtitles<i>
+        no subtitles
       <%end%>
     </div>
 
@@ -77,7 +77,7 @@
             <% if asset.subtitle_names.present?%>
         <%= asset.subtitle_names %>
       <%else%>
-        <i>no subtitles<i>
+        no subtitles
       <%end%>
     </div>
 
@@ -89,8 +89,8 @@
     <%# <div class="asset_title"></div>
     <div class="asset_director"></div> %>
 
-    <div class="asset_genre">
-      <i><%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%></i>
+    <div class="asset_genre" style="font-style: italic;">
+      <%= asset.genre ? eval(asset.genre).join(", ") : asset.genre%>
     </div>
 
     <div class="asset_description">

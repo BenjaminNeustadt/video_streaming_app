@@ -197,6 +197,10 @@ footer {
     top: 8px;
     white-space: nowrap;
   }
+
+  .asset_genre {
+    font-style: italic;
+  }
   
 
   .divider {
