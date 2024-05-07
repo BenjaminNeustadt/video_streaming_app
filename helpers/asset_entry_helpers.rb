@@ -41,6 +41,7 @@ module AssetEntryHelpers
     "Art House",
     "Comedy",
     "Crime",
+    "Music",
     "Documentary",
     "Drama",
     "Family",
