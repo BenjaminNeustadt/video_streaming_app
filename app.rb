@@ -475,6 +475,7 @@ end
       year: params[:year],
       country: params[:country],
       genre: params[:genre],
+      top_picks: params[:top_pick].present?,
       notes: params[:notes],
       thumbnail_time: time_to_seconds(*time)
     )
