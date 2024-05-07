@@ -37,15 +37,16 @@ a {
   color: var(--base-colour);
 }
 
-.dark-mode .tab-button.active {
-  background-color: darkblue;
-}
 .tab-content {
   display: none;
   padding: 20px;
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 5px 5px;
+}
+
+.dark-mode .tab-button.active {
+  background-color: darkblue;
 }
 
 /* ================================= */
