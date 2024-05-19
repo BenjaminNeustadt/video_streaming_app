@@ -30,7 +30,9 @@ module AssetEntryHelpers
     "Turkish",
     "Greek",
     "Korean",
-    "Spanish"
+    "Spanish",
+    "Armenian",
+    "Tamil"
   ]
 
   GENRE_OPTIONS = [
