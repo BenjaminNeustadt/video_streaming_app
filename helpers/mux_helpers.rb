@@ -14,7 +14,7 @@ module MuxHelpers
     mux_uploader_api = MuxRuby::DirectUploadsApi.new
     create_asset_request = MuxRuby::CreateAssetRequest.new
     create_asset_request.playback_policy = [MuxRuby::PlaybackPolicy::PUBLIC]
-    # create_asset_request.encoding_tier = "baseline"
+    create_asset_request.encoding_tier = "baseline"
 
     create_upload_request = MuxRuby::CreateUploadRequest.new
     create_upload_request.new_asset_settings = create_asset_request
