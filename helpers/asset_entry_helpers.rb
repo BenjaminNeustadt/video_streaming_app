@@ -20,6 +20,7 @@ module AssetEntryHelpers
   COUNTRY_OPTIONS = [
     "French",
     "Japanese",
+    "Korean"
     "Mandarin",
     "English",
     "German",
