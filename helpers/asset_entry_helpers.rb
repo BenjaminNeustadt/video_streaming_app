@@ -32,7 +32,8 @@ module AssetEntryHelpers
     "Korean",
     "Spanish",
     "Armenian",
-    "Tamil"
+    "Tamil",
+    "Portuguese"
   ]
 
   GENRE_OPTIONS = [
@@ -57,7 +58,11 @@ module AssetEntryHelpers
     "Sci-Fi",
     "Surrealism",
     "Thriller",
-    "Short"
+    "Short",
+    "Queer",
+    "War",
+    "Controversial",
+    "18+"
   ]
 
 end
