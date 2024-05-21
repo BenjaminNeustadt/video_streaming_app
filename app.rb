@@ -36,14 +36,8 @@ class Application < Sinatra::Base
 
   before do
     session[:start_time] ||= Time.now
-    # @ip_address = settings.development_ip_address || settings.production_ip_address 
-    if settings.development?
-      @ip_address = "95.142.107.5"
-    else
-      @ip_address = request.ip       # Use the actual request IP in production
-    end
-    # p @ip_address
-#  || "82.33.149.50"
+    @ip_address settings.development? "95.142.107.5" : request.ip
+    p @ip_address
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
