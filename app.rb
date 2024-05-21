@@ -37,10 +37,13 @@ class Application < Sinatra::Base
   before do
     session[:start_time] ||= Time.now
     # @ip_address = settings.development_ip_address || settings.production_ip_address 
-    @ip_address          = request.ip
+    if settings.development?
+      @ip_address = "95.142.107.5"
+    else
+      @ip_address = request.ip       # Use the actual request IP in production
+    end
     # p @ip_address
 #  || "82.33.149.50"
-    # @ip_address        = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
@@ -299,7 +302,7 @@ end
     @assets = Asset.where(top_picks: true).to_a
     # @language_options = LANGUAGE_CODES
     @filter = "Top Picks"
-    erb :filtered_assets
+    erb :index
   end
 
   get '/genre/:genre' do
@@ -308,7 +311,7 @@ end
     genre             = params[:genre]
     @assets           = Asset.where('genre LIKE ?', "%#{genre}%")
     @filter           = genre
-    erb :filtered_assets
+    erb :index
   end
 
   get '/director/:director' do
@@ -317,7 +320,7 @@ end
     director          = params[:director]
     @assets           = Asset.where('directors LIKE ?', "%#{director}%")
     @filter           = director
-    erb :filtered_assets
+    erb :index
   end
 
   get '/country/:country' do
@@ -326,7 +329,7 @@ end
     country           = params[:country]
     @assets           = Asset.where('country LIKE ?', "%#{country}%")
     @filter           = country
-    erb :filtered_assets
+    erb :index
   end
 
 #### =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ ####
