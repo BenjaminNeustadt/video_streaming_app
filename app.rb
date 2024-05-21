@@ -37,58 +37,39 @@ class Application < Sinatra::Base
   before do
     session[:start_time] ||= Time.now
     @ip_address settings.development? "95.142.107.5" : request.ip
+
     p @ip_address
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
+
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
-
-    # @ip_present_security = @ip_data["security"]
-    # @client_proxy_status = @ip_data["security"]["proxy"]
-    # @ip_geolocation      = @ip_data["location"]
-
-    # @client_isp          = @ip_data['network']["autonomous_system_organization"]
-
-    # @client_city         = @ip_data["location"]["city"]
-    # @client_country      = @ip_data["location"]["country"]
-    # @client_region       = @ip_data["location"]["region"]
-    # @client_latitude     = @ip_data["location"]["latitude"]
-    # @client_longitude    = @ip_data["location"]["longitude"]
-    # @client_location     = @ip_geolocation["city"]
-
-    # @ip_network          = @ip_data["network"]
-    # @client_network      = @ip_network["network"]
 
     @language_options = LANGUAGE_CODES
   end
 
   configure :development do
-    MESSAGES[:sucessful_dev_config].call
-    set :development_ip_address, ENV['TEST_IP_ADDRESS']
+    # MESSAGES[:sucessful_dev_config].call
     register Sinatra::Reloader
   end
 
-  configure :production do
-    MESSAGES[:sucessful_prod_config].call
-  end
+  # configure :production do
+  #   MESSAGES[:sucessful_prod_config].call
+  # end
 
   configure do
     ENV_NOTICE.call(settings)
-    set :server, 'puma'
-    set :session_secret, SecureRandom.hex(64)
-    register Sinatra::ActiveRecordExtension
-    register Sinatra::Flash
-  end
-
-  configure do
     @aws_s3_access_key = ENV['S3_ACCESS_KEY']
     @aws_s3_secret_key = ENV['S3_SECRET_KEY']
 
+    set :session_secret, SecureRandom.hex(64)
+    set :server, 'puma'
     register Sinatra::ActiveRecordExtension
     set :method_override, true
     register Sinatra::Partial
+    register Sinatra::Flash
 
     enable :sessions
     enable :partial_underscores
@@ -96,7 +77,10 @@ class Application < Sinatra::Base
     set :port, 8080
     set :partial_template_engine, :erb
 
+    # ======================= 
     # load_aws_configurations
+    # ======================= 
+
     Aws.config.update({
       region: 'eu-north-1',
       credentials: Aws::Credentials.new(@aws_s3_access_key, @aws_s3_secret_key)
