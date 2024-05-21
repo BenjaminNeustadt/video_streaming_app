@@ -23,9 +23,13 @@
             <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">WATCH</button>
             <%# <div class="divider"></div> %>
             <%= partial :"partials/index_panel/asset-elements/asset-info-display", locals: { asset: asset } %>
+
+          <% if admin_logged_in? %>
             <div class="edit-button-container">
               <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
             </div>
+          <%end%>
+
           </div>
           <div class="asset-actions">
             <button class="close-admin-view" data-asset-id="<%= asset.asset_id %>">Quit admin view</button>
