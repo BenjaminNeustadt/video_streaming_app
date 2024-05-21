@@ -1,8 +1,8 @@
 module EnvironmentHelpers
 
   MESSAGES = {
-    sucessful_dev_config: -> {puts "successfully configured for dev env".colorize(:light_green)},
-    sucessful_prod_config: -> {puts "successfully configured for dev env".colorize(:light_green)}
+    sucessful_dev_config: -> {puts "successfully configured for DEV env".colorize(:light_green)},
+    sucessful_prod_config: -> {puts "successfully configured for PROD env".colorize(:light_green)}
   }
 
   ENV_NOTICE = ->(settings) do
