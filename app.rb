@@ -37,27 +37,19 @@ class Application < Sinatra::Base
   before do
     session[:start_time] ||= Time.now
     @ip_address settings.development? "95.142.107.5" : request.ip
-
     p @ip_address
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
-
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
     response             = HTTParty.get(@url)
     @ip_data             = JSON.parse(response.body)
-
     @language_options = LANGUAGE_CODES
   end
 
   configure :development do
-    # MESSAGES[:sucessful_dev_config].call
     register Sinatra::Reloader
   end
-
-  # configure :production do
-  #   MESSAGES[:sucessful_prod_config].call
-  # end
 
   configure do
     ENV_NOTICE.call(settings)
@@ -136,7 +128,6 @@ end
   def valid_visit
     session[:logged_in] | session[:admin]
   end
-
 
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 # *******    USER LOGIN          *********
