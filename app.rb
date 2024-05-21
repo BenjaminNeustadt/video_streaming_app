@@ -38,6 +38,8 @@ class Application < Sinatra::Base
     session[:start_time] ||= Time.now
     # @ip_address = settings.development_ip_address || settings.production_ip_address 
     @ip_address          = request.ip
+    # p @ip_address
+#  || "82.33.149.50"
     # @ip_address        = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
@@ -161,20 +163,18 @@ end
 
   get '/login' do
     # TODO: figure out how we can have this one place only
-    # @ip_address          = request.ip
-    # @ip_address          = "82.33.149.50"
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
     @url                 = url_format % { ip_address: @ip_address, api_key: @api_key }
+
     response             = HTTParty.get(@url)
-    p "# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-    p "THIS IS THE DATA TO INSPECT"
-    p response
-    p JSON.parse(response.body)["ip"]
-    p "THIS IS THE DATA TO INSPECT"
-    p "# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
-    @ip_data             = JSON.parse(response.body)
+    if response.ok?
+      @ip_data = JSON.parse(response.body)
+    else
+      raise "Failed to retrieve IP data: #{response.body}"
+    end
+
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
 
     @admin_password      = ENV['ADMIN_PASSWORD']
