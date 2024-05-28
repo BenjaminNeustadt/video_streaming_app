@@ -1,4 +1,5 @@
-# PirateHub
+#
+PirateHub
 
 This is the _alpha_ version
 
@@ -417,3 +418,9 @@ mammalian-hawthorn-2iwtc1mfnxad9wuo766yuznm.herokudns.com
 # deploying from heroku and Godaddy:
 
 https://successengineer.medium.com/how-to-setup-heroku-with-godaddy-d8e936d10849
+
+# Ideas for extension goals:
+
+https://github.com/Chocobozzz/PeerTube
+
+using peering to loophole around legalities
