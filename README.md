@@ -424,3 +424,17 @@ https://successengineer.medium.com/how-to-setup-heroku-with-godaddy-d8e936d10849
 https://github.com/Chocobozzz/PeerTube
 
 using peering to loophole around legalities
+
+
+# Deleting asset tracks
+
+```
+curl https://api.mux.com/video/v1/assets/${ASSET_ID}/tracks/${TRACK_ID} \
+  -X DELETE \
+  -H "Content-Type: application/json" \
+  -u ${MUX_TOKEN_ID}:${MUX_TOKEN_SECRET}
+```
+
+  from here:
+
+  https://docs.mux.com/api-reference#video/operation/delete-asset-track
