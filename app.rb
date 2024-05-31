@@ -129,6 +129,20 @@ end
   def valid_visit
     session[:logged_in] | session[:admin]
   end
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+# *******    NEEDS WORK          *********
+# =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+
+  post '/update_asset/:asset_id' do
+    asset_id = params[:asset_id]
+    needs_work = params[:needs_work] == 'true'
+
+    asset = Asset.find_by(asset_id: asset_id)
+    asset.update(needs_work: needs_work)
+
+    # Respond with an empty Turbo Stream response to prevent full page reload
+    status 204
+  end
 
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 # *******    USER LOGIN          *********

@@ -44,10 +44,12 @@
           <% if admin_logged_in? %>
             <div class="edit-button-container">
 
-            <div class="top-picks-entry">
-              <label for="top_picks">Needs work?</label>
-              <input type="checkbox" id="needs_attention" name="needs_attention" value="1">
-            </div>
+              <form id="needs-work-form-<%= asset.asset_id %>" action="/update_asset/<%= asset.asset_id %>" method="post" data-turbo-frame="asset_<%= asset.asset_id %>">
+                  <input type="hidden" name="_method" value="patch">
+                  <label for="needs_attention_<%= asset.asset_id %>">Needs work?</label>
+                  <input type="checkbox" id="needs_attention_<%= asset.asset_id %>" name="needs_work" value="true" <%= 'checked' if asset.needs_work %> data-turbo-frame="update">
+                  <input type="submit" style="display: none;">
+              </form>
 
               <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
             </div>
@@ -69,6 +71,16 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener('turbo:load', function() {
+    document.querySelectorAll('[data-turbo-frame="update"]').forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+        this.form.submit();
+      });
+    });
+  });
+</script>
 
 <script src="/javascript/enter-full-screen.js"></script>
 <script src="/javascript/show_asset_actions.js"></script>
