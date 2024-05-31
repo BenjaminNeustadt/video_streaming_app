@@ -43,6 +43,12 @@
 
           <% if admin_logged_in? %>
             <div class="edit-button-container">
+
+            <div class="top-picks-entry">
+              <label for="top_picks">Needs work?</label>
+              <input type="checkbox" id="needs_attention" name="needs_attention" value="1">
+            </div>
+
               <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
             </div>
           <%end%>
