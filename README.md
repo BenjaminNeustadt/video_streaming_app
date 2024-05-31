@@ -438,3 +438,10 @@ curl https://api.mux.com/video/v1/assets/${ASSET_ID}/tracks/${TRACK_ID} \
   from here:
 
   https://docs.mux.com/api-reference#video/operation/delete-asset-track
+
+
+  # Command for extracting srt out of an mkv file
+
+  ```
+  ffmpeg -i juste_la_fin_du_monde2016.1080p.WEB-DL.x264.AC3.HORiZON-ArtSubs.mkv -map 0:s:0 subs.srt
+  ```
