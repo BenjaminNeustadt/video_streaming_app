@@ -43,7 +43,7 @@ const disableDarkMode = () => {
 
 // Check the initial dark mode status from localStorage
 let darkMode = localStorage.getItem("dark-mode");
-if (darkMode === "enabled") {
+if (darkMode === "enabled" || darkMode == null) {
     enableDarkMode(); // set state of darkMode on page load
 } else {
     disableDarkMode(); // ensure dark mode is disabled if not enabled
