@@ -65,20 +65,6 @@ darkModeToggle.addEventListener('click', function() {
     updateButtonContent();
     logLocalStorage();
 });
-// Event listener for toggling dark mode
-// darkModeToggle.addEventListener('click', function() {
-//     const darkModeEnabled = document.body.classList.toggle('dark-mode');
-//     document.querySelector('nav').classList.toggle('dark-mode-nav');
-//     document.querySelector('h1').classList.toggle('dark-mode-h1');
-
-    // Update button content after toggling dark mode
-    // updateButtonContent();
-
-    // Store dark mode status in a cookie
-    // document.cookie = `darkModeEnabled=${darkModeEnabled}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-    // document.cookie = `darkModeEnabled=${darkModeEnabled}; SameSite=Strict`;
-    // logCookie();
-// });
 
 // Event listener for window resize to update button content
 window.addEventListener('resize', updateButtonContent);
