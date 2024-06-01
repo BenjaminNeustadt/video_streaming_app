@@ -3,76 +3,14 @@
 
   <% @assets.each do |asset| %>
 
-    <div class="video_asset">
+  <turbo-frame id="asset_<%= asset.asset_id %>">
+    <%= partial :"partials/index_panel/asset", locals: { asset: asset }%>
+  </turbo-frame>
 
-      <div class="video-stream">
-        <%= partial :"partials/index_panel/asset-elements/mux-player", locals: { asset: asset }%>
-
-      <div class="full-screen-overlay">
-        <button id="back-button" data-video-id="<%= asset.asset_id %>">Back</button>
-        <div class="overlay-text">
-          <div id="video-title"><%= asset.title %></div>
-          <div id="video-director"><%= asset.directors %></div>
-          <%# <div id="video-description"> asset.description </div> %>
-        </div>
-      </div>
-
-      </div>
-
-      <div class="overlay-text-pre">
-        <div class="video-title"><%= asset.title %></div>
-        <div class="video-director"><%= asset.directors %></div>
-        <% if asset.top_picks then%>
-        <div class="top-film">
-          <img class="star-icon-overlay" src="/assets/star-solid.svg" alt="Top film">
-        </div>
-        <%end%>
-      </div>
-
-      <div class="asset_details_container">
-
-        <div class="asset_info">
-
-          <button class="fullscreen-button" data-video-id="<%= asset.asset_id %>">
-            <img class="play-icon" src="/assets/play-icon.png" width=8 height=8> 
-            WATCH
-          </button>
-          <div class="asset_year"><%= asset.year%> </div>
-
-          <%= partial :"partials/index_panel/asset-elements/asset-info-display", locals: { asset: asset } %>
-
-          <% if admin_logged_in? %>
-            <div class="edit-button-container">
-
-              <form id="needs-work-form-<%= asset.asset_id %>" action="/update_asset/<%= asset.asset_id %>" method="post" data-turbo-frame="asset_<%= asset.asset_id %>">
-                  <input type="hidden" name="_method" value="patch">
-                  <label for="needs_attention_<%= asset.asset_id %>">Needs work?</label>
-                  <input type="checkbox" id="needs_attention_<%= asset.asset_id %>" name="needs_work" value="true" <%= 'checked' if asset.needs_work %> data-turbo-frame="update">
-                  <input type="submit" style="display: none;">
-              </form>
-
-              <button class="edit-button" data-asset-id="<%= asset.asset_id %>">admin view</button>
-            </div>
-          <%end%>
-
-        </div>
-
-        <%# #TODO: protect this behind admin %>
-        <div class="asset-actions">
-          <button class="close-admin-view" data-asset-id="<%= asset.asset_id %>">Quit admin view</button>
-          <div class="asset-data">
-            <%= partial :"partials/index_panel/asset-elements/asset-data", locals: { asset: asset }%>
-          </div>
-          <%= partial :"partials/index_panel/asset-elements/asset-actions", locals: { asset: asset }%>
-        </div>
-
-      </div>
-
-    </div>
   <% end %>
 </div>
 
-<script>
+<%# <script>
   document.addEventListener('turbo:load', function() {
     document.querySelectorAll('[data-turbo-frame="update"]').forEach(function(checkbox) {
       checkbox.addEventListener('change', function() {
@@ -80,7 +18,7 @@
       });
     });
   });
-</script>
+</script> %>
 
 <script src="/javascript/enter-full-screen.js"></script>
 <script src="/javascript/show_asset_actions.js"></script>

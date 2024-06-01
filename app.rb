@@ -38,7 +38,7 @@ class Application < Sinatra::Base
     session[:start_time] ||= Time.now
     @ip_address = settings.development? ? "95.142.107.5" : request.ip
 
-    p @ip_address
+    # p @ip_address
     @api_key             = ENV['VPNAPI_ACCESS_KEY']
     @admin_password      = ENV['ADMIN_PASSWORD']
     url_format           = ENV['API_FOR_GETTING_DATA']
@@ -133,15 +133,32 @@ end
 # *******    NEEDS WORK          *********
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
 
-  post '/update_asset/:asset_id' do
+  patch '/update_asset/:asset_id' do
+    p "we got here"
     asset_id = params[:asset_id]
     needs_work = params[:needs_work] == 'true'
 
     asset = Asset.find_by(asset_id: asset_id)
     asset.update(needs_work: needs_work)
+    @genre_options    = GENRE_OPTIONS
 
+    p "THIS IS THE VALUE FOR ASSET NEED WORK"
+    p asset.needs_work
+    p "THIS IS THE VALUE FOR ASSET NEED WORK"
+    # Render a Turbo Stream response
+    # turbo_stream.replace "asset_#{asset_id}", partial: 'partials/index_panel/asset', locals: { asset: asset }
+    content_type 'text/vnd.turbo-stream.html'
+    erb :"partials/index_panel/_turbo_stream_response", locals: { asset: asset }
+  #   stream = <<-STREAM
+  #   <turbo-stream action="replace" target="asset_#{asset_id}">
+  #     <template>
+  #       #{erb :"partials/index_panel/_asset", locals: { asset: asset }, layout: false}
+  #     </template>
+  #   </turbo-stream>
+  # STREAM
+  # stream
     # Respond with an empty Turbo Stream response to prevent full page reload
-    status 204
+    # status 204
   end
 
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
@@ -253,12 +270,20 @@ end
   get '/' do
     redirect '/login' unless valid_visit
 
+    p = "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+    p GENRE_OPTIONS
+    p = "+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     @sesh = session[:session_id]
     session[:start_time] = Time.now
     @country_options  = COUNTRY_OPTIONS
     @genre_options    = GENRE_OPTIONS
 
     @assets           = Asset.all
+
+p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+    p "Does it need work? #{@assets.last.needs_work}"
+p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
+
     dark_mode_enabled = request.cookies['darkModeEnabled'] == 'true'
     erb :index, locals: { dark_mode_enabled: dark_mode_enabled }
   end
