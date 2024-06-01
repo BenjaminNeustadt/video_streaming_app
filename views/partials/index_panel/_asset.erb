@@ -39,7 +39,7 @@
 
       <% if admin_logged_in? %>
         <div class="edit-button-container">
-          <form id="needs-work-form-<%= asset.asset_id %>" action="/update_asset/<%= asset.asset_id %>" method="post" data-turbo-frame="asset_<%= asset.asset_id %>">
+          <form id="needs-work-form-<%= asset.asset_id %>" action="/update_asset/<%= asset.asset_id %>" method="post">
             <input type="hidden" name="_method" value="patch">
             <label for="needs_attention_<%= asset.asset_id %>">Needs work?</label>
             <input type="checkbox" id="needs_attention_<%= asset.asset_id %>" name="needs_work" value="true" <%= 'checked' if asset.needs_work %> data-turbo-frame="update">

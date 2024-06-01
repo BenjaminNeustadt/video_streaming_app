@@ -145,10 +145,12 @@ end
     p "THIS IS THE VALUE FOR ASSET NEED WORK"
     p asset.needs_work
     p "THIS IS THE VALUE FOR ASSET NEED WORK"
+
+    redirect back
     # Render a Turbo Stream response
     # turbo_stream.replace "asset_#{asset_id}", partial: 'partials/index_panel/asset', locals: { asset: asset }
-    content_type 'text/vnd.turbo-stream.html'
-    erb :"partials/index_panel/_turbo_stream_response", locals: { asset: asset }
+    # content_type 'text/vnd.turbo-stream.html'
+    # erb :"partials/index_panel/_turbo_stream_response", locals: { asset: asset }, layout: false
   #   stream = <<-STREAM
   #   <turbo-stream action="replace" target="asset_#{asset_id}">
   #     <template>
