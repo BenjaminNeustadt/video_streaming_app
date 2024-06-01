@@ -34,7 +34,7 @@ document.querySelector("h1").onmouseover = event => {
   // Perform glitch effect
   performGlitchEffect(event.target, () => {
     // Redirect to /selection after glitch animation completes
-    window.location.href = "/selection";
+    // window.location.href = "/selection";
   });
 }
 
