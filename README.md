@@ -449,3 +449,8 @@ curl https://api.mux.com/video/v1/assets/${ASSET_ID}/tracks/${TRACK_ID} \
   # Turbo Frames and Streams on Sinatra
 
   https://gist.github.com/radanskoric/9bdaa8f64289b00b3cfb1d35cd889196
+
+
+  # Transform non .srt subs to .srt
+
+  https://subtitletools.com/
