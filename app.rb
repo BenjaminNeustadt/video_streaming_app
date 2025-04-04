@@ -70,16 +70,16 @@ class Application < Sinatra::Base
     set :port, 8080
     set :partial_template_engine, :erb
 
-    # ======================= 
-    # load_aws_configurations
-    # ======================= 
+# ======================= 
+# load_aws_configurations
+# ======================= 
 
     Aws.config.update({
       region: 'eu-north-1',
       credentials: Aws::Credentials.new(@aws_s3_access_key, @aws_s3_secret_key)
       })
     set :s3, Aws::S3::Resource.new
-    # TODO: CHANGE BUCKET
+# TODO: CHANGE BUCKET
     set :bucket, settings.s3.bucket('folio-test-bucket')
   end
 
@@ -147,20 +147,6 @@ end
     p "THIS IS THE VALUE FOR ASSET NEED WORK"
 
     redirect back
-    # Render a Turbo Stream response
-    # turbo_stream.replace "asset_#{asset_id}", partial: 'partials/index_panel/asset', locals: { asset: asset }
-    # content_type 'text/vnd.turbo-stream.html'
-    # erb :"partials/index_panel/_turbo_stream_response", locals: { asset: asset }, layout: false
-  #   stream = <<-STREAM
-  #   <turbo-stream action="replace" target="asset_#{asset_id}">
-  #     <template>
-  #       #{erb :"partials/index_panel/_asset", locals: { asset: asset }, layout: false}
-  #     </template>
-  #   </turbo-stream>
-  # STREAM
-  # stream
-    # Respond with an empty Turbo Stream response to prevent full page reload
-    # status 204
   end
 
 # =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
@@ -482,7 +468,7 @@ p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     p params[:top_pick]
     p "========================================SMILES"
 
-    # convert them to integer for operations
+# convert them to integer for operations
     time = hour.to_i, minute.to_i, second.to_i
 
     @asset = Asset.find_by(asset_id: params[:id])
@@ -510,14 +496,14 @@ p "=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+"
     # p "ASSET DELETED"
     begin
       mux_assets_api.get_asset(asset_id)
-      # :TODO: Remove logging
+# :TODO: Remove logging
       # p 'Asset still exists after deletion. Error!'
       exit 255
     rescue MuxRuby::NotFoundError => e
-      # :TODO: Remove logging
+# :TODO: Remove logging
       # p 'Asset deleted successfully!'
     end
-    # :TODO: Remove logging
+# :TODO: Remove logging
     # puts "delete-asset OK"
     redirect '/'
   end

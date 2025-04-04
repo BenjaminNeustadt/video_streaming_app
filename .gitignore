@@ -4,3 +4,9 @@ logs/
 *.pem
 time_on_site.log
 SSL-cert/
+sandbox.md
+
+*.mov
+*.mp4
+*.avi
+*.mkv
